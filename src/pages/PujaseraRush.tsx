@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { GameState, Tenant, Customer } from "@/types/game";
-import { menuItems, customerTypes, allTags, threats } from "@/data/gameData";
+import { menuItems, customerTypes, threats } from "@/data/gameData";
 import { ScoreBoard } from "@/components/ScoreBoard";
 import { PreparingPhase } from "@/components/PreparingPhase";
 import { ReferencePhase } from "@/components/ReferencePhase";
@@ -16,7 +16,30 @@ const shuffle = <T,>(array: T[]): T[] => {
   return [...array].sort(() => Math.random() - 0.5);
 };
 
-const TOTAL_ROUNDS = 3;
+const TOTAL_ROUNDS = 4;
+
+const roundTagOptions: Record<number, string[][]> = {
+  1: [
+    ["Savory", "Cold"],
+    ["Cold", "Trendy"],
+    ["Trendy", "Savory"],
+  ],
+  2: [
+    ["Sweet", "Cheap"],
+    ["Cheap", "Hot"],
+    ["Hot", "Sweet"],
+  ],
+  3: [
+    ["Spicy", "Healthy"],
+    ["Healthy", "Warm"],
+    ["Warm", "Spicy"],
+  ],
+  4: [
+    ["Fresh", "Light"],
+    ["Light", "Traditional"],
+    ["Traditional", "Fresh"],
+  ],
+};
 
 const PujaseraRush = () => {
   const [gameState, setGameState] = useState<GameState>({
@@ -39,8 +62,9 @@ const PujaseraRush = () => {
   const [roundStartStats, setRoundStartStats] = useState({ profit: 0, risk: 0, satisfaction: 0 });
   const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
 
-  const generateRound = () => {
-    const trendingTags = shuffle(allTags).slice(0, 3);
+  const generateRound = (roundNumber: number) => {
+    const tagOptions = roundTagOptions[roundNumber] || roundTagOptions[1];
+    const trendingTags = shuffle(tagOptions)[0];
     const valueItem = shuffle(menuItems)[0].name;
     const currentThreat = shuffle(threats)[0];
 
@@ -70,7 +94,7 @@ const PujaseraRush = () => {
   };
 
   useEffect(() => {
-    generateRound();
+    generateRound(gameState.round);
   }, [gameState.round]);
 
   // Timer effect for execution phase
@@ -154,8 +178,8 @@ const PujaseraRush = () => {
 
     for (const item of allMenuItems) {
       const matchCount = item.tags.filter(tag => customer.preferences.includes(tag)).length;
-      if (matchCount >= 3) isBestMatchAvailable = true;
-      if (matchCount >= 1 && matchCount <= 2) isPartialMatchAvailable = true;
+      if (matchCount >= 2) isBestMatchAvailable = true;
+      if (matchCount === 1) isPartialMatchAvailable = true;
     }
     return { best: isBestMatchAvailable, partial: isPartialMatchAvailable };
   }, [gameState.customers, gameState.currentCustomerIndex, gameState.selectedTenants]);
