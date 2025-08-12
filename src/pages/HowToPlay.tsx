@@ -24,12 +24,12 @@ const HowToPlay = () => {
               <div className="p-4 bg-green-100 rounded-lg">
                 <DollarSign className="mx-auto h-8 w-8 text-green-600 mb-2" />
                 <h3 className="font-bold">Maximize Profit</h3>
-                <p className="text-sm">Serve customers efficiently.</p>
+                <p className="text-sm">Aim for a score of 100 by serving customers efficiently.</p>
               </div>
               <div className="p-4 bg-blue-100 rounded-lg">
                 <Heart className="mx-auto h-8 w-8 text-blue-600 mb-2" />
                 <h3 className="font-bold">Boost Satisfaction</h3>
-                <p className="text-sm">Match preferences perfectly.</p>
+                <p className="text-sm">Aim for a score of 100 by matching preferences perfectly.</p>
               </div>
               <div className="p-4 bg-yellow-100 rounded-lg">
                 <ShieldAlert className="mx-auto h-8 w-8 text-yellow-600 mb-2" />

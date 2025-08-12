@@ -25,7 +25,7 @@ export const ScoreBoard = ({ profit, risk, satisfaction }: ScoreBoardProps) => {
     <>
       <p>Represents your total earnings from serving customers.</p>
       <ul className="list-disc list-inside mt-2 space-y-1">
-        <li><strong className="text-green-500">Best Match:</strong> +5 Profit</li>
+        <li><strong className="text-green-500">Best Match:</strong> +10 Profit</li>
         <li><strong className="text-yellow-500">Partial Match:</strong> +2 Profit</li>
         <li><strong className="text-red-500">Failed Match:</strong> -1 Profit</li>
         <li><strong className="text-red-500">Kick Customer:</strong> -2 Profit</li>
@@ -50,7 +50,7 @@ export const ScoreBoard = ({ profit, risk, satisfaction }: ScoreBoardProps) => {
     <>
       <p>Represents overall customer happiness with your food court.</p>
       <ul className="list-disc list-inside mt-2 space-y-1">
-        <li><strong className="text-green-500">Best Match:</strong> +5 Satisfaction</li>
+        <li><strong className="text-green-500">Best Match:</strong> +10 Satisfaction</li>
         <li><strong className="text-yellow-500">Partial Match:</strong> +2 Satisfaction</li>
         <li><strong className="text-blue-500">Apology:</strong> +1 Satisfaction</li>
         <li><strong className="text-red-500">Failed/Kicked:</strong> -2-3 Satisfaction</li>

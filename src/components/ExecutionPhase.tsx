@@ -90,7 +90,7 @@ export const ExecutionPhase = ({
                   <CheckCircle className="mr-2 h-5 w-5 text-green-400" />
                   <span className="text-sm">Serve Best Match</span>
                 </div>
-                <span className="text-xs font-normal text-muted-foreground hidden sm:inline">(+5 Profit, +5 Sat)</span>
+                <span className="text-xs font-normal text-muted-foreground hidden sm:inline">(+10 Profit, +10 Sat)</span>
               </div>
             </Button>
             <Button onClick={onServePartialMatch} className="w-full h-auto py-2 px-3">
