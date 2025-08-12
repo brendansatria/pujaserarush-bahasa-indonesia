@@ -11,7 +11,7 @@ const Index = () => {
           A game-based learning experience in managing a vibrant Indonesian food court.
         </p>
         <Button asChild size="lg">
-          <Link to="/pujasera-rush">Start Game</Link>
+          <Link to="/how-to-play">Start Game</Link>
         </Button>
       </div>
       <div className="absolute bottom-4">
