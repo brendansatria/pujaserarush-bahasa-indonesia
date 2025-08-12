@@ -37,4 +37,5 @@ export interface GameState {
   currentThreat: Threat | null;
   customersServed: number;
   availableTenants: Tenant[];
+  playerMenu: MenuItem[];
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
-import { GameState, Tenant, Customer } from "@/types/game";
+import { GameState, Tenant, Customer, MenuItem } from "@/types/game";
 import { menuItems, customerTypes, threats, allTags } from "@/data/gameData";
 import { ScoreBoard } from "@/components/ScoreBoard";
 import { PreparingPhase } from "@/components/PreparingPhase";
@@ -59,6 +59,7 @@ const PujaseraRush = () => {
     currentThreat: null,
     customersServed: 0,
     availableTenants: [],
+    playerMenu: [],
   });
 
   const shuffledValueItems = useMemo(() => shuffle(valueMenuItems), []);
@@ -67,21 +68,35 @@ const PujaseraRush = () => {
   const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
   const [strategicRisk, setStrategicRisk] = useState<{ total: number; breakdown: { item: string; reason: string; value: number }[] } | null>(null);
 
-  const generateRound = useCallback((roundNumber: number) => {
+  const generateRound = useCallback((roundNumber: number, currentPlayerMenu: MenuItem[]) => {
     const tagOptions = roundTagOptions[roundNumber] || roundTagOptions[1];
     const trendingTags = shuffle(tagOptions)[0];
     const valueItem = shuffledValueItems[roundNumber - 1];
     const currentThreat = shuffle(threats)[0];
 
+    const availableMenuItems = shuffle(menuItems.filter(
+      item => !currentPlayerMenu.some(playerItem => playerItem.name === item.name)
+    ));
+
     const availableTenants: Tenant[] = [];
-    const shuffledMenus = shuffle(menuItems);
-    for (let i = 0; i < 4; i++) {
-      const tenantItems = shuffledMenus.slice(i * 2, i * 2 + 2);
-      if (tenantItems.length < 2) continue;
-      availableTenants.push({
-        name: `Warung ${String.fromCharCode(65 + i)}`,
-        items: tenantItems,
-      });
+    if (roundNumber === 1) {
+      for (let i = 0; i < 4; i++) {
+        const tenantItems = availableMenuItems.slice(i * 2, i * 2 + 2);
+        if (tenantItems.length < 2) continue;
+        availableTenants.push({
+          name: `Warung ${String.fromCharCode(65 + i)}`,
+          items: tenantItems,
+        });
+      }
+    } else {
+      for (let i = 0; i < 4; i++) {
+        const tenantItem = availableMenuItems.slice(i, i + 1);
+        if (tenantItem.length < 1) continue;
+        availableTenants.push({
+          name: `Kios ${String.fromCharCode(65 + i)}`,
+          items: tenantItem,
+        });
+      }
     }
 
     setGameState(prev => ({
@@ -100,9 +115,9 @@ const PujaseraRush = () => {
 
   useEffect(() => {
     if (shuffledValueItems.length > 0) {
-      generateRound(gameState.round);
+      generateRound(gameState.round, gameState.playerMenu);
     }
-  }, [gameState.round, generateRound, shuffledValueItems]);
+  }, [gameState.round]);
 
   // Timer effect for execution phase
   useEffect(() => {
@@ -182,10 +197,10 @@ const PujaseraRush = () => {
   };
 
   const handleStartExecution = () => {
-    const { selectedTenants, trendingTags } = gameState;
+    const { selectedTenants, trendingTags, playerMenu } = gameState;
     const newCustomers: Customer[] = [];
 
-    const allMenuItems = selectedTenants.flatMap(t => t.items);
+    const allMenuItems = [...playerMenu, ...selectedTenants.flatMap(t => t.items)];
     const menuTags = [...new Set(allMenuItems.flatMap(item => item.tags))];
 
     for (let i = 0; i < 4; i++) {
@@ -262,11 +277,11 @@ const PujaseraRush = () => {
   };
 
   const matchAvailability = useMemo(() => {
-    const { customers, currentCustomerIndex, selectedTenants } = gameState;
+    const { customers, currentCustomerIndex, selectedTenants, playerMenu } = gameState;
     const customer = customers[currentCustomerIndex];
     if (!customer) return { best: false, partial: false };
 
-    const allMenuItems = selectedTenants.flatMap((t) => t.items);
+    const allMenuItems = [...playerMenu, ...selectedTenants.flatMap((t) => t.items)];
     let isBestMatchAvailable = false;
     let isPartialMatchAvailable = false;
 
@@ -276,7 +291,7 @@ const PujaseraRush = () => {
       if (matchCount === 1) isPartialMatchAvailable = true;
     }
     return { best: isBestMatchAvailable, partial: isPartialMatchAvailable };
-  }, [gameState.customers, gameState.currentCustomerIndex, gameState.selectedTenants]);
+  }, [gameState.customers, gameState.currentCustomerIndex, gameState.selectedTenants, gameState.playerMenu]);
 
   const advanceToNextCustomer = (prevState: GameState): Partial<GameState> => {
     const nextCustomerIndex = prevState.currentCustomerIndex + 1;
@@ -353,10 +368,16 @@ const PujaseraRush = () => {
   };
 
   const handleNextRound = () => {
-    setGameState(prev => ({
+    setGameState(prev => {
+      const newItems = prev.selectedTenants.flatMap(t => t.items);
+      const updatedPlayerMenu = [...prev.playerMenu, ...newItems];
+
+      return {
         ...prev,
         round: prev.round + 1,
-    }));
+        playerMenu: updatedPlayerMenu,
+      };
+    });
   };
 
   const handleFinishGame = () => {
@@ -379,6 +400,7 @@ const PujaseraRush = () => {
             selectedTenants={gameState.selectedTenants}
             onSelectTenant={handleSelectTenant}
             onStartExecution={handleOpenFeedbackModal}
+            playerMenu={gameState.playerMenu}
           />
         );
       case "reference":
@@ -386,6 +408,7 @@ const PujaseraRush = () => {
           <ReferencePhase
             selectedTenants={gameState.selectedTenants}
             onStartExecution={handleStartExecution}
+            playerMenu={gameState.playerMenu}
           />
         );
       case "execution":

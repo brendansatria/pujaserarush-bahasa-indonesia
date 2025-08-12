@@ -27,10 +27,11 @@ export const ExecutionPhase = ({
     currentCustomerIndex,
     selectedTenants,
     customersServed,
+    playerMenu,
   } = gameState;
 
   const currentCustomer = customers[currentCustomerIndex];
-  const allMenuItems = selectedTenants.flatMap((tenant) => tenant.items);
+  const allMenuItems = [...playerMenu, ...selectedTenants.flatMap((tenant) => tenant.items)];
 
   if (!currentCustomer) {
     return (

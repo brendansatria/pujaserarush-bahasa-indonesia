@@ -1,4 +1,4 @@
-import { Tenant, Threat } from "@/types/game";
+import { Tenant, Threat, MenuItem } from "@/types/game";
 import { TenantCard } from "./TenantCard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Lightbulb } from "lucide-react";
 import { getTagIcon } from "@/utils/tagIcons";
+import { PlayerMenuDisplay } from "./PlayerMenuDisplay";
 
 interface PreparingPhaseProps {
   round: number;
@@ -16,6 +17,7 @@ interface PreparingPhaseProps {
   selectedTenants: Tenant[];
   onSelectTenant: (tenant: Tenant) => void;
   onStartExecution: () => void;
+  playerMenu: MenuItem[];
 }
 
 export const PreparingPhase = ({
@@ -27,6 +29,7 @@ export const PreparingPhase = ({
   selectedTenants,
   onSelectTenant,
   onStartExecution,
+  playerMenu,
 }: PreparingPhaseProps) => {
   const showThreatFeedback = selectedTenants.length === 2;
 
@@ -80,8 +83,12 @@ export const PreparingPhase = ({
         </Alert>
       )}
 
+      {round > 1 && <PlayerMenuDisplay menu={playerMenu} />}
+
       <div>
-        <h3 className="text-xl font-semibold text-center mb-4">🏪 Select 2 Tenants for Today</h3>
+        <h3 className="text-xl font-semibold text-center mb-4">
+          {round === 1 ? "🏪 Select 2 Tenants for Today" : "➕ Select 2 New Items for your Menu"}
+        </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {availableTenants.map((tenant) => (
             <TenantCard

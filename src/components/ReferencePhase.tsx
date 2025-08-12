@@ -1,4 +1,4 @@
-import { Tenant } from "@/types/game";
+import { Tenant, MenuItem } from "@/types/game";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -9,10 +9,11 @@ import { getTagIcon } from "@/utils/tagIcons";
 interface ReferencePhaseProps {
   selectedTenants: Tenant[];
   onStartExecution: () => void;
+  playerMenu: MenuItem[];
 }
 
-export const ReferencePhase = ({ selectedTenants, onStartExecution }: ReferencePhaseProps) => {
-  const allMenuItems = selectedTenants.flatMap((tenant) => tenant.items);
+export const ReferencePhase = ({ selectedTenants, onStartExecution, playerMenu }: ReferencePhaseProps) => {
+  const allMenuItems = [...playerMenu, ...selectedTenants.flatMap((tenant) => tenant.items)];
 
   return (
     <div className="space-y-6 animate-in fade-in-50">
