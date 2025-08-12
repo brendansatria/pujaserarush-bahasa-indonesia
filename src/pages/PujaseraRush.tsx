@@ -77,7 +77,7 @@ const PujaseraRush = () => {
     customers: [],
     timer: 60,
     trendingTags: [],
-    valueItem: "",
+    valueItems: [],
     currentThreat: null,
     customersServed: 0,
     availableTenants: [],
@@ -85,7 +85,6 @@ const PujaseraRush = () => {
     lineCutters: [],
   });
 
-  const shuffledValueItems = useMemo(() => shuffle(valueMenuItems), []);
   const [roundStartStats, setRoundStartStats] = useState({ profit: 0, risk: 0, satisfaction: 0 });
   const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
   const [strategicRisk, setStrategicRisk] = useState<{ total: number; breakdown: { item: string; reason: string; value: number }[] } | null>(null);
@@ -93,7 +92,8 @@ const PujaseraRush = () => {
   const generateRound = useCallback((roundNumber: number, currentPlayerMenu: MenuItem[]) => {
     const tagOptions = roundTagOptions[roundNumber] || roundTagOptions[1];
     const trendingTags = shuffle(tagOptions)[0];
-    const valueItem = shuffledValueItems[roundNumber - 1];
+    const valueItemCount = roundNumber < 4 ? 2 : 1;
+    const valueItems = shuffle(valueMenuItems).slice(0, valueItemCount);
     const currentThreat = shuffle(threats)[0];
     const { customers, lineCutters } = generateCustomersForRound(roundNumber, trendingTags, currentPlayerMenu);
 
@@ -113,7 +113,7 @@ const PujaseraRush = () => {
       ...prev,
       phase: "preparing",
       trendingTags,
-      valueItem,
+      valueItems,
       currentThreat,
       availableTenants,
       selectedTenants: [],
@@ -122,12 +122,10 @@ const PujaseraRush = () => {
       currentCustomerIndex: 0,
       customersServed: 0,
     }));
-  }, [shuffledValueItems]);
+  }, []);
 
   useEffect(() => {
-    if (shuffledValueItems.length > 0) {
-      generateRound(gameState.round, gameState.playerMenu);
-    }
+    generateRound(gameState.round, gameState.playerMenu);
   }, [gameState.round]);
 
   useEffect(() => {
@@ -149,16 +147,16 @@ const PujaseraRush = () => {
   };
 
   const handleOpenFeedbackModal = () => {
-    const { selectedTenants, trendingTags, valueItem, currentThreat } = gameState;
+    const { selectedTenants, trendingTags, valueItems, currentThreat } = gameState;
     let totalRiskChange = 0;
     const breakdown: { item: string; reason: string; value: number }[] = [];
     const allSelectedItems = selectedTenants.flatMap(t => t.items);
 
-    if (allSelectedItems.some(item => item.name === valueItem)) {
-      totalRiskChange -= 5;
-      breakdown.push({ item: valueItem, reason: "Value Item Bonus", value: -5 });
-    }
     allSelectedItems.forEach(item => {
+      if (valueItems.includes(item.name)) {
+        totalRiskChange -= 5;
+        breakdown.push({ item: item.name, reason: "High Value Menu Bonus", value: -5 });
+      }
       if (item.tags.some(tag => trendingTags.includes(tag))) {
         totalRiskChange -= 2;
         breakdown.push({ item: item.name, reason: "Trending Tag Bonus", value: -2 });
@@ -269,7 +267,7 @@ const PujaseraRush = () => {
 
   const renderPhase = () => {
     switch (gameState.phase) {
-      case "preparing": return <PreparingPhase round={gameState.round} trendingTags={gameState.trendingTags} valueItem={gameState.valueItem} threat={gameState.currentThreat} availableTenants={gameState.availableTenants} selectedTenants={gameState.selectedTenants} onSelectTenant={handleSelectTenant} onStartExecution={handleOpenFeedbackModal} playerMenu={gameState.playerMenu} lineCutters={gameState.lineCutters} />;
+      case "preparing": return <PreparingPhase round={gameState.round} trendingTags={gameState.trendingTags} valueItems={gameState.valueItems} threat={gameState.currentThreat} availableTenants={gameState.availableTenants} selectedTenants={gameState.selectedTenants} onSelectTenant={handleSelectTenant} onStartExecution={handleOpenFeedbackModal} playerMenu={gameState.playerMenu} lineCutters={gameState.lineCutters} />;
       case "reference": return <ReferencePhase selectedTenants={gameState.selectedTenants} onStartExecution={handleStartExecution} playerMenu={gameState.playerMenu} />;
       case "execution": return <ExecutionPhase gameState={gameState} onServeBestMatch={handleServeBestMatch} onServePartialMatch={handleServePartialMatch} onApologize={handleApologize} onKickCustomer={handleKickCustomer} />;
       case "summary": return <SummaryPhase gameState={gameState} roundStartStats={roundStartStats} onNextRound={handleNextRound} onFinishGame={handleFinishGame} totalRounds={TOTAL_ROUNDS} />;

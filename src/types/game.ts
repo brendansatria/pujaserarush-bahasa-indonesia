@@ -34,7 +34,7 @@ export interface GameState {
   customers: Customer[];
   timer: number;
   trendingTags: string[];
-  valueItem: string;
+  valueItems: string[];
   currentThreat: Threat | null;
   customersServed: number;
   availableTenants: Tenant[];

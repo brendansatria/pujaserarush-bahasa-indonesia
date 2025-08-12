@@ -11,7 +11,7 @@ import { PlayerMenuDisplay } from "./PlayerMenuDisplay";
 interface PreparingPhaseProps {
   round: number;
   trendingTags: string[];
-  valueItem: string;
+  valueItems: string[];
   threat: Threat | null;
   availableTenants: Tenant[];
   selectedTenants: Tenant[];
@@ -24,7 +24,7 @@ interface PreparingPhaseProps {
 export const PreparingPhase = ({
   round,
   trendingTags,
-  valueItem,
+  valueItems,
   threat,
   availableTenants,
   selectedTenants,
@@ -68,9 +68,13 @@ export const PreparingPhase = ({
             <p className="text-sm text-muted-foreground">{threat?.description}</p>
           </div>
           <div>
-            <h4 className="font-semibold">Value Menu Item:</h4>
-            <p className="text-sm text-muted-foreground">This menu will be in high demand across all rounds.</p>
-            <Badge variant="destructive" className="mt-2">{valueItem}</Badge>
+            <h4 className="font-semibold">High Value Menu:</h4>
+            <p className="text-sm text-muted-foreground">These menu items will be in high demand across all rounds.</p>
+            <div className="flex flex-wrap gap-2 mt-2">
+              {valueItems.map((item) => (
+                <Badge key={item} variant="destructive">{item}</Badge>
+              ))}
+            </div>
           </div>
         </CardContent>
       </Card>
@@ -124,7 +128,7 @@ export const PreparingPhase = ({
           disabled={selectedTenants.length !== 2}
           size="lg"
         >
-          Start Serving Customers!
+          Proceed
         </Button>
       </div>
     </div>
