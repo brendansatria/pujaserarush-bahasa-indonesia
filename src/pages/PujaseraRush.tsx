@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { GameState, Tenant, Customer } from "@/types/game";
-import { menuItems, customerTypes, threats } from "@/data/gameData";
+import { menuItems, customerTypes, threats, allTags } from "@/data/gameData";
 import { ScoreBoard } from "@/components/ScoreBoard";
 import { PreparingPhase } from "@/components/PreparingPhase";
 import { ReferencePhase } from "@/components/ReferencePhase";
@@ -150,14 +150,76 @@ const PujaseraRush = () => {
   };
 
   const handleStartExecution = () => {
-    const customers: Customer[] = [];
-    for (let i = 0; i < 10; i++) {
-      const customerType = shuffle(customerTypes)[0];
-      customers.push({
-        name: `${customerType.name} #${i + 1}`,
-        preferences: customerType.preferences,
-      });
+    const { selectedTenants, trendingTags } = gameState;
+    const newCustomers: Customer[] = [];
+
+    // 1. Get all unique tags from the player's chosen menu
+    const allMenuItems = selectedTenants.flatMap(t => t.items);
+    const menuTags = [...new Set(allMenuItems.flatMap(item => item.tags))];
+
+    // A. Generate TRENDING customers (40% = 4 customers)
+    for (let i = 0; i < 4; i++) {
+        const customerType = shuffle(customerTypes)[0]; // For naming
+        newCustomers.push({
+            name: `${customerType.name} #${newCustomers.length + 1}`,
+            preferences: shuffle(trendingTags).slice(0, 2),
+        });
     }
+
+    // B. Generate MENU-BASED customers (50% = 5 customers)
+    // B.1. Strong-Match (20% = 2 customers)
+    const potentialStrongMatches = allMenuItems.filter(item => item.tags.length >= 2);
+    for (let i = 0; i < 2; i++) {
+        let preferences: string[];
+        if (potentialStrongMatches.length > 0) {
+            const sourceItem = shuffle(potentialStrongMatches)[0];
+            preferences = shuffle(sourceItem.tags).slice(0, 2);
+        } else if (menuTags.length >= 2) {
+            preferences = shuffle(menuTags).slice(0, 2);
+        } else {
+            const fallbackTag = menuTags.length > 0 ? menuTags[0] : shuffle(allTags)[0];
+            preferences = [fallbackTag, shuffle(allTags.filter(t => t !== fallbackTag))[0]];
+        }
+        const customerType = shuffle(customerTypes)[0];
+        newCustomers.push({
+            name: `${customerType.name} #${newCustomers.length + 1}`,
+            preferences,
+        });
+    }
+
+    // B.2. Partial-Match (30% = 3 customers)
+    for (let i = 0; i < 3; i++) {
+        let preferences: string[];
+        if (menuTags.length > 0) {
+            const menuTag = shuffle(menuTags)[0];
+            const nonMenuTags = allTags.filter(t => !menuTags.includes(t));
+            const randomTag = shuffle(nonMenuTags)[0] || shuffle(allTags.filter(t => t !== menuTag))[0];
+            preferences = [menuTag, randomTag];
+        } else {
+            preferences = shuffle(allTags).slice(0, 2);
+        }
+        const customerType = shuffle(customerTypes)[0];
+        newCustomers.push({
+            name: `${customerType.name} #${newCustomers.length + 1}`,
+            preferences: shuffle(preferences),
+        });
+    }
+
+    // C. Generate CHALLENGE customer (10% = 1 customer)
+    const nonMenuTags = allTags.filter(t => !menuTags.includes(t));
+    let challengePreferences: string[];
+    if (nonMenuTags.length >= 2) {
+        challengePreferences = shuffle(nonMenuTags).slice(0, 2);
+    } else {
+        challengePreferences = shuffle(allTags).slice(0, 2);
+    }
+    const customerType = shuffle(customerTypes)[0];
+    newCustomers.push({
+        name: `${customerType.name} #${newCustomers.length + 1}`,
+        preferences: challengePreferences,
+    });
+
+    const shuffledCustomers = shuffle(newCustomers);
 
     setRoundStartStats({
         profit: gameState.profit,
@@ -167,7 +229,7 @@ const PujaseraRush = () => {
 
     setGameState(prev => ({
       ...prev,
-      customers,
+      customers: shuffledCustomers,
       phase: "execution",
       timer: 60,
     }));
