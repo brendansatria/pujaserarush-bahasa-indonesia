@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { GameState, Tenant, Customer, MenuItem } from "@/types/game";
 import { menuItems, customerTypes, threats, allTags } from "@/data/gameData";
 import { ScoreBoard } from "@/components/ScoreBoard";
@@ -16,6 +16,37 @@ const shuffle = <T,>(array: T[]): T[] => {
   return [...array].sort(() => Math.random() - 0.5);
 };
 
+// Helper function to shuffle customers while avoiding consecutive identical preferences
+const deDupeShuffle = (customers: Customer[]): Customer[] => {
+  if (!customers || customers.length === 0) return [];
+
+  const result: Customer[] = [];
+  const remaining = [...customers];
+
+  // Pick a random first customer
+  let firstIndex = Math.floor(Math.random() * remaining.length);
+  result.push(remaining.splice(firstIndex, 1)[0]);
+
+  while (remaining.length > 0) {
+    const lastPrefs = result[result.length - 1].preferences.slice().sort().join(',');
+    
+    // Find all candidates that don't match the last preference
+    const candidates = remaining.map((c, i) => ({ customer: c, index: i }))
+                                .filter(item => item.customer.preferences.slice().sort().join(',') !== lastPrefs);
+
+    if (candidates.length > 0) {
+      // Pick a random candidate
+      const randomCandidate = candidates[Math.floor(Math.random() * candidates.length)];
+      result.push(remaining.splice(randomCandidate.index, 1)[0]);
+    } else {
+      // If no candidates, it means all remaining customers have the same preference as the last one.
+      // This is a forced repeat. Just pick the first one from remaining.
+      result.push(remaining.splice(0, 1)[0]);
+    }
+  }
+  return result;
+};
+
 const TOTAL_ROUNDS = 4;
 
 const roundTagOptions: Record<number, string[][]> = {
@@ -30,12 +61,10 @@ const valueMenuItems = ["Nasi Goreng", "Es Teh Manis", "Sate Ayam", "Ayam Geprek
 const generateCustomersForRound = (
   round: number,
   trendingTags: string[],
-  allCurrentMenuItems: MenuItem[]
 ): { customers: Customer[]; lineCutters: string[] } => {
   const newCustomers: Customer[] = [];
-  const menuTags = [...new Set(allCurrentMenuItems.flatMap(item => item.tags))];
 
-  // Generate 5 customers with trending tags (pool for line-cutters)
+  // Generate 5 customers with trending tags
   for (let i = 0; i < 5; i++) {
     const customerType = shuffle(customerTypes)[0];
     newCustomers.push({ name: `${customerType.name} #${i + 1}`, preferences: shuffle(trendingTags).slice(0, 2) });
@@ -62,7 +91,7 @@ const generateCustomersForRound = (
     });
   }
 
-  return { customers: shuffle(newCustomers), lineCutters };
+  return { customers: deDupeShuffle(newCustomers), lineCutters };
 };
 
 const PujaseraRush = () => {
@@ -83,23 +112,29 @@ const PujaseraRush = () => {
     availableTenants: [],
     playerMenu: [],
     lineCutters: [],
+    usedThreats: [],
   });
 
   const [roundStartStats, setRoundStartStats] = useState({ profit: 0, risk: 0, satisfaction: 0 });
   const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
   const [strategicRisk, setStrategicRisk] = useState<{ total: number; breakdown: { item: string; reason: string; value: number }[] } | null>(null);
 
-  const generateRound = useCallback((roundNumber: number, currentPlayerMenu: MenuItem[]) => {
-    const tagOptions = roundTagOptions[roundNumber] || roundTagOptions[1];
-    const trendingTags = shuffle(tagOptions)[0];
-    const valueItemCount = roundNumber < 4 ? 2 : 1;
-    const valueItems = shuffle(valueMenuItems).slice(0, valueItemCount);
-    const currentThreat = shuffle(threats)[0];
-    const { customers, lineCutters } = generateCustomersForRound(roundNumber, trendingTags, currentPlayerMenu);
+  useEffect(() => {
+    const { round, playerMenu, usedThreats: usedThreatNames } = gameState;
 
-    const availableMenuItems = shuffle(menuItems.filter(item => !currentPlayerMenu.some(playerItem => playerItem.name === item.name)));
+    const tagOptions = roundTagOptions[round] || roundTagOptions[1];
+    const trendingTags = shuffle(tagOptions)[0];
+    const valueItemCount = round < 4 ? 2 : 1;
+    const valueItems = shuffle(valueMenuItems).slice(0, valueItemCount);
+    
+    const availableThreats = threats.filter(t => !usedThreatNames.includes(t.name));
+    const currentThreat = shuffle(availableThreats.length > 0 ? availableThreats : threats)[0];
+
+    const { customers, lineCutters } = generateCustomersForRound(round, trendingTags);
+
+    const availableMenuItems = shuffle(menuItems.filter(item => !playerMenu.some(playerItem => playerItem.name === item.name)));
     const availableTenants: Tenant[] = [];
-    if (roundNumber === 1) {
+    if (round === 1) {
       for (let i = 0; i < 4; i++) {
         availableTenants.push({ name: `Warung ${String.fromCharCode(65 + i)}`, items: availableMenuItems.slice(i * 2, i * 2 + 2) });
       }
@@ -121,11 +156,8 @@ const PujaseraRush = () => {
       lineCutters,
       currentCustomerIndex: 0,
       customersServed: 0,
+      usedThreats: [...new Set([...prev.usedThreats, currentThreat.name])],
     }));
-  }, []);
-
-  useEffect(() => {
-    generateRound(gameState.round, gameState.playerMenu);
   }, [gameState.round]);
 
   useEffect(() => {
@@ -152,7 +184,6 @@ const PujaseraRush = () => {
     const breakdown: { item: string; reason: string; value: number }[] = [];
     const allSelectedItems = selectedTenants.flatMap(t => t.items);
 
-    // Check newly selected tenants
     allSelectedItems.forEach(item => {
       if (valueItems.includes(item.name)) {
         totalRiskChange -= 5;
@@ -168,7 +199,6 @@ const PujaseraRush = () => {
       }
     });
 
-    // Check player's existing menu for high value items
     playerMenu.forEach(item => {
       if (valueItems.includes(item.name)) {
         totalRiskChange -= 2;

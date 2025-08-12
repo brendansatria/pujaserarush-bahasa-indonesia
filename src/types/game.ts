@@ -40,4 +40,5 @@ export interface GameState {
   availableTenants: Tenant[];
   playerMenu: MenuItem[];
   lineCutters: string[];
+  usedThreats: string[];
 }
