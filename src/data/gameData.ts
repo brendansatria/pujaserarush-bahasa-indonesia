@@ -2,17 +2,30 @@ import { MenuItem, Threat } from "@/types/game";
 
 export const menuItems: MenuItem[] = [
     { name: "Nasi Goreng", tags: ["Savory", "Warm", "Traditional"] },
-    { name: "Mie Ayam", tags: ["Savory", "Warm", "Cheap"] },
-    { name: "Gado-Gado", tags: ["Fresh", "Healthy", "Light"] },
-    { name: "Sate Ayam", tags: ["Savory", "Spicy", "Hot"] },
     { name: "Es Cendol", tags: ["Sweet", "Cold", "Traditional"] },
-    { name: "Bakso", tags: ["Savory", "Hot", "Cheap"] },
-    { name: "Rendang", tags: ["Savory", "Spicy", "Traditional"] },
-    { name: "Martabak Manis", tags: ["Sweet", "Warm", "Trendy"] },
     { name: "Soto Ayam", tags: ["Savory", "Hot", "Light"] },
+    { name: "Ayam Geprek", tags: ["Spicy", "Warm", "Trendy"] },
+    { name: "Es Kelapa Muda", tags: ["Sweet", "Cold", "Fresh"] },
+    { name: "Gado-Gado", tags: ["Savory", "Cold", "Healthy"] },
+    { name: "Sate Ayam", tags: ["Savory", "Hot", "Traditional"] },
+    { name: "Klepon", tags: ["Sweet", "Cold", "Trendy"] },
+    { name: "Rendang Daging", tags: ["Spicy", "Warm", "Traditional"] },
     { name: "Es Teh Manis", tags: ["Sweet", "Cold", "Cheap"] },
-    { name: "Pecel Lele", tags: ["Savory", "Spicy", "Cheap"] },
-    { name: "Rujak", tags: ["Fresh", "Spicy", "Healthy"] }
+    { name: "Bakso Sapi", tags: ["Savory", "Hot", "Cheap"] },
+    { name: "Sambal Goreng Tempe", tags: ["Spicy", "Warm", "Healthy"] },
+    { name: "Pisang Goreng", tags: ["Sweet", "Warm", "Cheap"] },
+    { name: "Mie Goreng", tags: ["Savory", "Warm", "Trendy"] },
+    { name: "Es Campur", tags: ["Sweet", "Cold", "Light"] },
+    { name: "Sayur Lodeh", tags: ["Spicy", "Hot", "Healthy"] },
+    { name: "Ayam Bakar", tags: ["Spicy", "Hot", "Traditional"] },
+    { name: "Kopi Tubruk", tags: ["Sweet", "Hot", "Cheap"] },
+    { name: "Tahu Tek", tags: ["Savory", "Cold", "Healthy"] },
+    { name: "Martabak Manis", tags: ["Sweet", "Warm", "Trendy"] },
+    { name: "Ikan Bakar", tags: ["Spicy", "Hot", "Fresh"] },
+    { name: "Bubur Ayam", tags: ["Savory", "Hot", "Light"] },
+    { name: "Es Jeruk", tags: ["Sweet", "Cold", "Fresh"] },
+    { name: "Pepes Ikan", tags: ["Spicy", "Warm", "Healthy"] },
+    { name: "Rujak Buah", tags: ["Spicy", "Cold", "Fresh"] }
 ];
 
 export const customerTypes: { name: string; preferences: string[] }[] = [
@@ -39,7 +52,7 @@ export const customerTypes: { name: string; preferences: string[] }[] = [
 ];
 
 export const allTags: string[] = [
-    "Savory", "Cheap", "Sweet", "Trendy", "Spicy", "Fresh", "Hot", "Light", "Cold", "Healthy", "Traditional", "Warm"
+    "Savory", "Warm", "Traditional", "Sweet", "Cold", "Hot", "Light", "Spicy", "Trendy", "Fresh", "Healthy", "Cheap"
 ];
 
 export const threats: Threat[] = [
