@@ -19,7 +19,7 @@ export interface Threat {
   eliminates: string[];
 }
 
-export type GamePhase = "preparing" | "execution" | "summary" | "victory";
+export type GamePhase = "preparing" | "reference" | "execution" | "summary" | "victory";
 
 export interface GameState {
   round: number;

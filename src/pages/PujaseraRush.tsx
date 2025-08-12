@@ -3,6 +3,7 @@ import { GameState, Tenant, Customer } from "@/types/game";
 import { menuItems, customerTypes, allTags, threats } from "@/data/gameData";
 import { ScoreBoard } from "@/components/ScoreBoard";
 import { PreparingPhase } from "@/components/PreparingPhase";
+import { ReferencePhase } from "@/components/ReferencePhase";
 import { ExecutionPhase } from "@/components/ExecutionPhase";
 import { MadeWithDyad } from "@/components/made-with-dyad";
 
@@ -95,6 +96,13 @@ const PujaseraRush = () => {
       }
       return prev;
     });
+  };
+
+  const handleProceedToReference = () => {
+    setGameState(prev => ({
+      ...prev,
+      phase: "reference",
+    }));
   };
 
   const handleStartExecution = () => {
@@ -191,6 +199,13 @@ const PujaseraRush = () => {
             availableTenants={gameState.availableTenants}
             selectedTenants={gameState.selectedTenants}
             onSelectTenant={handleSelectTenant}
+            onStartExecution={handleProceedToReference}
+          />
+        );
+      case "reference":
+        return (
+          <ReferencePhase
+            selectedTenants={gameState.selectedTenants}
             onStartExecution={handleStartExecution}
           />
         );
