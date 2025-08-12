@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { GameState, Tenant, Customer } from "@/types/game";
 import { menuItems, customerTypes, threats } from "@/data/gameData";
 import { ScoreBoard } from "@/components/ScoreBoard";
@@ -41,6 +41,8 @@ const roundTagOptions: Record<number, string[][]> = {
   ],
 };
 
+const valueMenuItems = ["Nasi Goreng", "Es Teh Manis", "Sate Ayam", "Ayam Geprek", "Martabak Manis"];
+
 const PujaseraRush = () => {
   const [gameState, setGameState] = useState<GameState>({
     round: 1,
@@ -59,13 +61,15 @@ const PujaseraRush = () => {
     availableTenants: [],
   });
 
+  const shuffledValueItems = useMemo(() => shuffle(valueMenuItems), []);
+
   const [roundStartStats, setRoundStartStats] = useState({ profit: 0, risk: 0, satisfaction: 0 });
   const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
 
-  const generateRound = (roundNumber: number) => {
+  const generateRound = useCallback((roundNumber: number) => {
     const tagOptions = roundTagOptions[roundNumber] || roundTagOptions[1];
     const trendingTags = shuffle(tagOptions)[0];
-    const valueItem = shuffle(menuItems)[0].name;
+    const valueItem = shuffledValueItems[roundNumber - 1];
     const currentThreat = shuffle(threats)[0];
 
     const availableTenants: Tenant[] = [];
@@ -91,11 +95,13 @@ const PujaseraRush = () => {
       currentCustomerIndex: 0,
       customersServed: 0,
     }));
-  };
+  }, [shuffledValueItems]);
 
   useEffect(() => {
-    generateRound(gameState.round);
-  }, [gameState.round]);
+    if (shuffledValueItems.length > 0) {
+      generateRound(gameState.round);
+    }
+  }, [gameState.round, generateRound, shuffledValueItems]);
 
   // Timer effect for execution phase
   useEffect(() => {
