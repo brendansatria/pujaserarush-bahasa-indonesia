@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { GameState, Tenant } from "@/types/game";
+import { GameState, Tenant, MenuItem } from "@/types/game";
 import { menuItems, customerTypes, allTags, threats } from "@/data/gameData";
 import { ScoreBoard } from "@/components/ScoreBoard";
 import { PreparingPhase } from "@/components/PreparingPhase";
+import { ExecutionPhase } from "@/components/ExecutionPhase";
 import { MadeWithDyad } from "@/components/made-with-dyad";
 
 // Helper function to shuffle an array
@@ -62,6 +63,24 @@ const PujaseraRush = () => {
     generateRound();
   }, [gameState.round]);
 
+  // Timer effect for execution phase
+  useEffect(() => {
+    if (gameState.phase !== "execution" || gameState.timer <= 0) {
+      return;
+    }
+    const interval = setInterval(() => {
+      setGameState(prev => {
+        if (prev.timer > 1) {
+          return { ...prev, timer: prev.timer - 1 };
+        }
+        // Timer hits 0, end phase
+        return { ...prev, timer: 0, phase: "summary" };
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [gameState.phase, gameState.timer]);
+
+
   const handleSelectTenant = (tenant: Tenant) => {
     setGameState(prev => {
       const isSelected = prev.selectedTenants.some(t => t.name === tenant.name);
@@ -99,6 +118,46 @@ const PujaseraRush = () => {
     }));
   };
 
+  const handleServeItem = (item: MenuItem) => {
+    setGameState(prev => {
+      const customer = prev.customers[prev.currentCustomerIndex];
+      if (!customer) return prev;
+
+      let profitGained = 10;
+      let satisfactionGained = 0;
+
+      // Check for preference matches
+      const matchingPreferences = item.tags.filter(tag => customer.preferences.includes(tag));
+      satisfactionGained += matchingPreferences.length * 5;
+
+      // Check for trending tags bonus
+      const matchingTrending = item.tags.filter(tag => prev.trendingTags.includes(tag));
+      profitGained += matchingTrending.length * 2;
+      
+      // Check for value item bonus
+      if (item.name === prev.valueItem) {
+        profitGained += 5;
+      }
+
+      // Check for threat penalty
+      if (prev.currentThreat && item.tags.some(tag => prev.currentThreat?.eliminates.includes(tag))) {
+        satisfactionGained -= 10; // Harsh penalty for serving something affected by threat
+      }
+      
+      const nextCustomerIndex = prev.currentCustomerIndex + 1;
+      const isRoundOver = nextCustomerIndex >= prev.customers.length;
+
+      return {
+        ...prev,
+        profit: Math.max(0, prev.profit + profitGained),
+        satisfaction: Math.max(0, prev.satisfaction + satisfactionGained),
+        customersServed: prev.customersServed + 1,
+        currentCustomerIndex: nextCustomerIndex,
+        phase: isRoundOver ? "summary" : prev.phase,
+      };
+    });
+  };
+
   const renderPhase = () => {
     switch (gameState.phase) {
       case "preparing":
@@ -115,7 +174,7 @@ const PujaseraRush = () => {
           />
         );
       case "execution":
-        return <div className="text-center p-8">Execution Phase (To be implemented)</div>;
+        return <ExecutionPhase gameState={gameState} onServeItem={handleServeItem} />;
       case "summary":
         return <div className="text-center p-8">Summary Phase (To be implemented)</div>;
       case "victory":
