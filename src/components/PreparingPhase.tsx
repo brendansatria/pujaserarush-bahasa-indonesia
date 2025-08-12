@@ -52,6 +52,7 @@ export const PreparingPhase = ({
           </div>
           <div>
             <h4 className="font-semibold">Value Menu Item:</h4>
+            <p className="text-sm text-muted-foreground">This menu will be in high demand across all rounds.</p>
             <Badge variant="destructive" className="mt-2">{valueItem}</Badge>
           </div>
           <div>
@@ -73,7 +74,7 @@ export const PreparingPhase = ({
 
       <div>
         <h3 className="text-xl font-semibold text-center mb-4">🏪 Select 2 Tenants for Today</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 gap-4">
           {availableTenants.map((tenant) => (
             <TenantCard
               key={tenant.name}

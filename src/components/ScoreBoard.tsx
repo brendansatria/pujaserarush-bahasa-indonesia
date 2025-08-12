@@ -20,7 +20,7 @@ const ScoreCard = ({ title, value, colorClass }: { title: string; value: number;
 
 export const ScoreBoard = ({ profit, risk, satisfaction }: ScoreBoardProps) => {
   return (
-    <div className="grid gap-4 md:grid-cols-3">
+    <div className="grid gap-4 grid-cols-3">
       <ScoreCard title="💰 Profit" value={profit} colorClass="text-green-500" />
       <ScoreCard title="⚠️ Risk Management" value={risk} colorClass="text-yellow-500" />
       <ScoreCard title="😊 Customer Satisfaction" value={satisfaction} colorClass="text-blue-500" />
