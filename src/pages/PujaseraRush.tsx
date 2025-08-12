@@ -5,6 +5,8 @@ import { ScoreBoard } from "@/components/ScoreBoard";
 import { PreparingPhase } from "@/components/PreparingPhase";
 import { ReferencePhase } from "@/components/ReferencePhase";
 import { ExecutionPhase } from "@/components/ExecutionPhase";
+import { SummaryPhase } from "@/components/SummaryPhase";
+import { VictoryPhase } from "@/components/VictoryPhase";
 import { MadeWithDyad } from "@/components/made-with-dyad";
 import { showError, showSuccess } from "@/utils/toast";
 
@@ -12,6 +14,8 @@ import { showError, showSuccess } from "@/utils/toast";
 const shuffle = <T,>(array: T[]): T[] => {
   return [...array].sort(() => Math.random() - 0.5);
 };
+
+const TOTAL_ROUNDS = 3;
 
 const PujaseraRush = () => {
   const [gameState, setGameState] = useState<GameState>({
@@ -30,6 +34,8 @@ const PujaseraRush = () => {
     customersServed: 0,
     availableTenants: [],
   });
+
+  const [roundStartStats, setRoundStartStats] = useState({ profit: 0, risk: 0, satisfaction: 0 });
 
   const generateRound = () => {
     const trendingTags = shuffle(allTags).slice(0, 3);
@@ -115,6 +121,12 @@ const PujaseraRush = () => {
         preferences: customerType.preferences,
       });
     }
+
+    setRoundStartStats({
+        profit: gameState.profit,
+        risk: gameState.risk,
+        satisfaction: gameState.satisfaction,
+    });
 
     setGameState(prev => ({
       ...prev,
@@ -215,6 +227,20 @@ const PujaseraRush = () => {
     }));
   };
 
+  const handleNextRound = () => {
+    setGameState(prev => ({
+        ...prev,
+        round: prev.round + 1,
+    }));
+  };
+
+  const handleFinishGame = () => {
+    setGameState(prev => ({
+        ...prev,
+        phase: "victory",
+    }));
+  };
+
   const renderPhase = () => {
     switch (gameState.phase) {
       case "preparing":
@@ -248,9 +274,17 @@ const PujaseraRush = () => {
           />
         );
       case "summary":
-        return <div className="text-center p-8">Summary Phase (To be implemented)</div>;
+        return (
+          <SummaryPhase
+            gameState={gameState}
+            roundStartStats={roundStartStats}
+            onNextRound={handleNextRound}
+            onFinishGame={handleFinishGame}
+            totalRounds={TOTAL_ROUNDS}
+          />
+        );
       case "victory":
-        return <div className="text-center p-8">Victory! (To be implemented)</div>;
+        return <VictoryPhase gameState={gameState} />;
       default:
         return <div className="text-center p-8">Loading...</div>;
     }
