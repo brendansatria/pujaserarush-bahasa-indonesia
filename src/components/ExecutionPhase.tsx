@@ -4,21 +4,33 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { getTagIcon } from "@/utils/tagIcons";
-import { TimerIcon } from "lucide-react";
+import { TimerIcon, CheckCircle, Star, ThumbsDown, Handshake } from "lucide-react";
 
 interface ExecutionPhaseProps {
   gameState: GameState;
-  onServeItem: (item: MenuItem) => void;
+  onServeBestMatch: () => void;
+  onServePartialMatch: () => void;
+  onApologize: () => void;
+  onKickCustomer: () => void;
+  isBestMatchAvailable: boolean;
+  isPartialMatchAvailable: boolean;
 }
 
-export const ExecutionPhase = ({ gameState, onServeItem }: ExecutionPhaseProps) => {
+export const ExecutionPhase = ({
+  gameState,
+  onServeBestMatch,
+  onServePartialMatch,
+  onApologize,
+  onKickCustomer,
+  isBestMatchAvailable,
+  isPartialMatchAvailable,
+}: ExecutionPhaseProps) => {
   const {
     timer,
     customers,
     currentCustomerIndex,
     selectedTenants,
     customersServed,
-    currentThreat,
   } = gameState;
 
   const currentCustomer = customers[currentCustomerIndex];
@@ -68,24 +80,53 @@ export const ExecutionPhase = ({ gameState, onServeItem }: ExecutionPhaseProps) 
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Your Menu</CardTitle>
-          <CardDescription>Select an item to serve to the customer.</CardDescription>
-        </CardHeader>
-        <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {allMenuItems.map((item) => {
-            const isEliminated = currentThreat && item.tags.some(tag => currentThreat.eliminates.includes(tag));
-            return (
-              <Button
-                key={item.name}
-                variant="outline"
-                className="h-auto p-4 flex flex-col items-start text-left"
-                onClick={() => onServeItem(item)}
-                disabled={isEliminated}
-              >
-                <p className="font-bold text-base">{item.name}</p>
-                {isEliminated && <p className="text-xs text-destructive">(Unavailable due to {currentThreat?.name})</p>}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>Choose Your Action</CardTitle>
+            <CardDescription>Select an action for this customer.</CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-col space-y-3">
+            <Button onClick={onServeBestMatch} disabled={!isBestMatchAvailable} className="w-full justify-between h-auto py-2">
+              <div className="flex items-center">
+                <CheckCircle className="mr-2 h-5 w-5 text-green-400" />
+                <span>Serve Best Match</span>
+              </div>
+              <span className="text-xs font-normal text-muted-foreground">(+5 Profit, +5 Sat)</span>
+            </Button>
+            <Button onClick={onServePartialMatch} disabled={!isPartialMatchAvailable} className="w-full justify-between h-auto py-2">
+              <div className="flex items-center">
+                <Star className="mr-2 h-5 w-5 text-yellow-400" />
+                <span>Serve Partial Match</span>
+              </div>
+              <span className="text-xs font-normal text-muted-foreground">(+2 Profit, +2 Sat)</span>
+            </Button>
+            <Button onClick={onApologize} variant="secondary" className="w-full justify-between h-auto py-2">
+              <div className="flex items-center">
+                <Handshake className="mr-2 h-5 w-5 text-blue-400" />
+                <span>Apologize</span>
+              </div>
+              <span className="text-xs font-normal text-muted-foreground">(+1 Sat, +1 Risk)</span>
+            </Button>
+            <Button onClick={onKickCustomer} variant="destructive" className="w-full justify-between h-auto py-2">
+              <div className="flex items-center">
+                <ThumbsDown className="mr-2 h-5 w-5" />
+                <span>Kick Customer</span>
+              </div>
+              <span className="text-xs font-normal text-muted-foreground">(-2 Profit, -2 Sat, +1 Risk)</span>
+            </Button>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Reference Menu</CardTitle>
+            <CardDescription>Your available items.</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3 max-h-60 overflow-y-auto pr-3">
+            {allMenuItems.map((item) => (
+              <div key={item.name} className="p-3 border rounded-lg bg-background">
+                <p className="font-semibold">{item.name}</p>
                 <div className="flex flex-wrap gap-1 mt-2">
                   {item.tags.map((tag) => {
                     const Icon = getTagIcon(tag);
@@ -97,11 +138,11 @@ export const ExecutionPhase = ({ gameState, onServeItem }: ExecutionPhaseProps) 
                     );
                   })}
                 </div>
-              </Button>
-            );
-          })}
-        </CardContent>
-      </Card>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 };

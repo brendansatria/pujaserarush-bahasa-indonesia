@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { GameState, Tenant, MenuItem } from "@/types/game";
+import { useState, useEffect, useMemo } from "react";
+import { GameState, Tenant, Customer } from "@/types/game";
 import { menuItems, customerTypes, allTags, threats } from "@/data/gameData";
 import { ScoreBoard } from "@/components/ScoreBoard";
 import { PreparingPhase } from "@/components/PreparingPhase";
@@ -65,20 +65,17 @@ const PujaseraRush = () => {
 
   // Timer effect for execution phase
   useEffect(() => {
-    if (gameState.phase !== "execution" || gameState.timer <= 0) {
+    if (gameState.phase !== "execution" || gameState.timer <= 0 || gameState.currentCustomerIndex >= gameState.customers.length) {
+      if (gameState.phase === "execution") {
+        setGameState(prev => ({ ...prev, phase: "summary" }));
+      }
       return;
     }
     const interval = setInterval(() => {
-      setGameState(prev => {
-        if (prev.timer > 1) {
-          return { ...prev, timer: prev.timer - 1 };
-        }
-        // Timer hits 0, end phase
-        return { ...prev, timer: 0, phase: "summary" };
-      });
+      setGameState(prev => ({ ...prev, timer: prev.timer - 1 }));
     }, 1000);
     return () => clearInterval(interval);
-  }, [gameState.phase, gameState.timer]);
+  }, [gameState.phase, gameState.timer, gameState.customers.length, gameState.currentCustomerIndex]);
 
 
   const handleSelectTenant = (tenant: Tenant) => {
@@ -101,7 +98,7 @@ const PujaseraRush = () => {
   };
 
   const handleStartExecution = () => {
-    const customers = [];
+    const customers: Customer[] = [];
     for (let i = 0; i < 10; i++) {
       const customerType = shuffle(customerTypes)[0];
       customers.push({
@@ -118,44 +115,68 @@ const PujaseraRush = () => {
     }));
   };
 
-  const handleServeItem = (item: MenuItem) => {
-    setGameState(prev => {
-      const customer = prev.customers[prev.currentCustomerIndex];
-      if (!customer) return prev;
+  const matchAvailability = useMemo(() => {
+    const { customers, currentCustomerIndex, selectedTenants } = gameState;
+    const customer = customers[currentCustomerIndex];
+    if (!customer) return { best: false, partial: false };
 
-      let profitGained = 10;
-      let satisfactionGained = 0;
+    const allMenuItems = selectedTenants.flatMap((t) => t.items);
+    let isBestMatchAvailable = false;
+    let isPartialMatchAvailable = false;
 
-      // Check for preference matches
-      const matchingPreferences = item.tags.filter(tag => customer.preferences.includes(tag));
-      satisfactionGained += matchingPreferences.length * 5;
+    for (const item of allMenuItems) {
+      const matchCount = item.tags.filter(tag => customer.preferences.includes(tag)).length;
+      if (matchCount >= 3) isBestMatchAvailable = true;
+      if (matchCount >= 1 && matchCount <= 2) isPartialMatchAvailable = true;
+    }
+    return { best: isBestMatchAvailable, partial: isPartialMatchAvailable };
+  }, [gameState.customers, gameState.currentCustomerIndex, gameState.selectedTenants]);
 
-      // Check for trending tags bonus
-      const matchingTrending = item.tags.filter(tag => prev.trendingTags.includes(tag));
-      profitGained += matchingTrending.length * 2;
-      
-      // Check for value item bonus
-      if (item.name === prev.valueItem) {
-        profitGained += 5;
-      }
+  const advanceToNextCustomer = (prevState: GameState): Partial<GameState> => {
+    const nextCustomerIndex = prevState.currentCustomerIndex + 1;
+    const isRoundOver = nextCustomerIndex >= prevState.customers.length;
+    return {
+      customersServed: prevState.customersServed + 1,
+      currentCustomerIndex: nextCustomerIndex,
+      phase: isRoundOver ? "summary" : prevState.phase,
+    };
+  };
 
-      // Check for threat penalty
-      if (prev.currentThreat && item.tags.some(tag => prev.currentThreat?.eliminates.includes(tag))) {
-        satisfactionGained -= 10; // Harsh penalty for serving something affected by threat
-      }
-      
-      const nextCustomerIndex = prev.currentCustomerIndex + 1;
-      const isRoundOver = nextCustomerIndex >= prev.customers.length;
+  const handleServeBestMatch = () => {
+    setGameState(prev => ({
+      ...prev,
+      profit: prev.profit + 5,
+      satisfaction: prev.satisfaction + 5,
+      ...advanceToNextCustomer(prev),
+    }));
+  };
 
-      return {
-        ...prev,
-        profit: Math.max(0, prev.profit + profitGained),
-        satisfaction: Math.max(0, prev.satisfaction + satisfactionGained),
-        customersServed: prev.customersServed + 1,
-        currentCustomerIndex: nextCustomerIndex,
-        phase: isRoundOver ? "summary" : prev.phase,
-      };
-    });
+  const handleServePartialMatch = () => {
+    setGameState(prev => ({
+      ...prev,
+      profit: prev.profit + 2,
+      satisfaction: prev.satisfaction + 2,
+      ...advanceToNextCustomer(prev),
+    }));
+  };
+
+  const handleApologize = () => {
+    setGameState(prev => ({
+      ...prev,
+      risk: prev.risk + 1,
+      satisfaction: prev.satisfaction + 1,
+      ...advanceToNextCustomer(prev),
+    }));
+  };
+
+  const handleKickCustomer = () => {
+    setGameState(prev => ({
+      ...prev,
+      profit: Math.max(0, prev.profit - 2),
+      satisfaction: Math.max(0, prev.satisfaction - 2),
+      risk: prev.risk + 1,
+      ...advanceToNextCustomer(prev),
+    }));
   };
 
   const renderPhase = () => {
@@ -174,7 +195,17 @@ const PujaseraRush = () => {
           />
         );
       case "execution":
-        return <ExecutionPhase gameState={gameState} onServeItem={handleServeItem} />;
+        return (
+          <ExecutionPhase
+            gameState={gameState}
+            onServeBestMatch={handleServeBestMatch}
+            onServePartialMatch={handleServePartialMatch}
+            onApologize={handleApologize}
+            onKickCustomer={handleKickCustomer}
+            isBestMatchAvailable={matchAvailability.best}
+            isPartialMatchAvailable={matchAvailability.partial}
+          />
+        );
       case "summary":
         return <div className="text-center p-8">Summary Phase (To be implemented)</div>;
       case "victory":
