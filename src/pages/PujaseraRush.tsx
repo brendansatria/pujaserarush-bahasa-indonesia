@@ -47,7 +47,7 @@ const PujaseraRush = () => {
   const [gameState, setGameState] = useState<GameState>({
     round: 1,
     profit: 0,
-    risk: 0,
+    risk: 50, // Starting risk is now 50
     satisfaction: 0,
     phase: "preparing",
     selectedTenants: [],
@@ -160,21 +160,25 @@ const PujaseraRush = () => {
 
     const allSelectedItems = selectedTenants.flatMap(t => t.items);
 
-    allSelectedItems.forEach(item => {
-      if (item.name === valueItem) {
-        const riskValue = 5;
+    // Value Item Bonus: -5 risk (one-time)
+    if (allSelectedItems.some(item => item.name === valueItem)) {
+        const riskValue = -5;
         totalRiskChange += riskValue;
-        breakdown.push({ item: item.name, reason: "Value Item Bonus", value: riskValue });
-      }
+        breakdown.push({ item: valueItem, reason: "Value Item Bonus", value: riskValue });
+    }
+
+    allSelectedItems.forEach(item => {
+      // Trending Tag Bonus: -2 risk per item
       if (item.tags.some(tag => trendingTags.includes(tag))) {
-        const riskValue = 2;
+        const riskValue = -2;
         totalRiskChange += riskValue;
         breakdown.push({ item: item.name, reason: "Trending Tag Bonus", value: riskValue });
       }
+      // Threat Impact: +10 risk per item
       if (currentThreat && item.tags.some(tag => currentThreat.eliminates.includes(tag))) {
-        const riskValue = -5;
+        const riskValue = 10;
         totalRiskChange += riskValue;
-        breakdown.push({ item: item.name, reason: "Threat Mitigation", value: riskValue });
+        breakdown.push({ item: item.name, reason: "Threat Impact", value: riskValue });
       }
     });
 
@@ -182,7 +186,7 @@ const PujaseraRush = () => {
 
     setGameState(prev => ({
       ...prev,
-      risk: Math.max(0, prev.risk + totalRiskChange),
+      risk: prev.risk + totalRiskChange,
     }));
 
     setIsFeedbackModalOpen(true);

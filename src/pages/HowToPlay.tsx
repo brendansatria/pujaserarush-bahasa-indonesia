@@ -33,8 +33,8 @@ const HowToPlay = () => {
               </div>
               <div className="p-4 bg-yellow-100 rounded-lg">
                 <ShieldAlert className="mx-auto h-8 w-8 text-yellow-600 mb-2" />
-                <h3 className="font-bold">Minimize Risk</h3>
-                <p className="text-sm">Avoid bad decisions.</p>
+                <h3 className="font-bold">Manage Risk</h3>
+                <p className="text-sm">Keep your risk score below 50 to succeed. Strategic choices can lower it!</p>
               </div>
             </div>
 
