@@ -65,6 +65,7 @@ const PujaseraRush = () => {
 
   const [roundStartStats, setRoundStartStats] = useState({ profit: 0, risk: 0, satisfaction: 0 });
   const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
+  const [strategicRisk, setStrategicRisk] = useState<{ total: number; breakdown: { item: string; reason: string; value: number }[] } | null>(null);
 
   const generateRound = useCallback((roundNumber: number) => {
     const tagOptions = roundTagOptions[roundNumber] || roundTagOptions[1];
@@ -138,6 +139,37 @@ const PujaseraRush = () => {
   };
 
   const handleOpenFeedbackModal = () => {
+    const { selectedTenants, trendingTags, valueItem, currentThreat } = gameState;
+    let totalRiskChange = 0;
+    const breakdown: { item: string; reason: string; value: number }[] = [];
+
+    const allSelectedItems = selectedTenants.flatMap(t => t.items);
+
+    allSelectedItems.forEach(item => {
+      if (item.name === valueItem) {
+        const riskValue = 5;
+        totalRiskChange += riskValue;
+        breakdown.push({ item: item.name, reason: "Value Item Bonus", value: riskValue });
+      }
+      if (item.tags.some(tag => trendingTags.includes(tag))) {
+        const riskValue = 2;
+        totalRiskChange += riskValue;
+        breakdown.push({ item: item.name, reason: "Trending Tag Bonus", value: riskValue });
+      }
+      if (currentThreat && item.tags.some(tag => currentThreat.eliminates.includes(tag))) {
+        const riskValue = -5;
+        totalRiskChange += riskValue;
+        breakdown.push({ item: item.name, reason: "Threat Mitigation", value: riskValue });
+      }
+    });
+
+    setStrategicRisk({ total: totalRiskChange, breakdown });
+
+    setGameState(prev => ({
+      ...prev,
+      risk: Math.max(0, prev.risk + totalRiskChange),
+    }));
+
     setIsFeedbackModalOpen(true);
   };
 
@@ -153,21 +185,17 @@ const PujaseraRush = () => {
     const { selectedTenants, trendingTags } = gameState;
     const newCustomers: Customer[] = [];
 
-    // 1. Get all unique tags from the player's chosen menu
     const allMenuItems = selectedTenants.flatMap(t => t.items);
     const menuTags = [...new Set(allMenuItems.flatMap(item => item.tags))];
 
-    // A. Generate TRENDING customers (40% = 4 customers)
     for (let i = 0; i < 4; i++) {
-        const customerType = shuffle(customerTypes)[0]; // For naming
+        const customerType = shuffle(customerTypes)[0];
         newCustomers.push({
             name: `${customerType.name} #${newCustomers.length + 1}`,
             preferences: shuffle(trendingTags).slice(0, 2),
         });
     }
 
-    // B. Generate MENU-BASED customers (50% = 5 customers)
-    // B.1. Strong-Match (20% = 2 customers)
     const potentialStrongMatches = allMenuItems.filter(item => item.tags.length >= 2);
     for (let i = 0; i < 2; i++) {
         let preferences: string[];
@@ -187,7 +215,6 @@ const PujaseraRush = () => {
         });
     }
 
-    // B.2. Partial-Match (30% = 3 customers)
     for (let i = 0; i < 3; i++) {
         let preferences: string[];
         if (menuTags.length > 0) {
@@ -205,7 +232,6 @@ const PujaseraRush = () => {
         });
     }
 
-    // C. Generate CHALLENGE customer (10% = 1 customer)
     const nonMenuTags = allTags.filter(t => !menuTags.includes(t));
     let challengePreferences: string[];
     if (nonMenuTags.length >= 2) {
@@ -411,6 +437,7 @@ const PujaseraRush = () => {
         threat={gameState.currentThreat}
         trendingTags={gameState.trendingTags}
         selectedTenants={gameState.selectedTenants}
+        strategicRisk={strategicRisk}
       />
       <MadeWithDyad />
     </div>
