@@ -147,11 +147,12 @@ const PujaseraRush = () => {
   };
 
   const handleOpenFeedbackModal = () => {
-    const { selectedTenants, trendingTags, valueItems, currentThreat } = gameState;
+    const { selectedTenants, trendingTags, valueItems, currentThreat, playerMenu } = gameState;
     let totalRiskChange = 0;
     const breakdown: { item: string; reason: string; value: number }[] = [];
     const allSelectedItems = selectedTenants.flatMap(t => t.items);
 
+    // Check newly selected tenants
     allSelectedItems.forEach(item => {
       if (valueItems.includes(item.name)) {
         totalRiskChange -= 5;
@@ -164,6 +165,14 @@ const PujaseraRush = () => {
       if (currentThreat && item.tags.some(tag => currentThreat.eliminates.includes(tag))) {
         totalRiskChange += 10;
         breakdown.push({ item: item.name, reason: "Threat Impact", value: 10 });
+      }
+    });
+
+    // Check player's existing menu for high value items
+    playerMenu.forEach(item => {
+      if (valueItems.includes(item.name)) {
+        totalRiskChange -= 2;
+        breakdown.push({ item: item.name, reason: "Existing High Value Menu", value: -2 });
       }
     });
 

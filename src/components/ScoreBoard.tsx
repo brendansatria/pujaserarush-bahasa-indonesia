@@ -39,7 +39,8 @@ export const ScoreBoard = ({ profit, risk, satisfaction }: ScoreBoardProps) => {
       <ul className="list-disc list-inside mt-2 space-y-1">
         <li>Starts at <strong>50</strong>. Strategic choices can lower it.</li>
         <li><strong className="text-green-500">Trending Item Bonus:</strong> -2 Risk</li>
-        <li><strong className="text-green-500">Value Item Bonus:</strong> -5 Risk</li>
+        <li><strong className="text-green-500">High Value Menu Bonus:</strong> -5 Risk</li>
+        <li><strong className="text-green-500">Existing High Value Menu:</strong> -2 Risk</li>
         <li><strong className="text-red-500">Threatened Item Penalty:</strong> +10 Risk</li>
         <li><strong className="text-yellow-500">Apology/Failed Serve:</strong> +1-2 Risk</li>
       </ul>
