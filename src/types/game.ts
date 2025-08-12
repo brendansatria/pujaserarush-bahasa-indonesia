@@ -16,6 +16,7 @@ export interface Customer {
 
 export interface Threat {
   name: string;
+  description: string;
   eliminates: string[];
 }
 

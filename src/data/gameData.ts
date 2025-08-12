@@ -56,10 +56,10 @@ export const allTags: string[] = [
 ];
 
 export const threats: Threat[] = [
-    { name: "Supply Chain Delay", eliminates: ["Cheap"] },
-    { name: "Health Campaign Surge", eliminates: ["Light"] },
-    { name: "Festival Food Trend", eliminates: ["Traditional"] },
-    { name: "Weather-Related Storage Issue", eliminates: ["Fresh"] },
-    { name: "Social Media Backlash", eliminates: ["Trendy"] },
-    { name: "Diet Trend Shift", eliminates: ["Healthy"] }
+    { name: "Supply Chain Delay", description: "A delay in ingredient deliveries means budget-friendly dishes are harder to prepare this round.", eliminates: ["Cheap"] },
+    { name: "Health Campaign Surge", description: "A local health campaign discourages indulgent eating, lowering interest in certain dishes.", eliminates: ["Light"] },
+    { name: "Festival Food Trend", description: "A nearby festival highlights modern, Instagrammable foods, shifting customer preferences away from other options.", eliminates: ["Traditional"] },
+    { name: "Weather-Related Storage Issue", description: "Humid weather causes storage challenges, making it difficult to maintain certain ingredients' quality.", eliminates: ["Fresh"] },
+    { name: "Social Media Backlash", description: "A viral post criticizes certain popular dishes, reducing their appeal among customers this round.", eliminates: ["Trendy"] },
+    { name: "Diet Trend Shift", description: "A new diet fad encourages customers to avoid nutrient-dense or specialty dishes.", eliminates: ["Healthy"] }
 ];

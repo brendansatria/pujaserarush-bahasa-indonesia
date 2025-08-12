@@ -59,8 +59,8 @@ export const PreparingPhase = ({
           </div>
           <div>
             <h4 className="font-semibold">Threat:</h4>
-            <p className="text-sm text-muted-foreground">This challenge will reduce demand for items with certain tags.</p>
-            <Badge variant="outline" className="mt-2">{threat?.name}</Badge>
+            <Badge variant="outline" className="mt-2 mb-1">{threat?.name}</Badge>
+            <p className="text-sm text-muted-foreground">{threat?.description}</p>
           </div>
           <div>
             <h4 className="font-semibold">Value Menu Item:</h4>

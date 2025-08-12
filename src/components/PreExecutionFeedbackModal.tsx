@@ -60,8 +60,9 @@ export const PreExecutionFeedbackModal = ({
                 <AlertCircle className="h-5 w-5 text-red-500" />
                 Threat Analysis: {threat.name}
               </h4>
+              <p className="text-sm text-muted-foreground">{threat.description}</p>
               <p className="text-sm text-muted-foreground">
-                This threat reduces demand for items with the following tags:{" "}
+                This reduces demand for items with the following tags:{" "}
                 {threat.eliminates.map(tag => <Badge key={tag} variant="destructive">{tag}</Badge>)}
               </p>
               {impactedItems.length > 0 ? (
