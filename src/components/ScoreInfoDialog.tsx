@@ -19,7 +19,7 @@ export const ScoreInfoDialog = ({ title, description, icon }: ScoreInfoDialogPro
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="ghost" size="icon" className="h-4 w-4 ml-1 cursor-pointer">
+        <Button variant="ghost" size="icon" className="h-6 w-6 cursor-pointer">
           <Info className="h-4 w-4 text-muted-foreground hover:text-foreground" />
         </Button>
       </DialogTrigger>

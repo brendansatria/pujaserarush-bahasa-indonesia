@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { ScoreInfoDialog } from "./ScoreInfoDialog";
 import { DollarSign, ShieldAlert, Heart } from "lucide-react";
 
@@ -9,16 +9,14 @@ interface ScoreBoardProps {
 }
 
 const ScoreCard = ({ icon, value, colorClass, infoTitle, infoDescription }: { icon: React.ReactNode; value: number; colorClass: string; infoTitle: string; infoDescription: React.ReactNode; }) => (
-  <Card>
-    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-      <div className="flex items-center">
-        {icon}
-        <ScoreInfoDialog title={infoTitle} description={infoDescription} icon={icon} />
-      </div>
-    </CardHeader>
-    <CardContent>
-      <div className={`text-xl sm:text-2xl font-bold ${colorClass}`}>{value}</div>
-    </CardContent>
+  <Card className="p-3 relative">
+    <div className="absolute top-1 right-1">
+      <ScoreInfoDialog title={infoTitle} description={infoDescription} icon={icon} />
+    </div>
+    <div className="flex items-center justify-center gap-2 sm:gap-3">
+      {icon}
+      <div className={`text-3xl sm:text-4xl font-bold ${colorClass}`}>{value}</div>
+    </div>
   </Card>
 );
 
@@ -63,21 +61,21 @@ export const ScoreBoard = ({ profit, risk, satisfaction }: ScoreBoardProps) => {
   return (
     <div className="grid gap-2 grid-cols-3">
       <ScoreCard 
-        icon={<DollarSign className="h-5 w-5 text-green-500" />} 
+        icon={<DollarSign className="h-7 w-7 text-green-500" />} 
         value={profit} 
         colorClass="text-green-500"
         infoTitle="Profit"
         infoDescription={profitInfo}
       />
       <ScoreCard 
-        icon={<ShieldAlert className="h-5 w-5 text-yellow-500" />} 
+        icon={<ShieldAlert className="h-7 w-7 text-yellow-500" />} 
         value={risk} 
         colorClass="text-yellow-500"
         infoTitle="Risk"
         infoDescription={riskInfo}
       />
       <ScoreCard 
-        icon={<Heart className="h-5 w-5 text-blue-500" />} 
+        icon={<Heart className="h-7 w-7 text-blue-500" />} 
         value={satisfaction} 
         colorClass="text-blue-500"
         infoTitle="Customer Satisfaction"
