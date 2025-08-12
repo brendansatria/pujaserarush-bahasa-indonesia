@@ -12,8 +12,6 @@ interface ExecutionPhaseProps {
   onServePartialMatch: () => void;
   onApologize: () => void;
   onKickCustomer: () => void;
-  isBestMatchAvailable: boolean;
-  isPartialMatchAvailable: boolean;
 }
 
 export const ExecutionPhase = ({
@@ -22,8 +20,6 @@ export const ExecutionPhase = ({
   onServePartialMatch,
   onApologize,
   onKickCustomer,
-  isBestMatchAvailable,
-  isPartialMatchAvailable,
 }: ExecutionPhaseProps) => {
   const {
     timer,
@@ -87,7 +83,7 @@ export const ExecutionPhase = ({
             <CardDescription>Select an action for this customer.</CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col space-y-3">
-            <Button onClick={onServeBestMatch} disabled={!isBestMatchAvailable} className="w-full h-auto py-2 px-3">
+            <Button onClick={onServeBestMatch} className="w-full h-auto py-2 px-3">
               <div className="flex items-center justify-between w-full">
                 <div className="flex items-center">
                   <CheckCircle className="mr-2 h-5 w-5 text-green-400" />
@@ -96,7 +92,7 @@ export const ExecutionPhase = ({
                 <span className="text-xs font-normal text-muted-foreground hidden sm:inline">(+5 Profit, +5 Sat)</span>
               </div>
             </Button>
-            <Button onClick={onServePartialMatch} disabled={!isPartialMatchAvailable} className="w-full h-auto py-2 px-3">
+            <Button onClick={onServePartialMatch} className="w-full h-auto py-2 px-3">
               <div className="flex items-center justify-between w-full">
                 <div className="flex items-center">
                   <Star className="mr-2 h-5 w-5 text-yellow-400" />

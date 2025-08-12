@@ -6,6 +6,7 @@ import { PreparingPhase } from "@/components/PreparingPhase";
 import { ReferencePhase } from "@/components/ReferencePhase";
 import { ExecutionPhase } from "@/components/ExecutionPhase";
 import { MadeWithDyad } from "@/components/made-with-dyad";
+import { showError, showSuccess } from "@/utils/toast";
 
 // Helper function to shuffle an array
 const shuffle = <T,>(array: T[]): T[] => {
@@ -151,21 +152,48 @@ const PujaseraRush = () => {
   };
 
   const handleServeBestMatch = () => {
-    setGameState(prev => ({
-      ...prev,
-      profit: prev.profit + 5,
-      satisfaction: prev.satisfaction + 5,
-      ...advanceToNextCustomer(prev),
-    }));
+    setGameState(prev => {
+      if (matchAvailability.best) {
+        showSuccess("Best match served! +5 Profit, +5 Satisfaction");
+        return {
+          ...prev,
+          profit: prev.profit + 5,
+          satisfaction: prev.satisfaction + 5,
+          ...advanceToNextCustomer(prev),
+        };
+      } else {
+        showError("Best match not available! -1 Profit, -3 Sat, +2 Risk");
+        return {
+          ...prev,
+          profit: Math.max(0, prev.profit - 1),
+          satisfaction: Math.max(0, prev.satisfaction - 3),
+          risk: prev.risk + 2,
+          ...advanceToNextCustomer(prev),
+        };
+      }
+    });
   };
 
   const handleServePartialMatch = () => {
-    setGameState(prev => ({
-      ...prev,
-      profit: prev.profit + 2,
-      satisfaction: prev.satisfaction + 2,
-      ...advanceToNextCustomer(prev),
-    }));
+    setGameState(prev => {
+      if (matchAvailability.partial) {
+        showSuccess("Partial match served! +2 Profit, +2 Satisfaction");
+        return {
+          ...prev,
+          profit: prev.profit + 2,
+          satisfaction: prev.satisfaction + 2,
+          ...advanceToNextCustomer(prev),
+        };
+      } else {
+        showError("Partial match not available! -2 Satisfaction, +1 Risk");
+        return {
+          ...prev,
+          satisfaction: Math.max(0, prev.satisfaction - 2),
+          risk: prev.risk + 1,
+          ...advanceToNextCustomer(prev),
+        };
+      }
+    });
   };
 
   const handleApologize = () => {
@@ -217,8 +245,6 @@ const PujaseraRush = () => {
             onServePartialMatch={handleServePartialMatch}
             onApologize={handleApologize}
             onKickCustomer={handleKickCustomer}
-            isBestMatchAvailable={matchAvailability.best}
-            isPartialMatchAvailable={matchAvailability.partial}
           />
         );
       case "summary":
