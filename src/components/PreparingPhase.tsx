@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Lightbulb } from "lucide-react";
+import { Lightbulb, Users } from "lucide-react";
 import { getTagIcon } from "@/utils/tagIcons";
 import { PlayerMenuDisplay } from "./PlayerMenuDisplay";
 
@@ -18,6 +18,7 @@ interface PreparingPhaseProps {
   onSelectTenant: (tenant: Tenant) => void;
   onStartExecution: () => void;
   playerMenu: MenuItem[];
+  lineCutters: string[];
 }
 
 export const PreparingPhase = ({
@@ -30,6 +31,7 @@ export const PreparingPhase = ({
   onSelectTenant,
   onStartExecution,
   playerMenu,
+  lineCutters,
 }: PreparingPhaseProps) => {
   const showThreatFeedback = selectedTenants.length === 2;
 
@@ -72,6 +74,21 @@ export const PreparingPhase = ({
           </div>
         </CardContent>
       </Card>
+
+      {round > 1 && lineCutters.length > 0 && (
+        <Alert variant="destructive">
+          <Users className="h-4 w-4" />
+          <AlertTitle>Watch Out for Line-Cutters!</AlertTitle>
+          <AlertDescription>
+            The following customers will try to cut in line. Remember their names and choose to 'Kick' them to maintain order!
+            <div className="flex flex-wrap gap-2 mt-2">
+              {lineCutters.map(name => (
+                <Badge key={name} variant="secondary">{name}</Badge>
+              ))}
+            </div>
+          </AlertDescription>
+        </Alert>
+      )}
 
       {showThreatFeedback && threat && (
         <Alert>

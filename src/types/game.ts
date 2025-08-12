@@ -12,6 +12,7 @@ export interface Customer {
   name: string;
   preferences: string[];
   served?: boolean;
+  isLineCutter?: boolean;
 }
 
 export interface Threat {
@@ -38,4 +39,5 @@ export interface GameState {
   customersServed: number;
   availableTenants: Tenant[];
   playerMenu: MenuItem[];
+  lineCutters: string[];
 }
