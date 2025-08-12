@@ -1,4 +1,4 @@
-import { GameState, MenuItem } from "@/types/game";
+import { GameState } from "@/types/game";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -47,14 +47,14 @@ export const ExecutionPhase = ({
 
   return (
     <div className="space-y-6 animate-in fade-in-50">
-      <div className="flex justify-between items-center gap-4">
-        <div className="flex items-center gap-2 text-xl font-bold">
-          <TimerIcon className="h-6 w-6" />
+      <div className="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-4">
+        <div className="flex items-center gap-2 text-lg sm:text-xl font-bold">
+          <TimerIcon className="h-5 w-5 sm:h-6 sm-w-6" />
           <span>Time Left: {timer}s</span>
         </div>
-        <div className="w-1/3">
+        <div className="w-full sm:w-2/5">
           <Progress value={(customersServed / customers.length) * 100} />
-          <p className="text-sm text-center text-muted-foreground mt-1">
+          <p className="text-xs text-center text-muted-foreground mt-1">
             {customersServed} / {customers.length} Customers Served
           </p>
         </div>
@@ -87,33 +87,41 @@ export const ExecutionPhase = ({
             <CardDescription>Select an action for this customer.</CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col space-y-3">
-            <Button onClick={onServeBestMatch} disabled={!isBestMatchAvailable} className="w-full justify-between h-auto py-2">
-              <div className="flex items-center">
-                <CheckCircle className="mr-2 h-5 w-5 text-green-400" />
-                <span>Serve Best Match</span>
+            <Button onClick={onServeBestMatch} disabled={!isBestMatchAvailable} className="w-full h-auto py-2 px-3">
+              <div className="flex items-center justify-between w-full">
+                <div className="flex items-center">
+                  <CheckCircle className="mr-2 h-5 w-5 text-green-400" />
+                  <span className="text-sm">Serve Best Match</span>
+                </div>
+                <span className="text-xs font-normal text-muted-foreground hidden sm:inline">(+5 Profit, +5 Sat)</span>
               </div>
-              <span className="text-xs font-normal text-muted-foreground">(+5 Profit, +5 Sat)</span>
             </Button>
-            <Button onClick={onServePartialMatch} disabled={!isPartialMatchAvailable} className="w-full justify-between h-auto py-2">
-              <div className="flex items-center">
-                <Star className="mr-2 h-5 w-5 text-yellow-400" />
-                <span>Serve Partial Match</span>
+            <Button onClick={onServePartialMatch} disabled={!isPartialMatchAvailable} className="w-full h-auto py-2 px-3">
+              <div className="flex items-center justify-between w-full">
+                <div className="flex items-center">
+                  <Star className="mr-2 h-5 w-5 text-yellow-400" />
+                  <span className="text-sm">Serve Partial Match</span>
+                </div>
+                <span className="text-xs font-normal text-muted-foreground hidden sm:inline">(+2 Profit, +2 Sat)</span>
               </div>
-              <span className="text-xs font-normal text-muted-foreground">(+2 Profit, +2 Sat)</span>
             </Button>
-            <Button onClick={onApologize} variant="secondary" className="w-full justify-between h-auto py-2">
-              <div className="flex items-center">
-                <Handshake className="mr-2 h-5 w-5 text-blue-400" />
-                <span>Apologize</span>
+            <Button onClick={onApologize} variant="secondary" className="w-full h-auto py-2 px-3">
+              <div className="flex items-center justify-between w-full">
+                <div className="flex items-center">
+                  <Handshake className="mr-2 h-5 w-5 text-blue-400" />
+                  <span className="text-sm">Apologize</span>
+                </div>
+                <span className="text-xs font-normal text-muted-foreground hidden sm:inline">(+1 Sat, +1 Risk)</span>
               </div>
-              <span className="text-xs font-normal text-muted-foreground">(+1 Sat, +1 Risk)</span>
             </Button>
-            <Button onClick={onKickCustomer} variant="destructive" className="w-full justify-between h-auto py-2">
-              <div className="flex items-center">
-                <ThumbsDown className="mr-2 h-5 w-5" />
-                <span>Kick Customer</span>
+            <Button onClick={onKickCustomer} variant="destructive" className="w-full h-auto py-2 px-3">
+              <div className="flex items-center justify-between w-full">
+                <div className="flex items-center">
+                  <ThumbsDown className="mr-2 h-5 w-5" />
+                  <span className="text-sm">Kick Customer</span>
+                </div>
+                <span className="text-xs font-normal text-muted-foreground hidden sm:inline">(-2 Profit, -2 Sat, +1 Risk)</span>
               </div>
-              <span className="text-xs font-normal text-muted-foreground">(-2 Profit, -2 Sat, +1 Risk)</span>
             </Button>
           </CardContent>
         </Card>

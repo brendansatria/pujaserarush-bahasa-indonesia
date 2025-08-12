@@ -231,12 +231,12 @@ const PujaseraRush = () => {
   };
 
   return (
-    <div className="container mx-auto p-4 min-h-screen bg-orange-50">
-      <header className="text-center my-6">
-        <h1 className="text-4xl font-bold text-red-600">🍜 Pujasera Rush 🍜</h1>
+    <div className="container mx-auto p-2 sm:p-4 min-h-screen bg-orange-50">
+      <header className="text-center my-4 sm:my-6">
+        <h1 className="text-3xl sm:text-4xl font-bold text-red-600">🍜 Pujasera Rush 🍜</h1>
         <p className="text-muted-foreground">Manage your Indonesian food court to success!</p>
       </header>
-      <main className="space-y-8">
+      <main className="space-y-4 sm:space-y-6">
         <ScoreBoard
           profit={gameState.profit}
           risk={gameState.risk}
