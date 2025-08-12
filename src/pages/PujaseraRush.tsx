@@ -9,6 +9,7 @@ import { SummaryPhase } from "@/components/SummaryPhase";
 import { VictoryPhase } from "@/components/VictoryPhase";
 import { MadeWithDyad } from "@/components/made-with-dyad";
 import { showError, showSuccess } from "@/utils/toast";
+import { PreExecutionFeedbackModal } from "@/components/PreExecutionFeedbackModal";
 
 // Helper function to shuffle an array
 const shuffle = <T,>(array: T[]): T[] => {
@@ -36,6 +37,7 @@ const PujaseraRush = () => {
   });
 
   const [roundStartStats, setRoundStartStats] = useState({ profit: 0, risk: 0, satisfaction: 0 });
+  const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
 
   const generateRound = () => {
     const trendingTags = shuffle(allTags).slice(0, 3);
@@ -105,7 +107,12 @@ const PujaseraRush = () => {
     });
   };
 
+  const handleOpenFeedbackModal = () => {
+    setIsFeedbackModalOpen(true);
+  };
+
   const handleProceedToReference = () => {
+    setIsFeedbackModalOpen(false);
     setGameState(prev => ({
       ...prev,
       phase: "reference",
@@ -253,7 +260,7 @@ const PujaseraRush = () => {
             availableTenants={gameState.availableTenants}
             selectedTenants={gameState.selectedTenants}
             onSelectTenant={handleSelectTenant}
-            onStartExecution={handleProceedToReference}
+            onStartExecution={handleOpenFeedbackModal}
           />
         );
       case "reference":
@@ -306,6 +313,13 @@ const PujaseraRush = () => {
           {renderPhase()}
         </div>
       </main>
+      <PreExecutionFeedbackModal
+        isOpen={isFeedbackModalOpen}
+        onClose={handleProceedToReference}
+        threat={gameState.currentThreat}
+        trendingTags={gameState.trendingTags}
+        selectedTenants={gameState.selectedTenants}
+      />
       <MadeWithDyad />
     </div>
   );
