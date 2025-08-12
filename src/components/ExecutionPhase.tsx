@@ -22,6 +22,7 @@ export const ExecutionPhase = ({
   onKickCustomer,
 }: ExecutionPhaseProps) => {
   const {
+    round,
     timer,
     customers,
     currentCustomerIndex,
@@ -111,15 +112,17 @@ export const ExecutionPhase = ({
                 <span className="text-xs font-normal text-muted-foreground hidden sm:inline">(+1 Sat, +1 Risk)</span>
               </div>
             </Button>
-            <Button onClick={onKickCustomer} variant="destructive" className="w-full h-auto py-2 px-3">
-              <div className="flex items-center justify-between w-full">
-                <div className="flex items-center">
-                  <ThumbsDown className="mr-2 h-5 w-5" />
-                  <span className="text-sm">Kick Customer</span>
+            {round > 1 && (
+              <Button onClick={onKickCustomer} variant="destructive" className="w-full h-auto py-2 px-3">
+                <div className="flex items-center justify-between w-full">
+                  <div className="flex items-center">
+                    <ThumbsDown className="mr-2 h-5 w-5" />
+                    <span className="text-sm">Kick Customer</span>
+                  </div>
+                  <span className="text-xs font-normal text-muted-foreground hidden sm:inline">(-2 Profit, -2 Sat, +1 Risk)</span>
                 </div>
-                <span className="text-xs font-normal text-muted-foreground hidden sm:inline">(-2 Profit, -2 Sat, +1 Risk)</span>
-              </div>
-            </Button>
+              </Button>
+            )}
           </CardContent>
         </Card>
 

@@ -21,12 +21,11 @@ const FinalScoreCard = ({ icon: Icon, title, value, description, colorClass }: a
 
 export const VictoryPhase = ({ gameState }: VictoryPhaseProps) => {
   const { profit, risk, satisfaction } = gameState;
-  const finalScore = profit + satisfaction - risk;
 
   const getVictoryMessage = () => {
-    if (finalScore > 100) return "Legendary Pujasera Tycoon!";
-    if (finalScore > 50) return "Successful Food Court Manager!";
-    if (finalScore > 0) return "You've built a promising business!";
+    if (profit >= 100 && satisfaction >= 100 && risk < 50) return "Legendary Pujasera Tycoon!";
+    if (profit >= 50 && satisfaction >= 50 && risk < 50) return "Successful Food Court Manager!";
+    if (profit > 0 && risk < 75) return "You've built a promising business!";
     return "It was a tough journey, but you made it through!";
   };
 
@@ -41,10 +40,6 @@ export const VictoryPhase = ({ gameState }: VictoryPhaseProps) => {
           <CardTitle>Final Results</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-            <div className="text-center">
-                <p className="text-muted-foreground">Final Score</p>
-                <p className="text-5xl font-bold text-primary">{finalScore}</p>
-            </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <FinalScoreCard 
                     icon={Trophy}
