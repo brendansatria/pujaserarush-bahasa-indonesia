@@ -69,6 +69,11 @@ export const PreExecutionFeedbackModal = ({
                     {strategicRisk.total > 0 ? '+' : ''}{strategicRisk.total}
                   </div>
               </div>
+              <p className={`text-xs text-center font-medium ${strategicRisk.total > 0 ? 'text-red-600' : 'text-green-600'}`}>
+                {strategicRisk.total < 0 && "Excellent! Your choices have lowered your business risk."}
+                {strategicRisk.total > 0 && "Heads up! Your choices have increased your business risk."}
+                {strategicRisk.total === 0 && "Your choices have no immediate impact on your risk."}
+              </p>
               <div className="space-y-1">
                 {strategicRisk.breakdown.map((entry, index) => (
                   <div key={index} className="flex justify-between items-center text-sm p-1 bg-muted/50 rounded">
