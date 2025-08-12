@@ -2,6 +2,7 @@ import { Tenant } from "@/types/game";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { getTagIcon } from "@/utils/tagIcons";
 
 interface TenantCardProps {
   tenant: Tenant;
@@ -26,9 +27,15 @@ export const TenantCard = ({ tenant, isSelected, onSelect }: TenantCardProps) =>
           <div key={item.name} className="p-2 border-l-4 border-secondary rounded">
             <p className="font-semibold">{item.name}</p>
             <div className="flex flex-wrap gap-1 mt-1">
-              {item.tags.map((tag) => (
-                <Badge key={tag} variant="secondary">{tag}</Badge>
-              ))}
+              {item.tags.map((tag) => {
+                const Icon = getTagIcon(tag);
+                return (
+                  <Badge key={tag} variant="secondary" className="flex items-center">
+                    <Icon className="mr-1 h-3 w-3" />
+                    {tag}
+                  </Badge>
+                );
+              })}
             </div>
           </div>
         ))}

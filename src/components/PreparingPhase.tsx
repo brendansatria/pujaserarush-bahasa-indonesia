@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Lightbulb } from "lucide-react";
+import { getTagIcon } from "@/utils/tagIcons";
 
 interface PreparingPhaseProps {
   round: number;
@@ -45,9 +46,15 @@ export const PreparingPhase = ({
           <div>
             <h4 className="font-semibold">Trending Tags:</h4>
             <div className="flex flex-wrap gap-2 mt-2">
-              {trendingTags.map((tag) => (
-                <Badge key={tag}>{tag}</Badge>
-              ))}
+              {trendingTags.map((tag) => {
+                const Icon = getTagIcon(tag);
+                return (
+                  <Badge key={tag} className="flex items-center">
+                    <Icon className="mr-1 h-3 w-3" />
+                    {tag}
+                  </Badge>
+                );
+              })}
             </div>
           </div>
           <div>
