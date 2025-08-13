@@ -58,7 +58,7 @@ export const ExecutionPhase = ({
         </div>
       </div>
 
-      <Card className="bg-blue-50 border-blue-200 relative overflow-hidden">
+      <Card className="bg-primary/10 border-primary/30 relative overflow-hidden">
         <CardHeader>
           <CardTitle>Next in Line: {currentCustomer.name}</CardTitle>
           <CardDescription>They are looking for something with these qualities:</CardDescription>
@@ -76,7 +76,7 @@ export const ExecutionPhase = ({
             })}
           </div>
         </CardContent>
-        <User className="absolute top-1/2 right-4 -translate-y-1/2 h-16 w-16 text-blue-200/80" />
+        <User className="absolute top-1/2 right-4 -translate-y-1/2 h-16 w-16 text-primary/20" />
       </Card>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

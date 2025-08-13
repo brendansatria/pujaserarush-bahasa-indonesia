@@ -329,12 +329,12 @@ const PujaseraRush = () => {
   return (
     <div className="container mx-auto p-2 sm:p-4 min-h-screen">
       <header className="text-center my-2 sm:my-3">
-        <h1 className="text-xl sm:text-2xl font-bold text-red-600">🍜 Pujasera Rush 🍜</h1>
+        <h1 className="text-xl sm:text-2xl font-bold text-foreground">🍜 Pujasera Rush 🍜</h1>
         <p className="text-sm text-muted-foreground">Manage your Indonesian food court to success!</p>
       </header>
       <main className="space-y-4 sm:space-y-6">
         <ScoreBoard profit={gameState.profit} risk={gameState.risk} satisfaction={gameState.satisfaction} />
-        <div className="bg-white/60 backdrop-blur-sm p-4 sm:p-6 rounded-lg shadow-lg border">
+        <div className="bg-card/80 backdrop-blur-sm p-4 sm:p-6 rounded-lg shadow-lg border">
           {renderPhase()}
         </div>
       </main>
