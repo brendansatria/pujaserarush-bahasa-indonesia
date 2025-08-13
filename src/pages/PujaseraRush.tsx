@@ -323,7 +323,7 @@ const PujaseraRush = () => {
   };
 
   return (
-    <div className="container mx-auto p-2 sm:p-4 min-h-screen bg-orange-50">
+    <div className="container mx-auto p-2 sm:p-4 min-h-screen bg-orange-100">
       <header className="text-center my-2 sm:my-3">
         <h1 className="text-xl sm:text-2xl font-bold text-red-600">🍜 Pujasera Rush 🍜</h1>
         <p className="text-sm text-muted-foreground">Manage your Indonesian food court to success!</p>
