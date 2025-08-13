@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const HowToPlay = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-orange-100 p-4">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4">
       <div className="max-w-4xl w-full">
         <Card className="bg-white/80 backdrop-blur-sm shadow-xl border">
           <CardHeader className="text-center">
