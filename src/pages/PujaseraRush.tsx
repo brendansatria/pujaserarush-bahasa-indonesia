@@ -7,7 +7,6 @@ import { ReferencePhase } from "@/components/ReferencePhase";
 import { ExecutionPhase } from "@/components/ExecutionPhase";
 import { SummaryPhase } from "@/components/SummaryPhase";
 import { VictoryPhase } from "@/components/VictoryPhase";
-import { MadeWithDyad } from "@/components/made-with-dyad";
 import { showError, showSuccess } from "@/utils/toast";
 import { PreExecutionFeedbackModal } from "@/components/PreExecutionFeedbackModal";
 
@@ -328,9 +327,9 @@ const PujaseraRush = () => {
 
   return (
     <div className="container mx-auto p-2 sm:p-4 min-h-screen bg-orange-50">
-      <header className="text-center my-4 sm:my-6">
-        <h1 className="text-3xl sm:text-4xl font-bold text-red-600">🍜 Pujasera Rush 🍜</h1>
-        <p className="text-muted-foreground">Manage your Indonesian food court to success!</p>
+      <header className="text-center my-2 sm:my-3">
+        <h1 className="text-xl sm:text-2xl font-bold text-red-600">🍜 Pujasera Rush 🍜</h1>
+        <p className="text-sm text-muted-foreground">Manage your Indonesian food court to success!</p>
       </header>
       <main className="space-y-4 sm:space-y-6">
         <ScoreBoard profit={gameState.profit} risk={gameState.risk} satisfaction={gameState.satisfaction} />
@@ -339,7 +338,6 @@ const PujaseraRush = () => {
         </div>
       </main>
       <PreExecutionFeedbackModal isOpen={isFeedbackModalOpen} onClose={handleProceedToReference} threat={gameState.currentThreat} trendingTags={gameState.trendingTags} selectedTenants={gameState.selectedTenants} strategicRisk={strategicRisk} />
-      <MadeWithDyad />
     </div>
   );
 };

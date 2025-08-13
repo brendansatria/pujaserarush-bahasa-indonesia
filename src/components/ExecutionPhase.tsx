@@ -90,7 +90,7 @@ export const ExecutionPhase = ({
               <div className="flex items-center justify-between w-full">
                 <div className="flex items-center">
                   <CheckCircle className="mr-2 h-5 w-5 text-green-400" />
-                  <span className="text-sm">Serve Best Match</span>
+                  <span className="text-sm">Serve Best Match Menu</span>
                 </div>
                 <span className="text-xs font-normal text-muted-foreground hidden sm:inline">(+10 Profit, +10 Sat)</span>
               </div>
@@ -99,7 +99,7 @@ export const ExecutionPhase = ({
               <div className="flex items-center justify-between w-full">
                 <div className="flex items-center">
                   <Star className="mr-2 h-5 w-5 text-yellow-400" />
-                  <span className="text-sm">Serve Partial Match</span>
+                  <span className="text-sm">Serve Partial Match Menu</span>
                 </div>
                 <span className="text-xs font-normal text-muted-foreground hidden sm:inline">(+2 Profit, +2 Sat)</span>
               </div>
@@ -108,7 +108,7 @@ export const ExecutionPhase = ({
               <div className="flex items-center justify-between w-full">
                 <div className="flex items-center">
                   <Handshake className="mr-2 h-5 w-5 text-blue-400" />
-                  <span className="text-sm">Apologize</span>
+                  <span className="text-sm">Apologize No Menu Match</span>
                 </div>
                 <span className="text-xs font-normal text-muted-foreground hidden sm:inline">(+1 Sat, +1 Risk)</span>
               </div>
