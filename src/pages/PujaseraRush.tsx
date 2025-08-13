@@ -57,6 +57,8 @@ const roundTagOptions: Record<number, string[][]> = {
 
 const valueMenuItems = ["Nasi Goreng", "Es Teh Manis", "Sate Ayam", "Ayam Geprek", "Martabak Manis"];
 
+const baseMenu = menuItems.filter(item => item.name === "Nasi Goreng" || item.name === "Es Teh Manis");
+
 const generateCustomersForRound = (
   round: number,
   trendingTags: string[],
@@ -113,7 +115,7 @@ const PujaseraRush = () => {
     currentThreat: null,
     customersServed: 0,
     availableTenants: [],
-    playerMenu: [],
+    playerMenu: baseMenu,
     lineCutters: [],
     usedThreats: [],
     missedOpportunities: 0,
@@ -138,14 +140,9 @@ const PujaseraRush = () => {
 
     const availableMenuItems = shuffle(menuItems.filter(item => !playerMenu.some(playerItem => playerItem.name === item.name)));
     const availableTenants: Tenant[] = [];
-    if (round === 1) {
-      for (let i = 0; i < 4; i++) {
-        availableTenants.push({ name: `Warung ${String.fromCharCode(65 + i)}`, items: availableMenuItems.slice(i * 2, i * 2 + 2) });
-      }
-    } else {
-      for (let i = 0; i < 4; i++) {
-        availableTenants.push({ name: `Kios ${String.fromCharCode(65 + i)}`, items: availableMenuItems.slice(i, i + 1) });
-      }
+    const tenantNamePrefix = round === 1 ? "Warung" : "Kios";
+    for (let i = 0; i < 4; i++) {
+      availableTenants.push({ name: `${tenantNamePrefix} ${String.fromCharCode(65 + i)}`, items: availableMenuItems.slice(i, i + 1) });
     }
 
     setGameState(prev => ({
