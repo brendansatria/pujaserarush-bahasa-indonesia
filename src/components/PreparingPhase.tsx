@@ -91,14 +91,14 @@ export const PreparingPhase = ({
       </Collapsible>
 
       {round > 1 && lineCutters.length > 0 && (
-        <Alert variant="destructive" className="bg-black text-white border-red-900 [&>svg]:text-white">
+        <Alert variant="destructive" className="bg-destructive text-destructive-foreground border-destructive/50 [&>svg]:text-destructive-foreground">
           <Users className="h-4 w-4" />
           <AlertTitle>Watch Out for Line-Cutters!</AlertTitle>
           <AlertDescription>
             The following customers will try to cut in line. Remember their names and choose to 'Kick' them to maintain order!
             <div className="flex flex-wrap gap-2 mt-2">
               {lineCutters.map(name => (
-                <Badge key={name} variant="secondary">{name}</Badge>
+                <Badge key={name} variant="outline" className="bg-destructive-foreground text-destructive border-transparent hover:bg-destructive-foreground/90">{name}</Badge>
               ))}
             </div>
           </AlertDescription>
