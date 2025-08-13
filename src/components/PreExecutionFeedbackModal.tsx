@@ -121,7 +121,7 @@ export const PreExecutionFeedbackModal = ({
               Trending tags:{" "}
               {trendingTags.map(tag => {
                 const Icon = getTagIcon(tag);
-                return <Badge key={tag}><Icon className="h-3 w-3 mr-1"/>{tag}</Badge>
+                return <Badge key={tag} variant="secondary"><Icon className="h-3 w-3 mr-1"/>{tag}</Badge>
               })}
             </p>
             {trendingItems.length > 0 ? (

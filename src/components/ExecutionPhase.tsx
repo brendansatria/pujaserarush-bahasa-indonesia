@@ -68,7 +68,7 @@ export const ExecutionPhase = ({
             {currentCustomer.preferences.map((pref) => {
               const Icon = getTagIcon(pref);
               return (
-                <Badge key={pref} variant="default" className="text-base p-2">
+                <Badge key={pref} variant="secondary" className="text-base p-2">
                   <Icon className="mr-2 h-4 w-4" />
                   {pref}
                 </Badge>

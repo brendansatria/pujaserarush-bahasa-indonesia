@@ -63,7 +63,7 @@ export const PreparingPhase = ({
                   {trendingTags.map((tag) => {
                     const Icon = getTagIcon(tag);
                     return (
-                      <Badge key={tag} className="flex items-center">
+                      <Badge key={tag} variant="secondary" className="flex items-center">
                         <Icon className="mr-1 h-3 w-3" />
                         {tag}
                       </Badge>
