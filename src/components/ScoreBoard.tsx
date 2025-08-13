@@ -23,7 +23,7 @@ const ScoreCard = ({ icon, value, colorClass, infoTitle, infoDescription }: { ic
 export const ScoreBoard = ({ profit, risk, satisfaction }: ScoreBoardProps) => {
   const profitInfo = (
     <>
-      <p>Represents your total earnings from serving customers.</p>
+      <p>Represents your total earnings. Your goal is to reach a profit of 100.</p>
       <ul className="list-disc list-inside mt-2 space-y-1">
         <li><strong className="text-green-500">Best Match:</strong> +10 Profit</li>
         <li><strong className="text-yellow-500">Partial Match:</strong> +2 Profit</li>
@@ -49,7 +49,7 @@ export const ScoreBoard = ({ profit, risk, satisfaction }: ScoreBoardProps) => {
 
   const satisfactionInfo = (
     <>
-      <p>Represents overall customer happiness with your food court.</p>
+      <p>Represents customer happiness. Your goal is to reach a satisfaction score of 100.</p>
       <ul className="list-disc list-inside mt-2 space-y-1">
         <li><strong className="text-green-500">Best Match:</strong> +10 Satisfaction</li>
         <li><strong className="text-yellow-500">Partial Match:</strong> +2 Satisfaction</li>
