@@ -16,11 +16,15 @@ interface SummaryPhaseProps {
   totalRounds: number;
 }
 
-const StatDisplay = ({ label, change }: { label: string; change: number }) => {
+const StatDisplay = ({ label, change, invertColorLogic = false }: { label: string; change: number; invertColorLogic?: boolean }) => {
   const isPositive = change > 0;
   const isNegative = change < 0;
   const Icon = isPositive ? ArrowUp : isNegative ? ArrowDown : Minus;
-  const colorClass = isPositive ? "text-green-500" : isNegative ? "text-red-500" : "text-gray-500";
+
+  const positiveColor = invertColorLogic ? "text-red-500" : "text-green-500";
+  const negativeColor = invertColorLogic ? "text-green-500" : "text-red-500";
+
+  const colorClass = isPositive ? positiveColor : isNegative ? negativeColor : "text-gray-500";
 
   return (
     <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
@@ -73,7 +77,7 @@ export const SummaryPhase = ({ gameState, roundStartStats, onNextRound, onFinish
         </CardHeader>
         <CardContent className="space-y-3">
           <StatDisplay label="Profit Change" change={profitChange} />
-          <StatDisplay label="Risk Added" change={riskChange} />
+          <StatDisplay label="Risk Added" change={riskChange} invertColorLogic={true} />
           <StatDisplay label="Satisfaction Change" change={satisfactionChange} />
         </CardContent>
       </Card>
