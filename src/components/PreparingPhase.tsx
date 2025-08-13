@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Lightbulb, Users, ChevronsUpDown } from "lucide-react";
+import { Users, ChevronsUpDown } from "lucide-react";
 import { getTagIcon } from "@/utils/tagIcons";
 import { PlayerMenuDisplay } from "./PlayerMenuDisplay";
 import { useState } from "react";
@@ -35,7 +35,6 @@ export const PreparingPhase = ({
   playerMenu,
   lineCutters,
 }: PreparingPhaseProps) => {
-  const showThreatFeedback = selectedTenants.length === 2;
   const [isMarketOpen, setIsMarketOpen] = useState(true);
 
   return (
@@ -106,17 +105,7 @@ export const PreparingPhase = ({
         </Alert>
       )}
 
-      {showThreatFeedback && threat && (
-        <Alert>
-          <Lightbulb className="h-4 w-4" />
-          <AlertTitle>Threat Impact!</AlertTitle>
-          <AlertDescription>
-            {threat.name} reduces demand for: {threat.eliminates.join(", ")} items.
-          </AlertDescription>
-        </Alert>
-      )}
-
-      {round > 1 && <PlayerMenuDisplay menu={playerMenu} />}
+      <PlayerMenuDisplay menu={playerMenu} />
 
       <div>
         <h3 className="text-xl font-semibold text-center mb-4">
