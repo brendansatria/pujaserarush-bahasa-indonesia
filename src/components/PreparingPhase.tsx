@@ -91,7 +91,7 @@ export const PreparingPhase = ({
       </Collapsible>
 
       {round > 1 && lineCutters.length > 0 && (
-        <Alert variant="destructive">
+        <Alert variant="destructive" className="bg-black text-white border-red-900 [&>svg]:text-white">
           <Users className="h-4 w-4" />
           <AlertTitle>Watch Out for Line-Cutters!</AlertTitle>
           <AlertDescription>
