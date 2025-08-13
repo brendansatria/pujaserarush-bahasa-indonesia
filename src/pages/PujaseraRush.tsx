@@ -126,6 +126,10 @@ const PujaseraRush = () => {
   const [strategicRisk, setStrategicRisk] = useState<{ total: number; breakdown: { item: string; reason: string; value: number }[] } | null>(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [gameState.phase]);
+
+  useEffect(() => {
     const { round, playerMenu, usedThreats: usedThreatNames } = gameState;
 
     const tagOptions = roundTagOptions[round] || roundTagOptions[1];
