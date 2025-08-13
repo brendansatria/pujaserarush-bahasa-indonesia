@@ -1,7 +1,8 @@
 import { GameState } from "@/types/game";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowUp, ArrowDown, Minus } from "lucide-react";
+import { ArrowUp, ArrowDown, Minus, Lightbulb } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 interface SummaryPhaseProps {
   gameState: GameState;
@@ -35,7 +36,7 @@ const StatDisplay = ({ label, change }: { label: string; change: number }) => {
 };
 
 export const SummaryPhase = ({ gameState, roundStartStats, onNextRound, onFinishGame, totalRounds }: SummaryPhaseProps) => {
-  const { round, profit, risk, satisfaction } = gameState;
+  const { round, profit, risk, satisfaction, missedOpportunities } = gameState;
 
   const profitChange = profit - roundStartStats.profit;
   const riskChange = risk - roundStartStats.risk;
@@ -54,6 +55,17 @@ export const SummaryPhase = ({ gameState, roundStartStats, onNextRound, onFinish
     <div className="space-y-6 text-center animate-in fade-in-50">
       <h2 className="text-3xl font-bold">Round {round} Summary</h2>
       <p className="text-muted-foreground">{getSummaryMessage()}</p>
+
+      {missedOpportunities > 0 && (
+        <Alert variant="default" className="text-left">
+          <Lightbulb className="h-4 w-4" />
+          <AlertTitle>Room for Improvement!</AlertTitle>
+          <AlertDescription>
+            You missed <strong>{missedOpportunities}</strong> opportunity(ies) to serve a "Best Match" this round.
+            Check your menu carefully next time to maximize profit and satisfaction!
+          </AlertDescription>
+        </Alert>
+      )}
 
       <Card>
         <CardHeader>

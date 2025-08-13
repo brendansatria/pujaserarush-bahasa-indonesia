@@ -41,4 +41,5 @@ export interface GameState {
   playerMenu: MenuItem[];
   lineCutters: string[];
   usedThreats: string[];
+  missedOpportunities: number;
 }

@@ -67,7 +67,11 @@ const generateCustomersForRound = (
   // Generate 5 customers with trending tags
   for (let i = 0; i < 5; i++) {
     const customerType = shuffle(customerTypes)[0];
-    newCustomers.push({ name: `${customerType.name} #${i + 1}`, preferences: shuffle(trendingTags).slice(0, 2) });
+    const primaryTag = shuffle(trendingTags)[0];
+    const otherTags = allTags.filter(tag => !trendingTags.includes(tag));
+    const secondaryTag = shuffle(otherTags)[0];
+    const preferences = shuffle([primaryTag, secondaryTag]);
+    newCustomers.push({ name: `${customerType.name} #${i + 1}`, preferences });
   }
 
   // Generate 5 other customers
@@ -113,6 +117,7 @@ const PujaseraRush = () => {
     playerMenu: [],
     lineCutters: [],
     usedThreats: [],
+    missedOpportunities: 0,
   });
 
   const [roundStartStats, setRoundStartStats] = useState({ profit: 0, risk: 0, satisfaction: 0 });
@@ -263,13 +268,19 @@ const PujaseraRush = () => {
   const handleServePartialMatch = () => {
     setGameState(prev => {
       const customer = prev.customers[prev.currentCustomerIndex];
+      let missedOpp = prev.missedOpportunities;
       if (customer?.isLineCutter) {
         showError("Served a line-cutter! +2 Profit, -5 Sat, +5 Risk");
         return { ...prev, profit: prev.profit + 2, satisfaction: Math.max(0, prev.satisfaction - 5), risk: prev.risk + 5, ...advanceToNextCustomer(prev) };
       }
       if (matchAvailability.partial) {
-        showSuccess("Partial match served! +2 Profit, +2 Satisfaction");
-        return { ...prev, profit: prev.profit + 2, satisfaction: prev.satisfaction + 2, ...advanceToNextCustomer(prev) };
+        if (matchAvailability.best) {
+          missedOpp++;
+          showError("Missed opportunity! A better match was available. (+2 Profit, +2 Sat)");
+        } else {
+          showSuccess("Partial match served! +2 Profit, +2 Satisfaction");
+        }
+        return { ...prev, profit: prev.profit + 2, satisfaction: prev.satisfaction + 2, missedOpportunities: missedOpp, ...advanceToNextCustomer(prev) };
       }
       showError("Partial match not available! -2 Satisfaction, +1 Risk");
       return { ...prev, satisfaction: Math.max(0, prev.satisfaction - 2), risk: prev.risk + 1, ...advanceToNextCustomer(prev) };
@@ -299,7 +310,7 @@ const PujaseraRush = () => {
   };
 
   const handleNextRound = () => {
-    setGameState(prev => ({ ...prev, round: prev.round + 1, playerMenu: [...prev.playerMenu, ...prev.selectedTenants.flatMap(t => t.items)] }));
+    setGameState(prev => ({ ...prev, round: prev.round + 1, playerMenu: [...prev.playerMenu, ...prev.selectedTenants.flatMap(t => t.items)], missedOpportunities: 0 }));
   };
 
   const handleFinishGame = () => setGameState(prev => ({ ...prev, phase: "victory" }));
