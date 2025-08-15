@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { getTagIcon } from "@/utils/tagIcons";
-import { TimerIcon, CheckCircle, Star, ThumbsDown, Handshake, User } from "lucide-react";
+import { TimerIcon, Sparkles, Smile, Frown, Boot, User } from "lucide-react";
 
 interface ExecutionPhaseProps {
   gameState: GameState;
@@ -88,39 +88,39 @@ export const ExecutionPhase = ({
           <CardContent className="flex flex-col space-y-3">
             <Button onClick={onServeBestMatch} className="w-full h-auto py-2 px-3">
               <div className="flex items-center justify-between w-full">
-                <div className="flex items-center">
-                  <CheckCircle className="mr-2 h-5 w-5 text-green-400" />
-                  <span className="text-sm">Serve Best Match Menu</span>
+                <div className="flex items-center text-left">
+                  <Sparkles className="mr-2 h-5 w-5 text-yellow-400 flex-shrink-0" />
+                  <span className="text-sm">Yes! we have a perfect menu for you!</span>
                 </div>
-                <span className="text-xs font-normal text-muted-foreground hidden sm:inline">(+10 Profit, +10 Sat)</span>
+                <span className="text-xs font-normal text-muted-foreground hidden sm:inline ml-2">(2 match tags)</span>
               </div>
             </Button>
             <Button onClick={onServePartialMatch} className="w-full h-auto py-2 px-3">
               <div className="flex items-center justify-between w-full">
-                <div className="flex items-center">
-                  <Star className="mr-2 h-5 w-5 text-yellow-400" />
-                  <span className="text-sm">Serve Partial Match Menu</span>
+                <div className="flex items-center text-left">
+                  <Smile className="mr-2 h-5 w-5 text-green-400 flex-shrink-0" />
+                  <span className="text-sm">Currently we only have menu that partially match for you.</span>
                 </div>
-                <span className="text-xs font-normal text-muted-foreground hidden sm:inline">(+2 Profit, +2 Sat)</span>
+                <span className="text-xs font-normal text-muted-foreground hidden sm:inline ml-2">(1 match tag)</span>
               </div>
             </Button>
             <Button onClick={onApologize} variant="secondary" className="w-full h-auto py-2 px-3">
               <div className="flex items-center justify-between w-full">
-                <div className="flex items-center">
-                  <Handshake className="mr-2 h-5 w-5 text-blue-400" />
-                  <span className="text-sm">Apologize No Menu Match</span>
+                <div className="flex items-center text-left">
+                  <Frown className="mr-2 h-5 w-5 text-blue-400 flex-shrink-0" />
+                  <span className="text-sm">We are sorry... currently no menu that match to your taste.</span>
                 </div>
-                <span className="text-xs font-normal text-muted-foreground hidden sm:inline">(+1 Sat, +1 Risk)</span>
+                <span className="text-xs font-normal text-muted-foreground hidden sm:inline ml-2">(0 match tag)</span>
               </div>
             </Button>
             {round > 1 && (
               <Button onClick={onKickCustomer} variant="destructive" className="w-full h-auto py-2 px-3">
                 <div className="flex items-center justify-between w-full">
-                  <div className="flex items-center">
-                    <ThumbsDown className="mr-2 h-5 w-5" />
-                    <span className="text-sm">Kick Customer</span>
+                  <div className="flex items-center text-left">
+                    <Boot className="mr-2 h-5 w-5 flex-shrink-0" />
+                    <span className="text-sm">Please get into the line or get out of here!</span>
                   </div>
-                  <span className="text-xs font-normal text-muted-foreground hidden sm:inline">(-2 Profit, -2 Sat, +1 Risk)</span>
+                  <span className="text-xs font-normal text-muted-foreground hidden sm:inline ml-2">(cut in line customer)</span>
                 </div>
               </Button>
             )}
