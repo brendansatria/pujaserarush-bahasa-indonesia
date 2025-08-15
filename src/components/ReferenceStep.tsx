@@ -4,11 +4,10 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Progress } from "@/components/ui/progress";
 import { Lightbulb, Sparkles, Smile, Frown, UserX } from "lucide-react";
 
-interface ReferencePhaseProps {
+interface ReferenceStepProps {
   onStartExecution: () => void;
 }
 
-// A helper component for displaying score info
 function ScoreInfo({ icon, text, scores }: { icon: React.ReactNode; text: string; scores: string }) {
   return (
     <div className="flex items-center justify-between p-2 bg-muted/50 rounded-md">
@@ -21,7 +20,7 @@ function ScoreInfo({ icon, text, scores }: { icon: React.ReactNode; text: string
   );
 }
 
-export const ReferencePhase = ({ onStartExecution }: ReferencePhaseProps) => {
+export const ReferenceStep = ({ onStartExecution }: ReferenceStepProps) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
