@@ -80,10 +80,10 @@ export const ExecutionPhase = ({
         </div>
       </div>
 
-      <Card className="bg-accent/10 border-accent/30 relative overflow-hidden">
+      <Card className="bg-accent text-accent-foreground border-accent/30 relative overflow-hidden" style={{ backgroundColor: '#2A9D90' }}>
         <CardHeader>
           <CardTitle>Next in Line: {currentCustomer.name}</CardTitle>
-          <CardDescription>They are looking for something with these qualities:</CardDescription>
+          <CardDescription className="text-accent-foreground/80">They are looking for something with these qualities:</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-2">
@@ -98,7 +98,7 @@ export const ExecutionPhase = ({
             })}
           </div>
         </CardContent>
-        <User className="absolute top-1/2 right-4 -translate-y-1/2 h-16 w-16 text-accent/30" />
+        <User className="absolute top-1/2 right-4 -translate-y-1/2 h-16 w-16 text-accent-foreground/20" />
       </Card>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -110,8 +110,8 @@ export const ExecutionPhase = ({
           <CardContent className="flex flex-col space-y-3">
             <Button
               onClick={() => handleAction(onServeBestMatch)}
-              variant="secondary"
-              className="w-full h-20 py-2 px-3"
+              className="w-full h-20 py-2 px-3 bg-accent text-accent-foreground hover:bg-accent/90 active:bg-accent/80"
+              style={{ backgroundColor: '#2A9D90' }}
               disabled={hasActed}
             >
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full h-full text-left">
@@ -124,8 +124,8 @@ export const ExecutionPhase = ({
             </Button>
             <Button
               onClick={() => handleAction(onServePartialMatch)}
-              variant="secondary"
-              className="w-full h-20 py-2 px-3"
+              className="w-full h-20 py-2 px-3 bg-accent text-accent-foreground hover:bg-accent/90 active:bg-accent/80"
+              style={{ backgroundColor: '#2A9D90' }}
               disabled={hasActed}
             >
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full h-full text-left">
@@ -142,8 +142,8 @@ export const ExecutionPhase = ({
             </Button>
             <Button
               onClick={() => handleAction(onApologize)}
-              variant="secondary"
-              className="w-full h-20 py-2 px-3"
+              className="w-full h-20 py-2 px-3 bg-accent text-accent-foreground hover:bg-accent/90 active:bg-accent/80"
+              style={{ backgroundColor: '#2A9D90' }}
               disabled={hasActed}
             >
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full h-full text-left">
