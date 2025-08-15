@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { GameState, Tenant, Customer, MenuItem } from "@/types/game";
-import { menuItems, customerTypes, threats, allTags } from "@/data/gameData";
+import { menuItems, customerTypes, threats, allTags, indonesianNames } from "@/data/gameData";
 import { ScoreBoard } from "@/components/ScoreBoard";
 import { PreparingPhase } from "@/components/PreparingPhase";
 import { ReferencePhase } from "@/components/ReferencePhase";
@@ -64,6 +64,7 @@ const generateCustomersForRound = (
   trendingTags: string[],
 ): { customers: Customer[]; lineCutters: string[] } => {
   const newCustomers: Customer[] = [];
+  const shuffledNames = shuffle(indonesianNames);
 
   // Generate 5 customers with trending tags
   for (let i = 0; i < 5; i++) {
@@ -72,13 +73,15 @@ const generateCustomersForRound = (
     const otherTags = allTags.filter(tag => !trendingTags.includes(tag));
     const secondaryTag = shuffle(otherTags)[0];
     const preferences = shuffle([primaryTag, secondaryTag]);
-    newCustomers.push({ name: `${customerType.name} #${i + 1}`, preferences });
+    const name = shuffledNames[i];
+    newCustomers.push({ name: `${name} - ${customerType.name}`, preferences });
   }
 
   // Generate 5 other customers
   for (let i = 0; i < 5; i++) {
     const customerType = shuffle(customerTypes)[0];
-    newCustomers.push({ name: `${customerType.name} #${i + 6}`, preferences: shuffle(allTags).slice(0, 2) });
+    const name = shuffledNames[i + 5];
+    newCustomers.push({ name: `${name} - ${customerType.name}`, preferences: shuffle(allTags).slice(0, 2) });
   }
 
   let lineCutters: string[] = [];

@@ -28,27 +28,32 @@ export const menuItems: MenuItem[] = [
     { name: "Rujak Buah", tags: ["Spicy", "Cold", "Fresh"] }
 ];
 
+export const indonesianNames: string[] = [
+    "Ahmad", "Budi", "Citra", "Dedi", "Dewi", "Eka", "Fitri", "Gita", "Hasan", "Indra",
+    "Jono", "Lestari", "Maya", "Nia", "Putra", "Rina", "Siti", "Tono", "Wati", "Yuni"
+];
+
 export const customerTypes: { name: string; preferences: string[] }[] = [
     { name: "Office Worker", preferences: ["Savory", "Cheap"] },
     { name: "Teen Student", preferences: ["Sweet", "Trendy"] },
-    { name: "Spicy Food Fan", preferences: ["Spicy", "Fresh"] },
-    { name: "Morning Commuter", preferences: ["Hot", "Light"] },
-    { name: "Health-Conscious Diner", preferences: ["Cold", "Healthy"] },
-    { name: "Foodie Tourist", preferences: ["Savory", "Traditional"] },
-    { name: "Trendy Influencer", preferences: ["Sweet", "Trendy"] },
-    { name: "Budget Shopper", preferences: ["Warm", "Cheap"] },
-    { name: "Local Elder", preferences: ["Hot", "Traditional"] },
+    { name: "Spicy Fan", preferences: ["Spicy", "Fresh"] },
+    { name: "Commuter", preferences: ["Hot", "Light"] },
+    { name: "Health Fan", preferences: ["Cold", "Healthy"] },
+    { name: "Tourist", preferences: ["Savory", "Traditional"] },
+    { name: "Influencer", preferences: ["Sweet", "Trendy"] },
+    { name: "Shopper", preferences: ["Warm", "Cheap"] },
+    { name: "Elder", preferences: ["Hot", "Traditional"] },
     { name: "Gym Goer", preferences: ["Spicy", "Healthy"] },
-    { name: "Family Parent", preferences: ["Sweet", "Light"] },
-    { name: "Street Vendor Regular", preferences: ["Savory", "Cheap"] },
-    { name: "Cultural Explorer", preferences: ["Cold", "Traditional"] },
-    { name: "Social Media Foodie", preferences: ["Warm", "Trendy"] },
-    { name: "Early Bird Worker", preferences: ["Hot", "Cheap"] },
-    { name: "Vegetarian Visitor", preferences: ["Savory", "Healthy"] },
+    { name: "Parent", preferences: ["Sweet", "Light"] },
+    { name: "Regular", preferences: ["Savory", "Cheap"] },
+    { name: "Explorer", preferences: ["Cold", "Traditional"] },
+    { name: "Foodie", preferences: ["Warm", "Trendy"] },
+    { name: "Early Worker", preferences: ["Hot", "Cheap"] },
+    { name: "Vegetarian", preferences: ["Savory", "Healthy"] },
     { name: "Dessert Lover", preferences: ["Sweet", "Fresh"] },
     { name: "Festival Goer", preferences: ["Spicy", "Trendy"] },
-    { name: "Rainy Day Patron", preferences: ["Warm", "Light"] },
-    { name: "Market Shopper", preferences: ["Cold", "Fresh"] }
+    { name: "Rainy Patron", preferences: ["Warm", "Light"] },
+    { name: "Market Goer", preferences: ["Cold", "Fresh"] }
 ];
 
 export const allTags: string[] = [
