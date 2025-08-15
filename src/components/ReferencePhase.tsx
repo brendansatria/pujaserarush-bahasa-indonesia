@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Progress } from "@/components/ui/progress";
 import { Lightbulb, Sparkles, Smile, Frown, UserX } from "lucide-react";
+import panIcon from "/pan.png";
 
 interface ReferencePhaseProps {
   onStartExecution: () => void;
@@ -44,7 +45,7 @@ export const ReferencePhase = ({ onStartExecution }: ReferencePhaseProps) => {
       </div>
 
       <div className="flex flex-col items-center space-y-4">
-        <img src="/pan.png" alt="Loading..." className="h-16 w-16 animate-bounce" />
+        <img src={panIcon} alt="Loading..." className="h-16 w-16 animate-bounce" />
         <Progress value={progress} className="w-full max-w-md" />
       </div>
 
@@ -60,7 +61,7 @@ export const ReferencePhase = ({ onStartExecution }: ReferencePhaseProps) => {
         <CardHeader>
           <CardTitle>Scoring Cheat Sheet</CardTitle>
           <CardDescription>Base points for each action (vs. a regular customer).</CardDescription>
-        </CardHeader>
+        </Header>
         <CardContent className="space-y-2">
           <ScoreInfo icon={<Sparkles className="h-4 w-4 text-yellow-500" />} text="Best Match" scores="P+10 S+10" />
           <ScoreInfo icon={<Smile className="h-4 w-4 text-green-500" />} text="Partial Match" scores="P+2  S+2" />
