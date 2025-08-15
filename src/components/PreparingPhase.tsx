@@ -115,7 +115,7 @@ export const PreparingPhase = ({
 
       <div>
         <h3 className="text-xl font-semibold text-center mb-4 animate-pulse">
-          {round === 1 ? "🏪 Select 2 Tenants For Join Your Pujasera" : "➕ Select 2 New Items for your Menu"}
+          ➕ Select 2 New Items for your Menu
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {availableTenants.map((tenant) => (
