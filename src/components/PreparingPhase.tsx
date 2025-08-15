@@ -59,6 +59,7 @@ export const PreparingPhase = ({
             <CardContent className="space-y-4">
               <div>
                 <h4 className="font-semibold">Trending Tags:</h4>
+                <p className="text-sm text-muted-foreground mt-1">Customers will frequently ask for items with these tags during the rush.</p>
                 <div className="flex flex-wrap gap-2 mt-2">
                   {trendingTags.map((tag) => {
                     const Icon = getTagIcon(tag);
