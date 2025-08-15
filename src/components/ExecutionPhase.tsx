@@ -63,7 +63,12 @@ export const ExecutionPhase = ({
   return (
     <div className="space-y-6 animate-in fade-in-50">
       <div className="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-4">
-        <div className="flex items-center gap-2 text-lg sm:text-xl font-bold">
+        <div
+          className={cn(
+            "flex items-center gap-2 text-lg sm:text-xl font-bold",
+            timer <= 10 && "text-red-500"
+          )}
+        >
           <TimerIcon className="h-5 w-5 sm:h-6 sm-w-6 animate-bounce" />
           <span className="animate-pulse">Time Left: {timer}s</span>
         </div>
@@ -168,7 +173,7 @@ export const ExecutionPhase = ({
           <CardHeader>
             <CardTitle>Reference Menu</CardTitle>
             <CardDescription>Your available items.</CardDescription>
-          </CardHeader>
+          </Header>
           <CardContent className="space-y-3 max-h-60 overflow-y-auto pr-3">
             {allMenuItems.map((item) => (
               <div key={item.name} className="p-3 border rounded-lg bg-background">
