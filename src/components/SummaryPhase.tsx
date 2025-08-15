@@ -80,7 +80,7 @@ export const SummaryPhase = ({ gameState, roundStartStats, onNextRound, onFinish
         </CardHeader>
         <CardContent className="space-y-3">
           <StatDisplay label="Profit Change" change={profitChange} icon={DollarSign} iconColor="text-blue-500" />
-          <StatDisplay label="Risk Added" change={riskChange} icon={ShieldAlert} iconColor="text-primary" invertColorLogic={true} />
+          <StatDisplay label="Risk Change" change={riskChange} icon={ShieldAlert} iconColor="text-primary" invertColorLogic={true} />
           <StatDisplay label="Satisfaction Change" change={satisfactionChange} icon={Heart} iconColor="text-pink-500" />
         </CardContent>
       </Card>
