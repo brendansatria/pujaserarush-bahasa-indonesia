@@ -110,8 +110,7 @@ export const ExecutionPhase = ({
           <CardContent className="flex flex-col space-y-3">
             <Button
               onClick={() => handleAction(onServeBestMatch)}
-              className="w-full h-20 py-2 px-3 bg-accent text-accent-foreground hover:bg-accent/90 active:bg-accent/80"
-              style={{ backgroundColor: '#2A9D90' }}
+              className="w-full h-20 py-2 px-3 bg-[#2A9D90] text-accent-foreground hover:bg-[#248a7f] active:bg-[#207c72]"
               disabled={hasActed}
             >
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full h-full text-left">
@@ -124,8 +123,7 @@ export const ExecutionPhase = ({
             </Button>
             <Button
               onClick={() => handleAction(onServePartialMatch)}
-              className="w-full h-20 py-2 px-3 bg-accent text-accent-foreground hover:bg-accent/90 active:bg-accent/80"
-              style={{ backgroundColor: '#2A9D90' }}
+              className="w-full h-20 py-2 px-3 bg-[#2A9D90] text-accent-foreground hover:bg-[#248a7f] active:bg-[#207c72]"
               disabled={hasActed}
             >
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full h-full text-left">
@@ -142,8 +140,7 @@ export const ExecutionPhase = ({
             </Button>
             <Button
               onClick={() => handleAction(onApologize)}
-              className="w-full h-20 py-2 px-3 bg-accent text-accent-foreground hover:bg-accent/90 active:bg-accent/80"
-              style={{ backgroundColor: '#2A9D90' }}
+              className="w-full h-20 py-2 px-3 bg-[#2A9D90] text-accent-foreground hover:bg-[#248a7f] active:bg-[#207c72]"
               disabled={hasActed}
             >
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full h-full text-left">
