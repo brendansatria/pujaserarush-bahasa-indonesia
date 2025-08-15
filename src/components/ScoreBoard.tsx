@@ -64,9 +64,9 @@ export const ScoreBoard = ({ profit, risk, satisfaction }: ScoreBoardProps) => {
     <div className="grid gap-2 grid-cols-3">
       <ScoreCard 
         title="Profit"
-        icon={<DollarSign className="h-7 w-7 text-accent" />} 
+        icon={<DollarSign className="h-7 w-7 text-blue-500" />} 
         value={profit} 
-        colorClass="text-accent"
+        colorClass="text-blue-500"
         infoTitle="Profit"
         infoDescription={profitInfo}
       />
@@ -80,9 +80,9 @@ export const ScoreBoard = ({ profit, risk, satisfaction }: ScoreBoardProps) => {
       />
       <ScoreCard 
         title="Satisfaction"
-        icon={<Heart className="h-7 w-7 text-secondary" />} 
+        icon={<Heart className="h-7 w-7 text-pink-500" />} 
         value={satisfaction} 
-        colorClass="text-secondary"
+        colorClass="text-pink-500"
         infoTitle="Customer Satisfaction"
         infoDescription={satisfactionInfo}
       />

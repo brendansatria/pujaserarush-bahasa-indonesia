@@ -21,8 +21,8 @@ const HowToPlay = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-              <div className="p-4 bg-accent/20 rounded-lg">
-                <DollarSign className="mx-auto h-8 w-8 text-accent mb-2" />
+              <div className="p-4 bg-blue-500/10 rounded-lg">
+                <DollarSign className="mx-auto h-8 w-8 text-blue-500 mb-2" />
                 <h3 className="font-bold text-foreground">Maximize Profit</h3>
                 <p className="text-sm">Aim for a score of 100 by serving customers efficiently.</p>
               </div>
@@ -31,8 +31,8 @@ const HowToPlay = () => {
                 <h3 className="font-bold text-foreground">Manage Risk</h3>
                 <p className="text-sm">Keep your risk score below 50 to succeed. Strategic choices can lower it!</p>
               </div>
-              <div className="p-4 bg-secondary/20 rounded-lg">
-                <Heart className="mx-auto h-8 w-8 text-secondary mb-2" />
+              <div className="p-4 bg-pink-500/10 rounded-lg">
+                <Heart className="mx-auto h-8 w-8 text-pink-500 mb-2" />
                 <h3 className="font-bold text-foreground">Boost Satisfaction</h3>
                 <p className="text-sm">Aim for a score of 100 by matching preferences perfectly.</p>
               </div>

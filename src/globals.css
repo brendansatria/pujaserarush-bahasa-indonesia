@@ -20,7 +20,7 @@
     --secondary-foreground: 30 100% 98%;
 
     --muted: 197 37% 32%;
-    --muted-foreground: 197 20% 65%;
+    --muted-foreground: 197 20% 80%; /* Lighter Grey */
 
     --accent: 173 58% 39%; /* #2A9D8F Turquoise */
     --accent-foreground: 30 100% 98%;
