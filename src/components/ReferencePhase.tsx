@@ -1,25 +1,51 @@
-import { Tenant, MenuItem } from "@/types/game";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Lightbulb } from "lucide-react";
-import { getTagIcon } from "@/utils/tagIcons";
+import { Progress } from "@/components/ui/progress";
+import { Lightbulb, CookingPot, Sparkles, Smile, Frown, UserX, DollarSign, Heart, ShieldAlert } from "lucide-react";
 
 interface ReferencePhaseProps {
-  selectedTenants: Tenant[];
   onStartExecution: () => void;
-  playerMenu: MenuItem[];
 }
 
-export const ReferencePhase = ({ selectedTenants, onStartExecution, playerMenu }: ReferencePhaseProps) => {
-  const allMenuItems = [...playerMenu, ...selectedTenants.flatMap((tenant) => tenant.items)];
+const ScoreInfo = ({ icon, text, scores }: { icon: React.ReactNode; text: string; scores: string }) => (
+  <div className="flex items-center justify-between p-2 bg-muted/50 rounded-md">
+    <div className="flex items-center gap-2">
+      {icon}
+      <p className="font-medium text-sm">{text}</p>
+    </div>
+    <p className="text-xs font-mono text-muted-foreground">{scores}</p>
+  </div>
+);
+
+export const ReferencePhase = ({ onStartExecution }: ReferencePhaseProps) => {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(timer);
+          onStartExecution();
+          return 100;
+        }
+        return prev + 1;
+      });
+    }, 50); // 50ms * 100 = 5000ms = 5s
+
+    return () => clearInterval(timer);
+  }, [onStartExecution]);
 
   return (
     <div className="space-y-6 animate-in fade-in-50">
       <div className="text-center">
         <h2 className="text-2xl font-bold">Get Ready to Serve!</h2>
-        <p className="text-muted-foreground">Memorize your menu for the upcoming rush.</p>
+        <p className="text-muted-foreground">The lunch rush is about to begin...</p>
+      </div>
+
+      <div className="flex flex-col items-center space-y-4">
+        <CookingPot className="h-16 w-16 text-primary animate-bounce" />
+        <Progress value={progress} className="w-full max-w-md" />
       </div>
 
       <Alert>
@@ -32,34 +58,20 @@ export const ReferencePhase = ({ selectedTenants, onStartExecution, playerMenu }
 
       <Card>
         <CardHeader>
-          <CardTitle>Today's Menu</CardTitle>
-          <CardDescription>These are the items from your selected tenants.</CardDescription>
+          <CardTitle>Scoring Cheat Sheet</CardTitle>
+          <CardDescription>Base points for each action (vs. a regular customer).</CardDescription>
         </CardHeader>
-        <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {allMenuItems.map((item) => (
-            <div key={item.name} className="p-4 border rounded-lg bg-background shadow-sm">
-              <p className="font-semibold text-lg">{item.name}</p>
-              <div className="flex flex-wrap gap-2 mt-2">
-                {item.tags.map((tag) => {
-                  const Icon = getTagIcon(tag);
-                  return (
-                    <Badge key={tag} variant="secondary" className="font-normal">
-                      <Icon className="mr-1 h-3 w-3" />
-                      {tag}
-                    </Badge>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
+        <CardContent className="space-y-2">
+          <ScoreInfo icon={<Sparkles className="h-4 w-4 text-yellow-500" />} text="Best Match" scores="P+10 S+10" />
+          <ScoreInfo icon={<Smile className="h-4 w-4 text-green-500" />} text="Partial Match" scores="P+2  S+2" />
+          <ScoreInfo icon={<Frown className="h-4 w-4 text-blue-500" />} text="Apologize" scores="S+1  R+1" />
+          <ScoreInfo icon={<UserX className="h-4 w-4 text-red-500" />} text="Kick Customer" scores="P-2  S-2  R+1" />
+          <div className="text-xs text-muted-foreground pt-2 text-center">
+            <p><span className="font-bold">P</span>=Profit, <span className="font-bold">S</span>=Satisfaction, <span className="font-bold">R</span>=Risk</p>
+            <p>Handling line-cutters has different outcomes!</p>
+          </div>
         </CardContent>
       </Card>
-
-      <div className="text-center">
-        <Button onClick={onStartExecution} size="lg">
-          Ready!
-        </Button>
-      </div>
     </div>
   );
 };

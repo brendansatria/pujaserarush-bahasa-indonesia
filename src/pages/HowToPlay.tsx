@@ -51,19 +51,12 @@ const HowToPlay = () => {
                 <div className="flex items-start gap-4">
                   <div className="bg-red-500 text-white rounded-full h-8 w-8 flex-shrink-0 flex items-center justify-center font-bold">2</div>
                   <div>
-                    <h4 className="font-semibold">Reference Phase</h4>
-                    <p className="text-sm">Memorize your combined menu! Knowing your items and their tags is key to serving customers quickly.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="bg-red-500 text-white rounded-full h-8 w-8 flex-shrink-0 flex items-center justify-center font-bold">3</div>
-                  <div>
                     <h4 className="font-semibold">Execution Phase</h4>
                     <p className="text-sm">The rush is on! Serve as many customers as you can before the timer runs out. Match their preferences to your menu tags.</p>
                   </div>
                 </div>
                  <div className="flex items-start gap-4">
-                  <div className="bg-red-500 text-white rounded-full h-8 w-8 flex-shrink-0 flex items-center justify-center font-bold">4</div>
+                  <div className="bg-red-500 text-white rounded-full h-8 w-8 flex-shrink-0 flex items-center justify-center font-bold">3</div>
                   <div>
                     <h4 className="font-semibold">Summary Phase</h4>
                     <p className="text-sm">Review your performance and see how your choices affected your scores. Prepare for the next round!</p>
