@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { getTagIcon } from "@/utils/tagIcons";
-import { TimerIcon, Sparkles, Smile, Frown, UserX, User } from "lucide-react";
+import { TimerIcon, Sparkles, Smile, Frown, UserX } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ExecutionPhaseProps {
@@ -98,7 +98,7 @@ export const ExecutionPhase = ({
             })}
           </div>
         </CardContent>
-        <User className="absolute top-1/2 right-4 -translate-y-1/2 h-16 w-16 text-accent-foreground/20" />
+        <img src="/customer.png" alt="Customer" className="absolute top-1/2 right-4 -translate-y-1/2 h-16 w-16 opacity-20" />
       </Card>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
