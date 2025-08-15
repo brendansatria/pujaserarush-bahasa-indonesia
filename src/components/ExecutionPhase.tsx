@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { getTagIcon } from "@/utils/tagIcons";
-import { TimerIcon, Sparkles, Smile, Frown, Boot, User } from "lucide-react";
+import { TimerIcon, Sparkles, Smile, Frown, UserX, User } from "lucide-react";
 
 interface ExecutionPhaseProps {
   gameState: GameState;
@@ -117,7 +117,7 @@ export const ExecutionPhase = ({
               <Button onClick={onKickCustomer} variant="destructive" className="w-full h-auto py-2 px-3">
                 <div className="flex items-center justify-between w-full">
                   <div className="flex items-center text-left">
-                    <Boot className="mr-2 h-5 w-5 flex-shrink-0" />
+                    <UserX className="mr-2 h-5 w-5 flex-shrink-0" />
                     <span className="text-sm">Please get into the line or get out of here!</span>
                   </div>
                   <span className="text-xs font-normal text-muted-foreground hidden sm:inline ml-2">(cut in line customer)</span>
@@ -131,7 +131,7 @@ export const ExecutionPhase = ({
           <CardHeader>
             <CardTitle>Reference Menu</CardTitle>
             <CardDescription>Your available items.</CardDescription>
-          </CardHeader>
+          </Header>
           <CardContent className="space-y-3 max-h-60 overflow-y-auto pr-3">
             {allMenuItems.map((item) => (
               <div key={item.name} className="p-3 border rounded-lg bg-background">
