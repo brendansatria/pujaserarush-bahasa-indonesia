@@ -94,7 +94,7 @@ export const PreExecutionFeedbackModal = ({
               </h4>
               <p className="text-sm text-muted-foreground">
                 Reduces demand for:{" "}
-                {threat.eliminates.map(tag => <Badge key={tag} variant="destructive">{tag}</Badge>)}
+                {threat.eliminates.map(tag => <Badge key={tag} className="bg-white text-black hover:bg-gray-200">{tag}</Badge>)}
               </p>
               {impactedItems.length > 0 ? (
                 <div>

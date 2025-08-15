@@ -45,7 +45,7 @@ export const PreparingPhase = ({
       </div>
 
       <Collapsible open={isMarketOpen} onOpenChange={setIsMarketOpen}>
-        <Card>
+        <Card style={{ backgroundColor: '#274754' }}>
           <CollapsibleTrigger className="w-full">
             <CardHeader className="flex flex-row items-center justify-between cursor-pointer">
               <div className="text-left">

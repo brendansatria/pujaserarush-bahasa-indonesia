@@ -18,6 +18,7 @@ export const TenantCard = ({ tenant, isSelected, onSelect }: TenantCardProps) =>
         "cursor-pointer transition-all hover:shadow-md",
         isSelected ? "border-primary ring-2 ring-primary" : "border-border"
       )}
+      style={{ backgroundColor: '#274754' }}
     >
       <CardHeader>
         <CardTitle>{tenant.name}</CardTitle>
