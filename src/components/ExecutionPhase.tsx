@@ -98,6 +98,7 @@ export const ExecutionPhase = ({
             })}
           </div>
         </CardContent>
+        <img src="/customer_a.png" alt="Customer" className="absolute top-1/2 right-4 -translate-y-1/2 h-24 w-auto opacity-20 pointer-events-none" />
       </Card>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
