@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { GameState } from "@/types/game";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -5,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { getTagIcon } from "@/utils/tagIcons";
 import { TimerIcon, Sparkles, Smile, Frown, UserX, User } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface ExecutionPhaseProps {
   gameState: GameState;
@@ -31,6 +33,18 @@ export const ExecutionPhase = ({
     playerMenu,
   } = gameState;
 
+  const [hasActed, setHasActed] = useState(false);
+
+  useEffect(() => {
+    setHasActed(false);
+  }, [currentCustomerIndex]);
+
+  const handleAction = (action: () => void) => {
+    if (hasActed) return;
+    setHasActed(true);
+    action();
+  };
+
   const currentCustomer = customers[currentCustomerIndex];
   const allMenuItems = [...playerMenu, ...selectedTenants.flatMap((tenant) => tenant.items)];
 
@@ -47,8 +61,8 @@ export const ExecutionPhase = ({
     <div className="space-y-6 animate-in fade-in-50">
       <div className="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-4">
         <div className="flex items-center gap-2 text-lg sm:text-xl font-bold">
-          <TimerIcon className="h-5 w-5 sm:h-6 sm-w-6" />
-          <span>Time Left: {timer}s</span>
+          <TimerIcon className="h-5 w-5 sm:h-6 sm-w-6 animate-bounce" />
+          <span className="animate-pulse">Time Left: {timer}s</span>
         </div>
         <div className="w-full sm:w-2/5">
           <Progress value={(customersServed / customers.length) * 100} />
@@ -86,7 +100,12 @@ export const ExecutionPhase = ({
             <CardDescription>Select an action for this customer.</CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col space-y-3">
-            <Button onClick={onServeBestMatch} className="w-full h-auto py-2 px-3">
+            <Button
+              onClick={() => handleAction(onServeBestMatch)}
+              variant="secondary"
+              className={cn("w-full h-auto py-2 px-3", !hasActed && "animate-pulse")}
+              disabled={hasActed}
+            >
               <div className="flex items-center justify-between w-full">
                 <div className="flex items-center text-left">
                   <Sparkles className="mr-2 h-5 w-5 text-yellow-400 flex-shrink-0" />
@@ -95,7 +114,12 @@ export const ExecutionPhase = ({
                 <span className="text-xs font-normal text-muted-foreground hidden sm:inline ml-2">(2 match tags)</span>
               </div>
             </Button>
-            <Button onClick={onServePartialMatch} className="w-full h-auto py-2 px-3">
+            <Button
+              onClick={() => handleAction(onServePartialMatch)}
+              variant="secondary"
+              className={cn("w-full h-auto py-2 px-3", !hasActed && "animate-pulse")}
+              disabled={hasActed}
+            >
               <div className="flex items-center justify-between w-full">
                 <div className="flex items-center text-left">
                   <Smile className="mr-2 h-5 w-5 text-green-400 flex-shrink-0" />
@@ -104,7 +128,12 @@ export const ExecutionPhase = ({
                 <span className="text-xs font-normal text-muted-foreground hidden sm:inline ml-2">(1 match tag)</span>
               </div>
             </Button>
-            <Button onClick={onApologize} variant="secondary" className="w-full h-auto py-2 px-3">
+            <Button
+              onClick={() => handleAction(onApologize)}
+              variant="secondary"
+              className={cn("w-full h-auto py-2 px-3", !hasActed && "animate-pulse")}
+              disabled={hasActed}
+            >
               <div className="flex items-center justify-between w-full">
                 <div className="flex items-center text-left">
                   <Frown className="mr-2 h-5 w-5 text-blue-400 flex-shrink-0" />
@@ -114,7 +143,12 @@ export const ExecutionPhase = ({
               </div>
             </Button>
             {round > 1 && (
-              <Button onClick={onKickCustomer} variant="destructive" className="w-full h-auto py-2 px-3">
+              <Button
+                onClick={() => handleAction(onKickCustomer)}
+                variant="destructive"
+                className={cn("w-full h-auto py-2 px-3", !hasActed && "animate-pulse")}
+                disabled={hasActed}
+              >
                 <div className="flex items-center justify-between w-full">
                   <div className="flex items-center text-left">
                     <UserX className="mr-2 h-5 w-5 flex-shrink-0" />
