@@ -1,12 +1,8 @@
 import { GameState } from "@/types/game";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Trophy, ShieldAlert, Heart } from "lucide-react";
+import { Trophy, ShieldAlert, Heart, DollarSign } from "lucide-react";
 import { Link } from "react-router-dom";
-
-interface VictoryPhaseProps {
-  gameState: GameState;
-}
 
 const FinalScoreCard = ({ icon: Icon, title, value, description, colorClass }: any) => (
     <div className="flex items-center space-x-4 rounded-lg border p-4">
@@ -42,11 +38,11 @@ export const VictoryPhase = ({ gameState }: VictoryPhaseProps) => {
         <CardContent className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <FinalScoreCard 
-                    icon={Trophy}
+                    icon={DollarSign}
                     title="Total Profit"
                     value={profit}
                     description="Cash is king!"
-                    colorClass="text-green-500"
+                    colorClass="text-blue-500"
                 />
                 <FinalScoreCard 
                     icon={ShieldAlert}
@@ -60,7 +56,7 @@ export const VictoryPhase = ({ gameState }: VictoryPhaseProps) => {
                     title="Total Satisfaction"
                     value={satisfaction}
                     description="Happy customers, happy life."
-                    colorClass="text-blue-500"
+                    colorClass="text-pink-500"
                 />
             </div>
         </CardContent>

@@ -1,7 +1,7 @@
 import { GameState } from "@/types/game";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowUp, ArrowDown, Minus, Lightbulb } from "lucide-react";
+import { ArrowUp, ArrowDown, Minus, Lightbulb, DollarSign, ShieldAlert, Heart } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 interface SummaryPhaseProps {
@@ -16,10 +16,10 @@ interface SummaryPhaseProps {
   totalRounds: number;
 }
 
-const StatDisplay = ({ label, change, invertColorLogic = false }: { label: string; change: number; invertColorLogic?: boolean }) => {
+const StatDisplay = ({ label, change, icon: StatIcon, iconColor, invertColorLogic = false }: { label: string; change: number; icon: React.ElementType; iconColor: string; invertColorLogic?: boolean }) => {
   const isPositive = change > 0;
   const isNegative = change < 0;
-  const Icon = isPositive ? ArrowUp : isNegative ? ArrowDown : Minus;
+  const ChangeIcon = isPositive ? ArrowUp : isNegative ? ArrowDown : Minus;
 
   const positiveColor = invertColorLogic ? "text-red-500" : "text-green-500";
   const negativeColor = invertColorLogic ? "text-green-500" : "text-red-500";
@@ -28,12 +28,15 @@ const StatDisplay = ({ label, change, invertColorLogic = false }: { label: strin
 
   return (
     <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
-      <p className="font-medium">{label}</p>
+      <div className="flex items-center gap-2">
+        <StatIcon className={`h-5 w-5 ${iconColor}`} />
+        <p className="font-medium">{label}</p>
+      </div>
       <div className="flex items-center gap-2">
         <span className={`font-bold text-lg ${colorClass}`}>
           {isPositive ? "+" : ""}{change}
         </span>
-        <Icon className={`h-5 w-5 ${colorClass}`} />
+        <ChangeIcon className={`h-5 w-5 ${colorClass}`} />
       </div>
     </div>
   );
@@ -76,9 +79,9 @@ export const SummaryPhase = ({ gameState, roundStartStats, onNextRound, onFinish
           <CardTitle>Round Performance</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
-          <StatDisplay label="Profit Change" change={profitChange} />
-          <StatDisplay label="Risk Added" change={riskChange} invertColorLogic={true} />
-          <StatDisplay label="Satisfaction Change" change={satisfactionChange} />
+          <StatDisplay label="Profit Change" change={profitChange} icon={DollarSign} iconColor="text-blue-500" />
+          <StatDisplay label="Risk Added" change={riskChange} icon={ShieldAlert} iconColor="text-yellow-500" invertColorLogic={true} />
+          <StatDisplay label="Satisfaction Change" change={satisfactionChange} icon={Heart} iconColor="text-pink-500" />
         </CardContent>
       </Card>
 
