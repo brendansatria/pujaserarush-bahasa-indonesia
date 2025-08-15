@@ -321,7 +321,7 @@ const PujaseraRush = () => {
   const renderPhase = () => {
     switch (gameState.phase) {
       case "preparing": return <PreparingPhase round={gameState.round} trendingTags={gameState.trendingTags} valueItems={gameState.valueItems} threat={gameState.currentThreat} availableTenants={gameState.availableTenants} selectedTenants={gameState.selectedTenants} onSelectTenant={handleSelectTenant} onStartExecution={handleOpenFeedbackModal} playerMenu={gameState.playerMenu} lineCutters={gameState.lineCutters} />;
-      case "reference": return <ReferencePhase onStartExecution={handleStartExecution} />;
+      case "reference": return <ReferencePhase selectedTenants={gameState.selectedTenants} onStartExecution={handleStartExecution} playerMenu={gameState.playerMenu} />;
       case "execution": return <ExecutionPhase gameState={gameState} onServeBestMatch={handleServeBestMatch} onServePartialMatch={handleServePartialMatch} onApologize={handleApologize} onKickCustomer={handleKickCustomer} />;
       case "summary": return <SummaryPhase gameState={gameState} roundStartStats={roundStartStats} onNextRound={handleNextRound} onFinishGame={handleFinishGame} totalRounds={TOTAL_ROUNDS} />;
       case "victory": return <VictoryPhase gameState={gameState} />;
@@ -332,7 +332,7 @@ const PujaseraRush = () => {
   return (
     <div className="container mx-auto p-2 sm:p-4 min-h-screen">
       <main className="space-y-4 sm:space-y-6">
-        {gameState.phase !== "reference" && <ScoreBoard profit={gameState.profit} risk={gameState.risk} satisfaction={gameState.satisfaction} />}
+        <ScoreBoard profit={gameState.profit} risk={gameState.risk} satisfaction={gameState.satisfaction} />
         <div className="bg-card/60 backdrop-blur-sm p-4 sm:p-6 rounded-lg shadow-lg border">
           {renderPhase()}
         </div>
