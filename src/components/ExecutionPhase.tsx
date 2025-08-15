@@ -42,7 +42,10 @@ export const ExecutionPhase = ({
   const handleAction = (action: () => void) => {
     if (hasActed) return;
     setHasActed(true);
-    action();
+    // Add a small delay so the user can see the button state change before the next customer appears
+    setTimeout(() => {
+      action();
+    }, 300);
   };
 
   const currentCustomer = customers[currentCustomerIndex];
