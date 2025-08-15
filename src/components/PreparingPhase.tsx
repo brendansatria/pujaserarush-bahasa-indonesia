@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { Tenant, Threat, MenuItem } from "@/types/game";
 import { TenantCard } from "./TenantCard";
 import { Button } from "@/components/ui/button";
@@ -7,7 +8,6 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Users, ChevronsUpDown } from "lucide-react";
 import { getTagIcon } from "@/utils/tagIcons";
 import { PlayerMenuDisplay } from "./PlayerMenuDisplay";
-import { useState } from "react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 interface PreparingPhaseProps {
@@ -60,14 +60,19 @@ export const PreparingPhase = ({
               <div>
                 <h4 className="font-semibold">Trending Tags:</h4>
                 <p className="text-sm text-muted-foreground mt-1">Customers will frequently ask for items with these tags during the rush.</p>
-                <div className="flex flex-wrap gap-2 mt-2">
-                  {trendingTags.map((tag) => {
+                <div className="flex flex-wrap gap-2 mt-2 items-center">
+                  {trendingTags.map((tag, index) => {
                     const Icon = getTagIcon(tag);
                     return (
-                      <Badge key={tag} variant="secondary" className="flex items-center">
-                        <Icon className="mr-1 h-3 w-3" />
-                        {tag}
-                      </Badge>
+                      <React.Fragment key={tag}>
+                        <Badge variant="secondary" className="flex items-center">
+                          <Icon className="mr-1 h-3 w-3" />
+                          {tag}
+                        </Badge>
+                        {index < trendingTags.length - 1 && (
+                          <span className="text-muted-foreground font-bold">/</span>
+                        )}
+                      </React.Fragment>
                     );
                   })}
                 </div>
