@@ -3,7 +3,7 @@ import { GameState, Tenant, Customer, MenuItem } from "@/types/game";
 import { menuItems, customerTypes, threats, allTags, indonesianNames } from "@/data/gameData";
 import { ScoreBoard } from "@/components/ScoreBoard";
 import { PreparingPhase } from "@/components/PreparingPhase";
-import { ReferenceStep } from "@/components/ReferenceStep";
+import { ReferencePhase } from "@/components/ReferencePhase";
 import { ExecutionPhase } from "@/components/ExecutionPhase";
 import { SummaryPhase } from "@/components/SummaryPhase";
 import { VictoryPhase } from "@/components/VictoryPhase";
@@ -321,7 +321,7 @@ const PujaseraRush = () => {
   const renderPhase = () => {
     switch (gameState.phase) {
       case "preparing": return <PreparingPhase round={gameState.round} trendingTags={gameState.trendingTags} valueItems={gameState.valueItems} threat={gameState.currentThreat} availableTenants={gameState.availableTenants} selectedTenants={gameState.selectedTenants} onSelectTenant={handleSelectTenant} onStartExecution={handleOpenFeedbackModal} playerMenu={gameState.playerMenu} lineCutters={gameState.lineCutters} />;
-      case "reference": return <ReferenceStep onStartExecution={handleStartExecution} />;
+      case "reference": return <ReferencePhase selectedTenants={gameState.selectedTenants} onStartExecution={handleStartExecution} playerMenu={gameState.playerMenu} />;
       case "execution": return <ExecutionPhase gameState={gameState} onServeBestMatch={handleServeBestMatch} onServePartialMatch={handleServePartialMatch} onApologize={handleApologize} onKickCustomer={handleKickCustomer} />;
       case "summary": return <SummaryPhase gameState={gameState} roundStartStats={roundStartStats} onNextRound={handleNextRound} onFinishGame={handleFinishGame} totalRounds={TOTAL_ROUNDS} />;
       case "victory": return <VictoryPhase gameState={gameState} />;

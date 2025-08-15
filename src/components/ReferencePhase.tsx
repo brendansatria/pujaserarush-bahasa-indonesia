@@ -2,25 +2,23 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Progress } from "@/components/ui/progress";
-import { Lightbulb, Sparkles, Smile, Frown, UserX } from "lucide-react";
+import { Lightbulb, CookingPot, Sparkles, Smile, Frown, UserX, DollarSign, Heart, ShieldAlert } from "lucide-react";
 
-interface ReferenceStepProps {
+interface ReferencePhaseProps {
   onStartExecution: () => void;
 }
 
-function ScoreInfo({ icon, text, scores }: { icon: React.ReactNode; text: string; scores: string }) {
-  return (
-    <div className="flex items-center justify-between p-2 bg-muted/50 rounded-md">
-      <div className="flex items-center gap-2">
-        {icon}
-        <p className="font-medium text-sm">{text}</p>
-      </div>
-      <p className="text-xs font-mono text-muted-foreground">{scores}</p>
+const ScoreInfo = ({ icon, text, scores }: { icon: React.ReactNode; text: string; scores: string }) => (
+  <div className="flex items-center justify-between p-2 bg-muted/50 rounded-md">
+    <div className="flex items-center gap-2">
+      {icon}
+      <p className="font-medium text-sm">{text}</p>
     </div>
-  );
-}
+    <p className="text-xs font-mono text-muted-foreground">{scores}</p>
+  </div>
+);
 
-export const ReferenceStep = ({ onStartExecution }: ReferenceStepProps) => {
+export const ReferencePhase = ({ onStartExecution }: ReferencePhaseProps) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -33,7 +31,7 @@ export const ReferenceStep = ({ onStartExecution }: ReferenceStepProps) => {
         }
         return prev + 1;
       });
-    }, 100); // 10s total
+    }, 100); // 100ms * 100 = 10000ms = 10s
 
     return () => clearInterval(timer);
   }, [onStartExecution]);
@@ -46,7 +44,7 @@ export const ReferenceStep = ({ onStartExecution }: ReferenceStepProps) => {
       </div>
 
       <div className="flex flex-col items-center space-y-4">
-        <img src="/pan.png" alt="Loading..." className="h-16 w-16 animate-bounce" />
+        <CookingPot className="h-16 w-16 text-primary animate-bounce" />
         <Progress value={progress} className="w-full max-w-md" />
       </div>
 
@@ -62,7 +60,7 @@ export const ReferenceStep = ({ onStartExecution }: ReferenceStepProps) => {
         <CardHeader>
           <CardTitle>Scoring Cheat Sheet</CardTitle>
           <CardDescription>Base points for each action (vs. a regular customer).</CardDescription>
-        </Header>
+        </CardHeader>
         <CardContent className="space-y-2">
           <ScoreInfo icon={<Sparkles className="h-4 w-4 text-yellow-500" />} text="Best Match" scores="P+10 S+10" />
           <ScoreInfo icon={<Smile className="h-4 w-4 text-green-500" />} text="Partial Match" scores="P+2  S+2" />
