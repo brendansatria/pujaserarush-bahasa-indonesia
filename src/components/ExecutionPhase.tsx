@@ -66,7 +66,7 @@ export const ExecutionPhase = ({
         <div
           className={cn(
             "flex items-center gap-2 text-lg sm:text-xl font-bold",
-            timer <= 10 && "text-red-500"
+            timer <= 10 && "text-destructive"
           )}
         >
           <TimerIcon className="h-5 w-5 sm:h-6 sm-w-6 animate-bounce" />
@@ -80,7 +80,7 @@ export const ExecutionPhase = ({
         </div>
       </div>
 
-      <Card className="bg-blue-50 border-blue-200 relative overflow-hidden">
+      <Card className="bg-accent/10 border-accent/30 relative overflow-hidden">
         <CardHeader>
           <CardTitle>Next in Line: {currentCustomer.name}</CardTitle>
           <CardDescription>They are looking for something with these qualities:</CardDescription>
@@ -98,7 +98,7 @@ export const ExecutionPhase = ({
             })}
           </div>
         </CardContent>
-        <User className="absolute top-1/2 right-4 -translate-y-1/2 h-16 w-16 text-blue-200/80" />
+        <User className="absolute top-1/2 right-4 -translate-y-1/2 h-16 w-16 text-accent/30" />
       </Card>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
