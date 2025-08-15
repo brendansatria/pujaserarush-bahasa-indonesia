@@ -115,7 +115,7 @@ export const ExecutionPhase = ({
               disabled={hasActed}
             >
               <div className="flex items-center justify-between w-full gap-2">
-                <div className="flex items-start text-left flex-1">
+                <div className="flex items-start text-left flex-1 min-w-0">
                   <Sparkles className="mr-2 h-5 w-5 text-yellow-400 flex-shrink-0 mt-0.5" />
                   <span className="text-sm">Yes! we have a perfect menu for you!</span>
                 </div>
@@ -129,7 +129,7 @@ export const ExecutionPhase = ({
               disabled={hasActed}
             >
               <div className="flex items-center justify-between w-full gap-2">
-                <div className="flex items-start text-left flex-1">
+                <div className="flex items-start text-left flex-1 min-w-0">
                   <Smile className="mr-2 h-5 w-5 text-green-400 flex-shrink-0 mt-0.5" />
                   <span className="text-sm">Currently we only have menu that partially match for you.</span>
                 </div>
@@ -143,7 +143,7 @@ export const ExecutionPhase = ({
               disabled={hasActed}
             >
               <div className="flex items-center justify-between w-full gap-2">
-                <div className="flex items-start text-left flex-1">
+                <div className="flex items-start text-left flex-1 min-w-0">
                   <Frown className="mr-2 h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" />
                   <span className="text-sm">We are sorry... currently no menu that match to your taste.</span>
                 </div>
@@ -158,7 +158,7 @@ export const ExecutionPhase = ({
                 disabled={hasActed}
               >
                 <div className="flex items-center justify-between w-full gap-2">
-                  <div className="flex items-start text-left flex-1">
+                  <div className="flex items-start text-left flex-1 min-w-0">
                     <UserX className="mr-2 h-5 w-5 flex-shrink-0 mt-0.5" />
                     <span className="text-sm">Please get into the line or get out of here!</span>
                   </div>
