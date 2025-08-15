@@ -80,7 +80,7 @@ export const ExecutionPhase = ({
         </div>
       </div>
 
-      <Card className="bg-accent text-accent-foreground border-accent/30 relative overflow-hidden" style={{ backgroundColor: '#2A9D90' }}>
+      <Card className="bg-accent text-accent-foreground border-accent/30 relative overflow-hidden">
         <CardHeader>
           <CardTitle>Next in Line: {currentCustomer.name}</CardTitle>
           <CardDescription className="text-accent-foreground/80">They are looking for something with these qualities:</CardDescription>
@@ -98,7 +98,7 @@ export const ExecutionPhase = ({
             })}
           </div>
         </CardContent>
-        <img src="/customer_a.png" alt="Customer" className="absolute top-1/2 right-4 -translate-y-1/2 h-24 w-auto opacity-20 pointer-events-none" />
+        <img src="/customer_a.png" alt="Customer" className="absolute top-1/2 right-4 -translate-y-1/2 h-28 w-auto opacity-30 pointer-events-none" />
       </Card>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
