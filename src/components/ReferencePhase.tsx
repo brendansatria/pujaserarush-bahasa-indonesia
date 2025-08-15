@@ -31,7 +31,7 @@ export const ReferencePhase = ({ onStartExecution }: ReferencePhaseProps) => {
         }
         return prev + 1;
       });
-    }, 50); // 50ms * 100 = 5000ms = 5s
+    }, 100); // 100ms * 100 = 10000ms = 10s
 
     return () => clearInterval(timer);
   }, [onStartExecution]);
