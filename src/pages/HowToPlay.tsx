@@ -26,15 +26,15 @@ const HowToPlay = () => {
                 <h3 className="font-bold">Maximize Profit</h3>
                 <p className="text-sm">Aim for a score of 100 by serving customers efficiently.</p>
               </div>
-              <div className="p-4 bg-pink-100 rounded-lg">
-                <Heart className="mx-auto h-8 w-8 text-pink-500 mb-2" />
-                <h3 className="font-bold">Boost Satisfaction</h3>
-                <p className="text-sm">Aim for a score of 100 by matching preferences perfectly.</p>
-              </div>
               <div className="p-4 bg-yellow-100 rounded-lg">
                 <ShieldAlert className="mx-auto h-8 w-8 text-yellow-500 mb-2" />
                 <h3 className="font-bold">Manage Risk</h3>
                 <p className="text-sm">Keep your risk score below 50 to succeed. Strategic choices can lower it!</p>
+              </div>
+              <div className="p-4 bg-pink-100 rounded-lg">
+                <Heart className="mx-auto h-8 w-8 text-pink-500 mb-2" />
+                <h3 className="font-bold">Boost Satisfaction</h3>
+                <p className="text-sm">Aim for a score of 100 by matching preferences perfectly.</p>
               </div>
             </div>
 
