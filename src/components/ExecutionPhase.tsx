@@ -114,12 +114,12 @@ export const ExecutionPhase = ({
               className={cn("w-full h-auto py-2 px-3", currentCustomerIndex === 0 && !hasActed && "animate-pulse")}
               disabled={hasActed}
             >
-              <div className="flex items-center justify-between w-full">
-                <div className="flex items-center text-left">
-                  <Sparkles className="mr-2 h-5 w-5 text-yellow-400 flex-shrink-0" />
+              <div className="flex items-center justify-between w-full gap-2">
+                <div className="flex items-start text-left flex-1">
+                  <Sparkles className="mr-2 h-5 w-5 text-yellow-400 flex-shrink-0 mt-0.5" />
                   <span className="text-sm">Yes! we have a perfect menu for you!</span>
                 </div>
-                <span className="text-xs font-normal text-muted-foreground hidden sm:inline ml-2">(2 match tags)</span>
+                <span className="text-xs font-normal text-muted-foreground hidden sm:inline">(2 match tags)</span>
               </div>
             </Button>
             <Button
@@ -128,12 +128,12 @@ export const ExecutionPhase = ({
               className={cn("w-full h-auto py-2 px-3", currentCustomerIndex === 0 && !hasActed && "animate-pulse")}
               disabled={hasActed}
             >
-              <div className="flex items-center justify-between w-full">
-                <div className="flex items-center text-left">
-                  <Smile className="mr-2 h-5 w-5 text-green-400 flex-shrink-0" />
+              <div className="flex items-center justify-between w-full gap-2">
+                <div className="flex items-start text-left flex-1">
+                  <Smile className="mr-2 h-5 w-5 text-green-400 flex-shrink-0 mt-0.5" />
                   <span className="text-sm">Currently we only have menu that partially match for you.</span>
                 </div>
-                <span className="text-xs font-normal text-muted-foreground hidden sm:inline ml-2">(1 match tag)</span>
+                <span className="text-xs font-normal text-muted-foreground hidden sm:inline">(1 match tag)</span>
               </div>
             </Button>
             <Button
@@ -142,12 +142,12 @@ export const ExecutionPhase = ({
               className={cn("w-full h-auto py-2 px-3", currentCustomerIndex === 0 && !hasActed && "animate-pulse")}
               disabled={hasActed}
             >
-              <div className="flex items-center justify-between w-full">
-                <div className="flex items-center text-left">
-                  <Frown className="mr-2 h-5 w-5 text-blue-400 flex-shrink-0" />
+              <div className="flex items-center justify-between w-full gap-2">
+                <div className="flex items-start text-left flex-1">
+                  <Frown className="mr-2 h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" />
                   <span className="text-sm">We are sorry... currently no menu that match to your taste.</span>
                 </div>
-                <span className="text-xs font-normal text-muted-foreground hidden sm:inline ml-2">(0 match tag)</span>
+                <span className="text-xs font-normal text-muted-foreground hidden sm:inline">(0 match tag)</span>
               </div>
             </Button>
             {round > 1 && (
@@ -157,12 +157,12 @@ export const ExecutionPhase = ({
                 className={cn("w-full h-auto py-2 px-3", currentCustomerIndex === 0 && !hasActed && "animate-pulse")}
                 disabled={hasActed}
               >
-                <div className="flex items-center justify-between w-full">
-                  <div className="flex items-center text-left">
-                    <UserX className="mr-2 h-5 w-5 flex-shrink-0" />
+                <div className="flex items-center justify-between w-full gap-2">
+                  <div className="flex items-start text-left flex-1">
+                    <UserX className="mr-2 h-5 w-5 flex-shrink-0 mt-0.5" />
                     <span className="text-sm">Please get into the line or get out of here!</span>
                   </div>
-                  <span className="text-xs font-normal text-muted-foreground hidden sm:inline ml-2">(cut in line customer)</span>
+                  <span className="text-xs font-normal text-muted-foreground hidden sm:inline">(cut in line customer)</span>
                 </div>
               </Button>
             )}
