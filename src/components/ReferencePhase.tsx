@@ -8,15 +8,18 @@ interface ReferencePhaseProps {
   onStartExecution: () => void;
 }
 
-const ScoreInfo = ({ icon, text, scores }: { icon: React.ReactNode; text: string; scores: string }) => (
-  <div className="flex items-center justify-between p-2 bg-muted/50 rounded-md">
-    <div className="flex items-center gap-2">
-      {icon}
-      <p className="font-medium text-sm">{text}</p>
+// A helper component for displaying score info
+function ScoreInfo({ icon, text, scores }: { icon: React.ReactNode; text: string; scores: string }) {
+  return (
+    <div className="flex items-center justify-between p-2 bg-muted/50 rounded-md">
+      <div className="flex items-center gap-2">
+        {icon}
+        <p className="font-medium text-sm">{text}</p>
+      </div>
+      <p className="text-xs font-mono text-muted-foreground">{scores}</p>
     </div>
-    <p className="text-xs font-mono text-muted-foreground">{scores}</p>
-  </div>
-);
+  );
+}
 
 export const ReferencePhase = ({ onStartExecution }: ReferencePhaseProps) => {
   const [progress, setProgress] = useState(0);
@@ -31,7 +34,7 @@ export const ReferencePhase = ({ onStartExecution }: ReferencePhaseProps) => {
         }
         return prev + 1;
       });
-    }, 100); // 100ms * 100 = 10000ms = 10s
+    }, 100); // 10s total
 
     return () => clearInterval(timer);
   }, [onStartExecution]);
