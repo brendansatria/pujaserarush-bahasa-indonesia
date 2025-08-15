@@ -149,7 +149,11 @@ export const ExecutionPhase = ({
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full h-full text-left">
                 <div className="flex items-start min-w-0">
                   <Frown className="mr-2 h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                  <span className="text-sm">We are sorry... currently no menu that match to your taste.</span>
+                  <span className="text-sm">
+                    We’re sorry… we don’t have menus that
+                    <br />
+                    matches your taste right now.
+                  </span>
                 </div>
                 <span className="text-xs font-normal text-muted-foreground self-start sm:self-center flex-shrink-0 pl-7 sm:pl-0">(0 match tag)</span>
               </div>
