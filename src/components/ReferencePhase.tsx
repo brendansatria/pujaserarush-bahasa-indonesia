@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Progress } from "@/components/ui/progress";
-import { Lightbulb, CookingPot, Sparkles, Smile, Frown, UserX, DollarSign, Heart, ShieldAlert } from "lucide-react";
+import { Lightbulb, Sparkles, Smile, Frown, UserX } from "lucide-react";
 
 interface ReferencePhaseProps {
   onStartExecution: () => void;
@@ -44,7 +44,7 @@ export const ReferencePhase = ({ onStartExecution }: ReferencePhaseProps) => {
       </div>
 
       <div className="flex flex-col items-center space-y-4">
-        <CookingPot className="h-16 w-16 text-primary animate-bounce" />
+        <img src="/pan.png" alt="Cooking in progress" className="h-24 w-auto animate-bounce" />
         <Progress value={progress} className="w-full max-w-md" />
       </div>
 
