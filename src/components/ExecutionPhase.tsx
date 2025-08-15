@@ -131,7 +131,7 @@ export const ExecutionPhase = ({
           <CardHeader>
             <CardTitle>Reference Menu</CardTitle>
             <CardDescription>Your available items.</CardDescription>
-          </Header>
+          </CardHeader>
           <CardContent className="space-y-3 max-h-60 overflow-y-auto pr-3">
             {allMenuItems.map((item) => (
               <div key={item.name} className="p-3 border rounded-lg bg-background">
