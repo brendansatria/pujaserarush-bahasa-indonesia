@@ -106,7 +106,7 @@ export const ExecutionPhase = ({
             <Button
               onClick={() => handleAction(onServeBestMatch)}
               variant="secondary"
-              className={cn("w-full h-auto py-2 px-3", !hasActed && "animate-pulse")}
+              className={cn("w-full h-auto py-2 px-3", currentCustomerIndex === 0 && !hasActed && "animate-pulse")}
               disabled={hasActed}
             >
               <div className="flex items-center justify-between w-full">
@@ -120,7 +120,7 @@ export const ExecutionPhase = ({
             <Button
               onClick={() => handleAction(onServePartialMatch)}
               variant="secondary"
-              className={cn("w-full h-auto py-2 px-3", !hasActed && "animate-pulse")}
+              className={cn("w-full h-auto py-2 px-3", currentCustomerIndex === 0 && !hasActed && "animate-pulse")}
               disabled={hasActed}
             >
               <div className="flex items-center justify-between w-full">
@@ -134,7 +134,7 @@ export const ExecutionPhase = ({
             <Button
               onClick={() => handleAction(onApologize)}
               variant="secondary"
-              className={cn("w-full h-auto py-2 px-3", !hasActed && "animate-pulse")}
+              className={cn("w-full h-auto py-2 px-3", currentCustomerIndex === 0 && !hasActed && "animate-pulse")}
               disabled={hasActed}
             >
               <div className="flex items-center justify-between w-full">
@@ -149,7 +149,7 @@ export const ExecutionPhase = ({
               <Button
                 onClick={() => handleAction(onKickCustomer)}
                 variant="destructive"
-                className={cn("w-full h-auto py-2 px-3", !hasActed && "animate-pulse")}
+                className={cn("w-full h-auto py-2 px-3", currentCustomerIndex === 0 && !hasActed && "animate-pulse")}
                 disabled={hasActed}
               >
                 <div className="flex items-center justify-between w-full">
