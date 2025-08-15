@@ -8,9 +8,10 @@ interface ScoreBoardProps {
   satisfaction: number;
 }
 
-const ScoreCard = ({ icon, value, colorClass, infoTitle, infoDescription }: { icon: React.ReactNode; value: number; colorClass: string; infoTitle: string; infoDescription: React.ReactNode; }) => (
-  <Card className="p-3 relative">
-    <div className="absolute top-1 right-1">
+const ScoreCard = ({ icon, value, colorClass, infoTitle, infoDescription, title }: { icon: React.ReactNode; value: number; colorClass: string; infoTitle: string; infoDescription: React.ReactNode; title: string; }) => (
+  <Card className="p-3 flex flex-col">
+    <div className="flex items-center justify-center gap-1 mb-1">
+      <span className="text-sm font-medium text-muted-foreground">{title}</span>
       <ScoreInfoDialog title={infoTitle} description={infoDescription} icon={icon} />
     </div>
     <div className="flex items-center justify-center gap-2 sm:gap-3">
@@ -62,13 +63,15 @@ export const ScoreBoard = ({ profit, risk, satisfaction }: ScoreBoardProps) => {
   return (
     <div className="grid gap-2 grid-cols-3">
       <ScoreCard 
-        icon={<DollarSign className="h-7 w-7 text-green-500" />} 
+        title="Profit"
+        icon={<DollarSign className="h-7 w-7 text-blue-500" />} 
         value={profit} 
-        colorClass="text-green-500"
+        colorClass="text-blue-500"
         infoTitle="Profit"
         infoDescription={profitInfo}
       />
       <ScoreCard 
+        title="Risk"
         icon={<ShieldAlert className="h-7 w-7 text-yellow-500" />} 
         value={risk} 
         colorClass="text-yellow-500"
@@ -76,9 +79,10 @@ export const ScoreBoard = ({ profit, risk, satisfaction }: ScoreBoardProps) => {
         infoDescription={riskInfo}
       />
       <ScoreCard 
-        icon={<Heart className="h-7 w-7 text-blue-500" />} 
+        title="Satisfaction"
+        icon={<Heart className="h-7 w-7 text-pink-500" />} 
         value={satisfaction} 
-        colorClass="text-blue-500"
+        colorClass="text-pink-500"
         infoTitle="Customer Satisfaction"
         infoDescription={satisfactionInfo}
       />
