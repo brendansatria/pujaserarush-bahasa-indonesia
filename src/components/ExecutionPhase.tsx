@@ -69,8 +69,8 @@ export const ExecutionPhase = ({
             timer <= 10 && "text-destructive"
           )}
         >
-          <TimerIcon className="h-5 w-5 sm:h-6 sm-w-6 animate-bounce" />
-          <span className="animate-pulse">Time Left: {timer}s</span>
+          <TimerIcon className="h-5 w-5 sm:h-6 sm-w-6" />
+          <span>Time Left: {timer}s</span>
         </div>
         <div className="w-full sm:w-2/5">
           <Progress value={(customersServed / customers.length) * 100} />
@@ -111,11 +111,11 @@ export const ExecutionPhase = ({
             <Button
               onClick={() => handleAction(onServeBestMatch)}
               variant="secondary"
-              className={cn("w-full h-20 py-2 px-3", currentCustomerIndex === 0 && !hasActed && "animate-pulse")}
+              className="w-full h-20 py-2 px-3"
               disabled={hasActed}
             >
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full h-full text-left">
-                <div className="flex items-start">
+                <div className="flex items-start min-w-0">
                   <Sparkles className="mr-2 h-5 w-5 text-yellow-400 flex-shrink-0 mt-0.5" />
                   <span className="text-sm">Yes! we have a perfect menu for you!</span>
                 </div>
@@ -125,11 +125,11 @@ export const ExecutionPhase = ({
             <Button
               onClick={() => handleAction(onServePartialMatch)}
               variant="secondary"
-              className={cn("w-full h-20 py-2 px-3", currentCustomerIndex === 0 && !hasActed && "animate-pulse")}
+              className="w-full h-20 py-2 px-3"
               disabled={hasActed}
             >
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full h-full text-left">
-                <div className="flex items-start">
+                <div className="flex items-start min-w-0">
                   <Smile className="mr-2 h-5 w-5 text-green-400 flex-shrink-0 mt-0.5" />
                   <span className="text-sm">Currently we only have menu that partially match for you.</span>
                 </div>
@@ -139,11 +139,11 @@ export const ExecutionPhase = ({
             <Button
               onClick={() => handleAction(onApologize)}
               variant="secondary"
-              className={cn("w-full h-20 py-2 px-3", currentCustomerIndex === 0 && !hasActed && "animate-pulse")}
+              className="w-full h-20 py-2 px-3"
               disabled={hasActed}
             >
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full h-full text-left">
-                <div className="flex items-start">
+                <div className="flex items-start min-w-0">
                   <Frown className="mr-2 h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" />
                   <span className="text-sm">We are sorry... currently no menu that match to your taste.</span>
                 </div>
@@ -154,11 +154,11 @@ export const ExecutionPhase = ({
               <Button
                 onClick={() => handleAction(onKickCustomer)}
                 variant="destructive"
-                className={cn("w-full h-20 py-2 px-3", currentCustomerIndex === 0 && !hasActed && "animate-pulse")}
+                className="w-full h-20 py-2 px-3"
                 disabled={hasActed}
               >
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full h-full text-left">
-                  <div className="flex items-start">
+                  <div className="flex items-start min-w-0">
                     <UserX className="mr-2 h-5 w-5 flex-shrink-0 mt-0.5" />
                     <span className="text-sm">Please get into the line or get out of here!</span>
                   </div>
