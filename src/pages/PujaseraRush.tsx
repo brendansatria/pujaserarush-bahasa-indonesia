@@ -293,11 +293,21 @@ const PujaseraRush = () => {
   const handleApologize = () => {
     setGameState(prev => {
       const customer = prev.customers[prev.currentCustomerIndex];
+      let missedOpp = prev.missedOpportunities;
+
       if (customer?.isLineCutter) {
         showError("Apologized to a line-cutter! +2 Profit, -5 Sat, +5 Risk");
         return { ...prev, profit: prev.profit + 2, satisfaction: Math.max(0, prev.satisfaction - 5), risk: prev.risk + 5, ...advanceToNextCustomer(prev) };
       }
-      return { ...prev, risk: prev.risk + 1, satisfaction: prev.satisfaction + 1, ...advanceToNextCustomer(prev) };
+
+      if (matchAvailability.best || matchAvailability.partial) {
+        missedOpp++;
+        showError("Missed opportunity! A match was available. (+1 Sat, +1 Risk)");
+      } else {
+        showSuccess("Apology accepted. (+1 Sat, +1 Risk)");
+      }
+
+      return { ...prev, risk: prev.risk + 1, satisfaction: prev.satisfaction + 1, missedOpportunities: missedOpp, ...advanceToNextCustomer(prev) };
     });
   };
 

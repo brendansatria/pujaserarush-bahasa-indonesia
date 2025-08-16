@@ -68,8 +68,8 @@ export const SummaryPhase = ({ gameState, roundStartStats, onNextRound, onFinish
           <Lightbulb className="h-4 w-4" />
           <AlertTitle>Room for Improvement!</AlertTitle>
           <AlertDescription>
-            You missed <strong>{missedOpportunities}</strong> opportunity(ies) to serve a "Best Match" this round.
-            Check your menu carefully next time to maximize profit and satisfaction!
+            You missed <strong>{missedOpportunities}</strong> opportunity(ies) to serve a better match this round.
+            Analyze customer needs more carefully to maximize profit and satisfaction!
           </AlertDescription>
         </Alert>
       )}
