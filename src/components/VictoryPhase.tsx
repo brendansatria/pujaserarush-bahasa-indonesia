@@ -15,21 +15,57 @@ const FinalScoreCard = ({ icon: Icon, title, value, description, colorClass }: a
     </div>
 );
 
+interface VictoryPhaseProps {
+  gameState: GameState;
+}
+
 export const VictoryPhase = ({ gameState }: VictoryPhaseProps) => {
   const { profit, risk, satisfaction } = gameState;
 
-  const getVictoryMessage = () => {
-    if (profit >= 100 && satisfaction >= 100 && risk < 50) return "Legendary Pujasera Tycoon!";
-    if (profit >= 50 && satisfaction >= 50 && risk < 50) return "Successful Food Court Manager!";
-    if (profit > 0 && risk < 75) return "You've built a promising business!";
-    return "It was a tough journey, but you made it through!";
-  };
+  const profitSuccess = profit >= 100;
+  const riskSuccess = risk <= 50;
+  const satisfactionSuccess = satisfaction >= 100;
+
+  const successCount = [profitSuccess, riskSuccess, satisfactionSuccess].filter(Boolean).length;
+
+  let outcome: { trophyColor: string; highlight: string; narrative: string; };
+
+  switch (successCount) {
+    case 3:
+      outcome = {
+        trophyColor: "text-yellow-400",
+        highlight: "Excellent work, Team!",
+        narrative: "Your food court thrives, hitting all targets. Your integrity, collaboration, and focus have paid off brilliantly!",
+      };
+      break;
+    case 2:
+      outcome = {
+        trophyColor: "text-gray-400",
+        highlight: "Great effort, Team!",
+        narrative: "Some target hits, but some remain. Reflect, collaborate, and grow to perfect your skills!",
+      };
+      break;
+    case 1:
+      outcome = {
+        trophyColor: "text-amber-600",
+        highlight: "Solid try, Team!",
+        narrative: "You hit a target, but two others need attention. Learn with integrity and aim higher next time!",
+      };
+      break;
+    default: // case 0
+      outcome = {
+        trophyColor: "text-muted-foreground",
+        highlight: "Tough round, Team...",
+        narrative: "The food court struggles—use this setback to grow, collaborate, and come back stronger!",
+      };
+      break;
+  }
 
   return (
     <div className="space-y-6 text-center animate-in fade-in-50">
-      <Trophy className="mx-auto h-16 w-16 text-yellow-400" />
-      <h2 className="text-3xl font-bold">{getVictoryMessage()}</h2>
-      <p className="text-muted-foreground">You have completed all rounds. Here are your final scores.</p>
+      <Trophy className={`mx-auto h-16 w-16 ${outcome.trophyColor}`} />
+      <h2 className="text-3xl font-bold">{outcome.highlight}</h2>
+      <p className="text-muted-foreground">{outcome.narrative}</p>
 
       <Card>
         <CardHeader>
