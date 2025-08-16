@@ -263,8 +263,8 @@ const PujaseraRush = () => {
         showSuccess("Best match served! +10 Profit, +10 Satisfaction");
         return { ...prev, profit: prev.profit + 10, satisfaction: prev.satisfaction + 10, ...advanceToNextCustomer(prev) };
       }
-      showError("Best match not available! -1 Profit, -3 Sat, +2 Risk");
-      return { ...prev, profit: Math.max(0, prev.profit - 1), satisfaction: Math.max(0, prev.satisfaction - 3), risk: prev.risk + 2, ...advanceToNextCustomer(prev) };
+      showError("Best match not available! -5 Satisfaction, -5 Risk");
+      return { ...prev, satisfaction: Math.max(0, prev.satisfaction - 5), risk: Math.max(0, prev.risk - 5), ...advanceToNextCustomer(prev) };
     });
   };
 

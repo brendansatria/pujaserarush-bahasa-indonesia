@@ -65,7 +65,7 @@ export const ReferencePhase = ({ onStartExecution }: ReferencePhaseProps) => {
           <CardDescription>Base points for each action.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-2">
-          <DetailedScoreInfo icon={<Sparkles className="h-4 w-4 text-yellow-500" />} text="Best Match" correct="P+10 S+10" incorrect="P-1 S-3 R+2" />
+          <DetailedScoreInfo icon={<Sparkles className="h-4 w-4 text-yellow-500" />} text="Best Match" correct="P+10 S+10" incorrect="S-5 R-5" />
           <DetailedScoreInfo icon={<Smile className="h-4 w-4 text-green-500" />} text="Partial Match" correct="P+2 S+2" incorrect="S-2 R+1" />
           <div className="flex items-center justify-between p-2 bg-muted/50 rounded-md">
             <div className="flex items-center gap-2">
