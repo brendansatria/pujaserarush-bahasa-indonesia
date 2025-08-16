@@ -26,10 +26,10 @@ export const ScoreBoard = ({ profit, risk, satisfaction }: ScoreBoardProps) => {
     <>
       <p>Represents your total earnings. Your goal is to reach a profit of 100.</p>
       <ul className="list-disc list-inside mt-2 space-y-1">
-        <li><strong className="text-green-500">Best Match:</strong> +10 Profit</li>
-        <li><strong className="text-yellow-500">Partial Match:</strong> +2 Profit</li>
-        <li><strong className="text-red-500">Failed Match:</strong> -1 Profit</li>
-        <li><strong className="text-red-500">Kick Customer:</strong> -2 Profit</li>
+        <li><strong className="text-green-500">Correct Best Match:</strong> +10 Profit</li>
+        <li><strong className="text-yellow-500">Correct Partial Match:</strong> +2 Profit</li>
+        <li><strong className="text-blue-500">Serving a Line-Cutter:</strong> +2 Profit</li>
+        <li><strong className="text-red-500">Incorrectly Kicking Customer:</strong> -5 Profit</li>
       </ul>
     </>
   );
@@ -37,14 +37,25 @@ export const ScoreBoard = ({ profit, risk, satisfaction }: ScoreBoardProps) => {
   const riskInfo = (
     <>
       <p>Represents business challenges. Keep it below 50 to win!</p>
-      <ul className="list-disc list-inside mt-2 space-y-1">
-        <li>Starts at <strong>50</strong>. Strategic choices can lower it.</li>
-        <li><strong className="text-green-500">Trending Item Bonus:</strong> -2 Risk</li>
-        <li><strong className="text-green-500">High Value Menu Bonus:</strong> -5 Risk</li>
-        <li><strong className="text-green-500">Existing High Value Menu:</strong> -2 Risk</li>
-        <li><strong className="text-red-500">Threatened Item Penalty:</strong> +10 Risk</li>
-        <li><strong className="text-yellow-500">Apology/Failed Serve:</strong> +1-2 Risk</li>
-      </ul>
+      <p className="text-xs mt-1">Starts at <strong>50</strong>. Strategic choices and actions can change it.</p>
+      <div className="mt-2 space-y-2">
+        <div>
+          <h4 className="font-semibold text-foreground/90">Strategic Phase</h4>
+          <ul className="list-disc list-inside space-y-1">
+            <li><strong className="text-green-500">Bonuses (Trending/Value Items):</strong> -2 to -5 Risk</li>
+            <li><strong className="text-red-500">Threat Penalty:</strong> +10 Risk</li>
+          </ul>
+        </div>
+        <div>
+          <h4 className="font-semibold text-foreground/90">Execution Phase</h4>
+          <ul className="list-disc list-inside space-y-1">
+            <li><strong className="text-yellow-500">Apology / Incorrect Partial Match:</strong> +1 Risk</li>
+            <li><strong className="text-yellow-500">Correctly Kicking Line-Cutter:</strong> +1 Risk</li>
+            <li><strong className="text-red-500">Incorrectly Kicking / Serving Line-Cutter:</strong> +5 Risk</li>
+            <li><strong className="text-green-500">Incorrect Best Match:</strong> -5 Risk (Customer is confused)</li>
+          </ul>
+        </div>
+      </div>
     </>
   );
 
@@ -52,10 +63,12 @@ export const ScoreBoard = ({ profit, risk, satisfaction }: ScoreBoardProps) => {
     <>
       <p>Represents customer happiness. Your goal is to reach a satisfaction score of 100.</p>
       <ul className="list-disc list-inside mt-2 space-y-1">
-        <li><strong className="text-green-500">Best Match:</strong> +10 Satisfaction</li>
-        <li><strong className="text-yellow-500">Partial Match:</strong> +2 Satisfaction</li>
+        <li><strong className="text-green-500">Correct Best Match:</strong> +10 Satisfaction</li>
+        <li><strong className="text-green-500">Correctly Kicking Line-Cutter:</strong> +5 Satisfaction</li>
+        <li><strong className="text-yellow-500">Correct Partial Match:</strong> +2 Satisfaction</li>
         <li><strong className="text-blue-500">Apology:</strong> +1 Satisfaction</li>
-        <li><strong className="text-red-500">Failed/Kicked:</strong> -2-3 Satisfaction</li>
+        <li><strong className="text-red-500">Incorrect Partial Match:</strong> -2 Satisfaction</li>
+        <li><strong className="text-red-500">Incorrect Best Match / Kick / Serving Line-Cutter:</strong> -5 Satisfaction</li>
       </ul>
     </>
   );
