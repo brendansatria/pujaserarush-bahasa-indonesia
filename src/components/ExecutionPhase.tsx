@@ -61,7 +61,7 @@ export const ExecutionPhase = ({
   }
 
   const [customerName, customerType] = currentCustomer.name.split(" - ");
-  const customerImage = currentCustomer.gender === 'female' ? '/customer_a.png' : '/customer_b.png';
+  const customerImage = currentCustomer.gender === 'female' ? '/customer_b.png' : '/customer_a.png';
 
   return (
     <div className="space-y-6 animate-in fade-in-50">
