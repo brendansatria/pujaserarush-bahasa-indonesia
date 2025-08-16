@@ -49,10 +49,10 @@ export const ScoreBoard = ({ profit, risk, satisfaction }: ScoreBoardProps) => {
         <div>
           <h4 className="font-semibold text-foreground/90">Execution Phase</h4>
           <ul className="list-disc list-inside space-y-1">
+            <li><strong className="text-red-500">Incorrect Best Match:</strong> +5 Risk</li>
+            <li><strong className="text-red-500">Incorrectly Kicking / Serving Line-Cutter:</strong> +5 Risk</li>
             <li><strong className="text-yellow-500">Apology / Incorrect Partial Match:</strong> +1 Risk</li>
             <li><strong className="text-yellow-500">Correctly Kicking Line-Cutter:</strong> +1 Risk</li>
-            <li><strong className="text-red-500">Incorrectly Kicking / Serving Line-Cutter:</strong> +5 Risk</li>
-            <li><strong className="text-green-500">Incorrect Best Match:</strong> -5 Risk (Customer is confused)</li>
           </ul>
         </div>
       </div>
