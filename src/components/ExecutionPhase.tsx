@@ -89,9 +89,17 @@ export const ExecutionPhase = ({
           <CardDescription className="text-accent-foreground/80 pt-2">Suggest menu for me for something with these qualities:</CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-lg font-semibold">
-            {currentCustomer.preferences.join(" / ")}
-          </p>
+          <div className="flex flex-wrap gap-2">
+            {currentCustomer.preferences.map((pref) => {
+              const Icon = getTagIcon(pref);
+              return (
+                <Badge key={pref} variant="secondary" className="text-base p-2">
+                  <Icon className="mr-2 h-4 w-4" />
+                  {pref}
+                </Badge>
+              );
+            })}
+          </div>
         </CardContent>
       </Card>
 
