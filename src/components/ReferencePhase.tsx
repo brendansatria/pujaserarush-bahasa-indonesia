@@ -8,14 +8,17 @@ interface ReferencePhaseProps {
   onStartExecution: () => void;
 }
 
-const ScoreInfo = ({ icon, text, scores }: { icon: React.ReactNode; text: string; scores: string }) => (
-  <div className="flex items-center justify-between p-2 bg-muted/50 rounded-md">
-    <div className="flex items-center gap-2">
-      {icon}
-      <p className="font-medium text-sm">{text}</p>
+const DetailedScoreInfo = ({ icon, text, correct, incorrect }: { icon: React.ReactNode; text: string; correct: string; incorrect: string }) => (
+    <div className="p-2 bg-muted/50 rounded-md">
+        <div className="flex items-center gap-2">
+            {icon}
+            <p className="font-medium text-sm">{text}</p>
+        </div>
+        <div className="text-xs font-mono text-muted-foreground mt-1 pl-6 space-y-1 text-left">
+            <p>Correctly: <span className="font-semibold">{correct}</span></p>
+            <p>Incorrectly: <span className="font-semibold">{incorrect}</span></p>
+        </div>
     </div>
-    <p className="text-xs font-mono text-muted-foreground">{scores}</p>
-  </div>
 );
 
 export const ReferencePhase = ({ onStartExecution }: ReferencePhaseProps) => {
@@ -62,19 +65,17 @@ export const ReferencePhase = ({ onStartExecution }: ReferencePhaseProps) => {
           <CardDescription>Base points for each action.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-2">
-          <ScoreInfo icon={<Sparkles className="h-4 w-4 text-yellow-500" />} text="Best Match" scores="P+10 S+10" />
-          <ScoreInfo icon={<Smile className="h-4 w-4 text-green-500" />} text="Partial Match" scores="P+2  S+2" />
-          <ScoreInfo icon={<Frown className="h-4 w-4 text-blue-500" />} text="Apologize" scores="S+1  R+1" />
-          <div className="p-2 bg-muted/50 rounded-md">
+          <DetailedScoreInfo icon={<Sparkles className="h-4 w-4 text-yellow-500" />} text="Best Match" correct="P+10 S+10" incorrect="P-1 S-3 R+2" />
+          <DetailedScoreInfo icon={<Smile className="h-4 w-4 text-green-500" />} text="Partial Match" correct="P+2 S+2" incorrect="S-2 R+1" />
+          <div className="flex items-center justify-between p-2 bg-muted/50 rounded-md">
             <div className="flex items-center gap-2">
-              <UserX className="h-4 w-4 text-red-500" />
-              <p className="font-medium text-sm">Kick Customer</p>
+                <Frown className="h-4 w-4 text-blue-500" />
+                <p className="font-medium text-sm">Apologize</p>
             </div>
-            <div className="text-xs font-mono text-muted-foreground mt-1 pl-6 space-y-1 text-left">
-              <p>Correctly: <span className="font-semibold">S+5, R+1</span></p>
-              <p>Incorrectly: <span className="font-semibold">P-5, S-5, R+5</span></p>
-            </div>
+            <p className="text-xs font-mono text-muted-foreground">S+1 R+1</p>
           </div>
+          <DetailedScoreInfo icon={<UserX className="h-4 w-4 text-red-500" />} text="Kick Customer" correct="S+5 R+1" incorrect="P-5 S-5 R+5" />
+          
           <div className="text-xs text-muted-foreground pt-2 text-center">
             <p><span className="font-bold">P</span>=Profit, <span className="font-bold">S</span>=Satisfaction, <span className="font-bold">R</span>=Risk</p>
             <p>Remember to check for line-cutters!</p>
