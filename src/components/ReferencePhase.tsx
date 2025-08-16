@@ -67,12 +67,14 @@ export const ReferencePhase = ({ onStartExecution }: ReferencePhaseProps) => {
         <CardContent className="space-y-2">
           <DetailedScoreInfo icon={<Sparkles className="h-4 w-4 text-yellow-500" />} text="Best Match" correct="P+10 S+10" incorrect="S-5 R-5" />
           <DetailedScoreInfo icon={<Smile className="h-4 w-4 text-green-500" />} text="Partial Match" correct="P+2 S+2" incorrect="S-2 R+1" />
-          <div className="flex items-center justify-between p-2 bg-muted/50 rounded-md">
+          <div className="p-2 bg-muted/50 rounded-md">
             <div className="flex items-center gap-2">
                 <Frown className="h-4 w-4 text-blue-500" />
                 <p className="font-medium text-sm">Apologize</p>
             </div>
-            <p className="text-xs font-mono text-muted-foreground">S+1 R+1</p>
+            <div className="text-xs font-mono text-muted-foreground mt-1 pl-6 space-y-1 text-left">
+                <p><span className="font-semibold">S+1 R+1</span></p>
+            </div>
           </div>
           <DetailedScoreInfo icon={<UserX className="h-4 w-4 text-red-500" />} text="Kick Customer" correct="S+5 R+1" incorrect="P-5 S-5 R+5" />
           
