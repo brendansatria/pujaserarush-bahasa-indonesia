@@ -60,6 +60,8 @@ export const ExecutionPhase = ({
     );
   }
 
+  const [customerName, customerType] = currentCustomer.name.split(" - ");
+
   return (
     <div className="space-y-6 animate-in fade-in-50">
       <div className="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-4">
@@ -82,21 +84,14 @@ export const ExecutionPhase = ({
 
       <Card className="bg-accent text-accent-foreground border-accent/30 relative overflow-hidden" style={{ backgroundColor: '#2A9D90' }}>
         <CardHeader>
-          <CardTitle>Next in Line: {currentCustomer.name}</CardTitle>
-          <CardDescription className="text-accent-foreground/80">They are looking for something with these qualities:</CardDescription>
+          <p className="text-sm text-accent-foreground/80">Next in-line:</p>
+          <CardTitle>{customerName} - {customerType}</CardTitle>
+          <CardDescription className="text-accent-foreground/80 pt-2">Suggest menu for me for something with these qualities:</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="flex flex-wrap gap-2">
-            {currentCustomer.preferences.map((pref) => {
-              const Icon = getTagIcon(pref);
-              return (
-                <Badge key={pref} variant="secondary" className="text-base p-2">
-                  <Icon className="mr-2 h-4 w-4" />
-                  {pref}
-                </Badge>
-              );
-            })}
-          </div>
+          <p className="text-lg font-semibold">
+            {currentCustomer.preferences.join(" / ")}
+          </p>
         </CardContent>
       </Card>
 
