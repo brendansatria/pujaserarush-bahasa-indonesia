@@ -79,7 +79,7 @@ export const PreparingPhase = ({
               </div>
               <div>
                 <h4 className="font-semibold">Threat:</h4>
-                <Badge variant="outline" className="mt-2 mb-1">{threat?.name}</Badge>
+                <Badge className="mt-2 mb-1 bg-[#FACC15] text-black hover:bg-[#FACC15]/90">{threat?.name}</Badge>
                 <p className="text-sm text-muted-foreground">{threat?.description}</p>
               </div>
               <div>
@@ -99,7 +99,7 @@ export const PreparingPhase = ({
       {round > 1 && lineCutters.length > 0 && (
         <Alert variant="destructive" className="bg-destructive text-destructive-foreground border-destructive/50 [&>svg]:text-destructive-foreground">
           <Users className="h-4 w-4" />
-          <AlertTitle>Watch Out for Line-Cutters!</AlertTitle>
+          <AlertTitle>Watch Out for Line-Cutters!</</AlertTitle>
           <AlertDescription>
             The following customers will try to cut in line. Remember their names and choose to 'Kick' them to maintain order!
             <div className="flex flex-wrap gap-2 mt-2">
