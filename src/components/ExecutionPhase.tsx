@@ -188,12 +188,22 @@ export const ExecutionPhase = ({
               <div key={item.name} className="p-3 border rounded-lg bg-background">
                 <p className="font-semibold">{item.name}</p>
                 <div className="flex flex-wrap gap-1 mt-2">
-                  {item.tags.map((tag) => {
+                  {item.tags.map((tag, index) => {
                     const Icon = getTagIcon(tag);
+                    let tagText = tag;
+
+                    if (round === 2 || round === 3) {
+                      if (index === 1) {
+                        tagText = "???";
+                      }
+                    } else if (round === 4) {
+                      tagText = "???";
+                    }
+
                     return (
-                      <Badge key={tag} variant="secondary" className="font-normal">
+                      <Badge key={`${tag}-${index}`} variant="secondary" className="font-normal">
                         <Icon className="mr-1 h-3 w-3" />
-                        {tag}
+                        {tagText}
                       </Badge>
                     );
                   })}
