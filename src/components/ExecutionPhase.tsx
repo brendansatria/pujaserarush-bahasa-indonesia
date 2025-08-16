@@ -82,14 +82,15 @@ export const ExecutionPhase = ({
         </div>
       </div>
 
-      <Card className="bg-accent text-accent-foreground border-accent/30 relative overflow-hidden" style={{ backgroundColor: '#2A9D90' }}>
-        <CardHeader>
+      <Card className="bg-accent text-accent-foreground border-accent/30 relative overflow-hidden flex items-center" style={{ backgroundColor: '#2A9D90' }}>
+        <div className="flex-shrink-0 pl-2">
+          <img src="/customer_a.png" alt="Customer" className="h-32 w-auto" />
+        </div>
+        <div className="flex-grow p-4">
           <p className="text-sm text-accent-foreground/80">Next in-line:</p>
-          <CardTitle>{customerName} - {customerType}</CardTitle>
-          <CardDescription className="text-accent-foreground/80 pt-2">Suggest menu for me for something with these qualities:</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-wrap gap-2">
+          <h3 className="text-xl font-bold text-accent-foreground">{customerName} - {customerType}</h3>
+          <p className="text-accent-foreground/80 pt-2">Suggest menu for me for something with these qualities:</p>
+          <div className="flex flex-wrap gap-2 mt-2">
             {currentCustomer.preferences.map((pref) => {
               const Icon = getTagIcon(pref);
               return (
@@ -100,7 +101,7 @@ export const ExecutionPhase = ({
               );
             })}
           </div>
-        </CardContent>
+        </div>
       </Card>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
