@@ -305,10 +305,23 @@ const PujaseraRush = () => {
     setGameState(prev => {
       const customer = prev.customers[prev.currentCustomerIndex];
       if (customer?.isLineCutter) {
-        showSuccess("Handled a line-cutter! -2 Profit, +2 Sat, -2 Risk");
-        return { ...prev, profit: Math.max(0, prev.profit - 2), satisfaction: prev.satisfaction + 2, risk: Math.max(0, prev.risk - 2), ...advanceToNextCustomer(prev) };
+        showSuccess("Good call! You kicked a line-cutter. (+5 Satisfaction, +1 Risk)");
+        return {
+          ...prev,
+          satisfaction: prev.satisfaction + 5,
+          risk: prev.risk + 1,
+          ...advanceToNextCustomer(prev),
+        };
+      } else {
+        showError("Mistake! You kicked an innocent customer. (-5 Profit, -5 Satisfaction, +5 Risk)");
+        return {
+          ...prev,
+          profit: Math.max(0, prev.profit - 5),
+          satisfaction: Math.max(0, prev.satisfaction - 5),
+          risk: prev.risk + 5,
+          ...advanceToNextCustomer(prev),
+        };
       }
-      return { ...prev, profit: Math.max(0, prev.profit - 2), satisfaction: Math.max(0, prev.satisfaction - 2), risk: prev.risk + 1, ...advanceToNextCustomer(prev) };
     });
   };
 
