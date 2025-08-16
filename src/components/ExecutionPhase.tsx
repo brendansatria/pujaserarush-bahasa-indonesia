@@ -120,7 +120,11 @@ export const ExecutionPhase = ({
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full h-full text-left">
                 <div className="flex items-start min-w-0">
                   <Sparkles className="mr-2 h-5 w-5 text-yellow-400 flex-shrink-0 mt-0.5" />
-                  <span className="text-sm">Yes! we have a perfect menu for you!</span>
+                  <span className="text-sm">
+                    Yes! we have a perfect menu
+                    <br />
+                    for you!
+                  </span>
                 </div>
                 <span className="text-xs font-normal text-muted-foreground self-start sm:self-center flex-shrink-0 pl-7 sm:pl-0">(2 match tags)</span>
               </div>
@@ -169,7 +173,11 @@ export const ExecutionPhase = ({
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full h-full text-left">
                   <div className="flex items-start min-w-0">
                     <UserX className="mr-2 h-5 w-5 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">Please get into the line or get out of here!</span>
+                    <span className="text-sm">
+                      Please get into the line or
+                      <br />
+                      get out of here!
+                    </span>
                   </div>
                   <span className="text-xs font-normal text-muted-foreground self-start sm:self-center flex-shrink-0 pl-7 sm:pl-0">(cut in line customer)</span>
                 </div>
