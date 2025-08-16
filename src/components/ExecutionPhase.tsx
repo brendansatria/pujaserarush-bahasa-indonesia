@@ -68,12 +68,12 @@ export const ExecutionPhase = ({
       <div className="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-4">
         <div
           className={cn(
-            "flex items-center gap-2 text-lg sm:text-xl font-bold",
+            "flex items-center gap-3 text-2xl sm:text-4xl font-bold",
             timer <= 10 && "text-destructive"
           )}
         >
-          <TimerIcon className="h-5 w-5 sm:h-6 sm-w-6" />
-          <span>Time Left: {timer}s</span>
+          <TimerIcon className="h-7 w-7 sm:h-9 sm:w-9 animate-pulse" />
+          <span>{timer}s</span>
         </div>
         <div className="w-full sm:w-2/5">
           <Progress value={(customersServed / customers.length) * 100} />
