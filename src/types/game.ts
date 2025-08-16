@@ -43,4 +43,5 @@ export interface GameState {
   lineCutters: string[];
   usedThreats: string[];
   missedOpportunities: number;
+  wrongDecisions: number;
 }

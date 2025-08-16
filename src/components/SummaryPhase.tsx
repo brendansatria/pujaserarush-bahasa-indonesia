@@ -43,7 +43,7 @@ const StatDisplay = ({ label, change, icon: StatIcon, iconColor, invertColorLogi
 };
 
 export const SummaryPhase = ({ gameState, roundStartStats, onNextRound, onFinishGame, totalRounds }: SummaryPhaseProps) => {
-  const { round, profit, risk, satisfaction, missedOpportunities } = gameState;
+  const { round, profit, risk, satisfaction, missedOpportunities, wrongDecisions } = gameState;
 
   const profitChange = profit - roundStartStats.profit;
   const riskChange = risk - roundStartStats.risk;
@@ -63,13 +63,24 @@ export const SummaryPhase = ({ gameState, roundStartStats, onNextRound, onFinish
       <h2 className="text-3xl font-bold">Round {round} Summary</h2>
       <p className="text-muted-foreground">{getSummaryMessage()}</p>
 
-      {missedOpportunities > 0 && (
+      {(missedOpportunities > 0 || wrongDecisions > 0) && (
         <Alert variant="default" className="text-left">
           <Lightbulb className="h-4 w-4" />
           <AlertTitle>Room for Improvement!</AlertTitle>
           <AlertDescription>
-            You missed <strong>{missedOpportunities}</strong> opportunity(ies) to serve a better match this round.
-            Analyze customer needs more carefully to maximize profit and satisfaction!
+            <ul className="list-disc list-inside space-y-1">
+              {missedOpportunities > 0 && (
+                <li>
+                  You had <strong>{missedOpportunities}</strong> missed opportunity(ies) by not choosing the best available action.
+                </li>
+              )}
+              {wrongDecisions > 0 && (
+                <li>
+                  You made <strong>{wrongDecisions}</strong> incorrect decision(s) by choosing an action that wasn't available.
+                </li>
+              )}
+            </ul>
+            <p className="mt-2">Analyze customer needs more carefully to maximize profit and satisfaction!</p>
           </AlertDescription>
         </Alert>
       )}

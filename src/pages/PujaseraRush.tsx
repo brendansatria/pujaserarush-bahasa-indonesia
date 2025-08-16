@@ -122,6 +122,7 @@ const PujaseraRush = () => {
     lineCutters: [],
     usedThreats: [],
     missedOpportunities: 0,
+    wrongDecisions: 0,
   });
 
   const [roundStartStats, setRoundStartStats] = useState({ profit: 0, risk: 0, satisfaction: 0 });
@@ -264,7 +265,7 @@ const PujaseraRush = () => {
         return { ...prev, profit: prev.profit + 10, satisfaction: prev.satisfaction + 10, ...advanceToNextCustomer(prev) };
       }
       showError("Best match not available! -5 Satisfaction, -5 Risk");
-      return { ...prev, satisfaction: Math.max(0, prev.satisfaction - 5), risk: Math.max(0, prev.risk - 5), ...advanceToNextCustomer(prev) };
+      return { ...prev, satisfaction: Math.max(0, prev.satisfaction - 5), risk: Math.max(0, prev.risk - 5), wrongDecisions: prev.wrongDecisions + 1, ...advanceToNextCustomer(prev) };
     });
   };
 
@@ -286,7 +287,7 @@ const PujaseraRush = () => {
         return { ...prev, profit: prev.profit + 2, satisfaction: prev.satisfaction + 2, missedOpportunities: missedOpp, ...advanceToNextCustomer(prev) };
       }
       showError("Partial match not available! -2 Satisfaction, +1 Risk");
-      return { ...prev, satisfaction: Math.max(0, prev.satisfaction - 2), risk: prev.risk + 1, ...advanceToNextCustomer(prev) };
+      return { ...prev, satisfaction: Math.max(0, prev.satisfaction - 2), risk: prev.risk + 1, wrongDecisions: prev.wrongDecisions + 1, ...advanceToNextCustomer(prev) };
     });
   };
 
@@ -329,6 +330,7 @@ const PujaseraRush = () => {
           profit: Math.max(0, prev.profit - 5),
           satisfaction: Math.max(0, prev.satisfaction - 5),
           risk: prev.risk + 5,
+          wrongDecisions: prev.wrongDecisions + 1,
           ...advanceToNextCustomer(prev),
         };
       }
@@ -336,7 +338,7 @@ const PujaseraRush = () => {
   };
 
   const handleNextRound = () => {
-    setGameState(prev => ({ ...prev, round: prev.round + 1, playerMenu: [...prev.playerMenu, ...prev.selectedTenants.flatMap(t => t.items)], missedOpportunities: 0 }));
+    setGameState(prev => ({ ...prev, round: prev.round + 1, playerMenu: [...prev.playerMenu, ...prev.selectedTenants.flatMap(t => t.items)], missedOpportunities: 0, wrongDecisions: 0 }));
   };
 
   const handleFinishGame = () => setGameState(prev => ({ ...prev, phase: "victory" }));
