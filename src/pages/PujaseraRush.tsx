@@ -64,7 +64,7 @@ const generateCustomersForRound = (
   trendingTags: string[],
 ): { customers: Customer[]; lineCutters: string[] } => {
   const newCustomers: Customer[] = [];
-  const shuffledNames = shuffle(indonesianNames);
+  const shuffledNameObjects = shuffle(indonesianNames);
 
   // Generate 5 customers with trending tags
   for (let i = 0; i < 5; i++) {
@@ -73,15 +73,15 @@ const generateCustomersForRound = (
     const otherTags = allTags.filter(tag => !trendingTags.includes(tag));
     const secondaryTag = shuffle(otherTags)[0];
     const preferences = shuffle([primaryTag, secondaryTag]);
-    const name = shuffledNames[i];
-    newCustomers.push({ name: `${name} - ${customerType.name}`, preferences });
+    const nameObject = shuffledNameObjects[i];
+    newCustomers.push({ name: `${nameObject.name} - ${customerType.name}`, preferences, gender: nameObject.gender });
   }
 
   // Generate 5 other customers
   for (let i = 0; i < 5; i++) {
     const customerType = shuffle(customerTypes)[0];
-    const name = shuffledNames[i + 5];
-    newCustomers.push({ name: `${name} - ${customerType.name}`, preferences: shuffle(allTags).slice(0, 2) });
+    const nameObject = shuffledNameObjects[i + 5];
+    newCustomers.push({ name: `${nameObject.name} - ${customerType.name}`, preferences: shuffle(allTags).slice(0, 2), gender: nameObject.gender });
   }
 
   let lineCutters: string[] = [];

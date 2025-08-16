@@ -28,9 +28,27 @@ export const menuItems: MenuItem[] = [
     { name: "Rujak Buah", tags: ["Spicy", "Cold", "Fresh"] }
 ];
 
-export const indonesianNames: string[] = [
-    "Ahmad", "Budi", "Citra", "Dedi", "Dewi", "Eka", "Fitri", "Gita", "Hasan", "Indra",
-    "Jono", "Lestari", "Maya", "Nia", "Putra", "Rina", "Siti", "Tono", "Wati", "Yuni"
+export const indonesianNames: { name: string; gender: 'male' | 'female' }[] = [
+    { name: "Ahmad", gender: "male" },
+    { name: "Budi", gender: "male" },
+    { name: "Dedi", gender: "male" },
+    { name: "Eka", gender: "male" },
+    { name: "Hasan", gender: "male" },
+    { name: "Indra", gender: "male" },
+    { name: "Jono", gender: "male" },
+    { name: "Putra", gender: "male" },
+    { name: "Tono", gender: "male" },
+    { name: "Citra", gender: "female" },
+    { name: "Dewi", gender: "female" },
+    { name: "Fitri", gender: "female" },
+    { name: "Gita", gender: "female" },
+    { name: "Lestari", gender: "female" },
+    { name: "Maya", gender: "female" },
+    { name: "Nia", gender: "female" },
+    { name: "Rina", gender: "female" },
+    { name: "Siti", gender: "female" },
+    { name: "Wati", gender: "female" },
+    { name: "Yuni", gender: "female" }
 ];
 
 export const customerTypes: { name: string; preferences: string[] }[] = [

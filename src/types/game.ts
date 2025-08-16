@@ -11,6 +11,7 @@ export interface Tenant {
 export interface Customer {
   name: string;
   preferences: string[];
+  gender: 'male' | 'female';
   served?: boolean;
   isLineCutter?: boolean;
 }

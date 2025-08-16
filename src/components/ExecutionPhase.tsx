@@ -61,6 +61,7 @@ export const ExecutionPhase = ({
   }
 
   const [customerName, customerType] = currentCustomer.name.split(" - ");
+  const customerImage = currentCustomer.gender === 'female' ? '/customer_b.png' : '/customer_a.png';
 
   return (
     <div className="space-y-6 animate-in fade-in-50">
@@ -84,7 +85,7 @@ export const ExecutionPhase = ({
 
       <Card className="bg-accent text-accent-foreground border-accent/30 relative overflow-hidden flex items-center" style={{ backgroundColor: '#2A9D90' }}>
         <div className="flex-shrink-0 pl-2">
-          <img src="/customer_a.png" alt="Customer" className="h-32 w-auto" />
+          <img src={customerImage} alt="Customer" className="h-32 w-auto" />
         </div>
         <div className="flex-grow p-4">
           <p className="text-sm text-accent-foreground/80">Next in-line:</p>
