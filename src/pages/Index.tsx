@@ -5,7 +5,7 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-between p-4 sm:p-8">
       <div className="text-center">
-        <p className="text-sm text-muted-foreground">design by:</p>
+        <p className="text-xs text-muted-foreground">design by:</p>
         <img src="/logo-white.png" alt="Kummara Logo" className="w-32 mx-auto mt-2" />
       </div>
 
