@@ -8,7 +8,7 @@ export const menuItems: MenuItem[] = [
     { name: "Es Kelapa Muda", tags: ["Sweet", "Cold", "Fresh"] },
     { name: "Gado-Gado", tags: ["Savory", "Cold", "Healthy"] },
     { name: "Sate Ayam", tags: ["Savory", "Hot", "Traditional"] },
-    { name: "Klepon", tags: ["Sweet", "Cold", "Trendy"] },
+    { name: "Cappucino Cincau", tags: ["Sweet", "Cold", "Trendy"] },
     { name: "Rendang Daging", tags: ["Spicy", "Warm", "Traditional"] },
     { name: "Es Teh Manis", tags: ["Sweet", "Cold", "Cheap"] },
     { name: "Bakso Sapi", tags: ["Savory", "Hot", "Cheap"] },
