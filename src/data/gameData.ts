@@ -19,7 +19,7 @@ export const menuItems: MenuItem[] = [
     { name: "Sayur Lodeh", tags: ["Spicy", "Hot", "Healthy"] },
     { name: "Ayam Bakar", tags: ["Spicy", "Hot", "Traditional"] },
     { name: "Kopi Tubruk", tags: ["Sweet", "Hot", "Cheap"] },
-    { name: "Tahu Tek", tags: ["Savory", "Cold", "Healthy"] },
+    { name: "Urap Sayur", tags: ["Savory", "Cold", "Healthy"] },
     { name: "Martabak Manis", tags: ["Sweet", "Warm", "Trendy"] },
     { name: "Ikan Bakar", tags: ["Spicy", "Hot", "Fresh"] },
     { name: "Bubur Ayam", tags: ["Savory", "Hot", "Light"] },
