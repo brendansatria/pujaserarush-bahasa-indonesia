@@ -3,7 +3,12 @@ import { Link } from "react-router-dom";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4">
+    <div className="min-h-screen flex flex-col items-center justify-between p-4 sm:p-8">
+      <div className="text-center">
+        <p className="text-sm text-muted-foreground">design by:</p>
+        <img src="/logo-white.png" alt="Kummara Logo" className="w-32 mx-auto mt-2" />
+      </div>
+
       <div className="text-center bg-card/80 backdrop-blur-sm p-6 sm:p-10 rounded-lg shadow-xl border">
         <img src="/title.png" alt="Pujasera Rush Title" className="w-64 sm:w-80 mx-auto mb-4" />
         <p className="text-sm sm:text-base text-muted-foreground mb-8">
@@ -12,6 +17,17 @@ const Index = () => {
         <Button asChild size="lg">
           <Link to="/how-to-play">Start Game</Link>
         </Button>
+      </div>
+
+      <div className="text-center">
+        <a 
+          href="https://kummara.com/" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+        >
+          visit us: kummara.com
+        </a>
       </div>
     </div>
   );
