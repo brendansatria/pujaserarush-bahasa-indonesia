@@ -101,6 +101,17 @@ export const VictoryPhase = ({ gameState }: VictoryPhaseProps) => {
       <Button asChild size="lg">
         <Link to="/">Play Again</Link>
       </Button>
+
+      <div className="text-center pt-8">
+        <a 
+          href="https://kummara.com/" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+        >
+          visit us: kummara.com
+        </a>
+      </div>
     </div>
   );
 };
