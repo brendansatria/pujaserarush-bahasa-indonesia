@@ -34,29 +34,29 @@ export const VictoryPhase = ({ gameState }: VictoryPhaseProps) => {
     case 3:
       outcome = {
         trophyColor: "text-yellow-400",
-        highlight: "Excellent work, Team!",
-        narrative: "Your food court thrives, hitting all targets. Your integrity, collaboration, and focus have paid off brilliantly!",
+        highlight: "Kerja bagus, Tim!",
+        narrative: "Pujasera Anda berkembang pesat, mencapai semua target. Integritas, kolaborasi, dan fokus Anda telah membuahkan hasil yang cemerlang!",
       };
       break;
     case 2:
       outcome = {
         trophyColor: "text-gray-400",
-        highlight: "Great effort, Team!",
-        narrative: "Some target hits, but some remain. Reflect, collaborate, and grow to perfect your skills!",
+        highlight: "Usaha yang hebat, Tim!",
+        narrative: "Beberapa target tercapai, tetapi beberapa masih tersisa. Renungkan, berkolaborasi, dan berkembang untuk menyempurnakan keahlian Anda!",
       };
       break;
     case 1:
       outcome = {
         trophyColor: "text-amber-600",
-        highlight: "Solid try, Team!",
-        narrative: "You hit a target, but two others need attention. Learn with integrity and aim higher next time!",
+        highlight: "Usaha yang bagus, Tim!",
+        narrative: "Anda mencapai satu target, tetapi dua lainnya perlu perhatian. Belajar dengan integritas dan bidik lebih tinggi lain kali!",
       };
       break;
     default: // case 0
       outcome = {
         trophyColor: "text-muted-foreground",
-        highlight: "Tough round, Team...",
-        narrative: "The food court struggles—use this setback to grow, collaborate, and come back stronger!",
+        highlight: "Babak yang sulit, Tim...",
+        narrative: "Pujasera sedang berjuang—gunakan kemunduran ini untuk tumbuh, berkolaborasi, dan kembali lebih kuat!",
       };
       break;
   }
@@ -69,29 +69,29 @@ export const VictoryPhase = ({ gameState }: VictoryPhaseProps) => {
 
       <Card>
         <CardHeader>
-          <CardTitle>Final Results</CardTitle>
+          <CardTitle>Hasil Akhir</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <FinalScoreCard 
                     icon={DollarSign}
-                    title="Total Profit"
+                    title="Total Keuntungan"
                     value={profit}
-                    description="Cash is king!"
+                    description="Uang adalah raja!"
                     colorClass="text-blue-500"
                 />
                 <FinalScoreCard 
                     icon={ShieldAlert}
-                    title="Total Risk"
+                    title="Total Risiko"
                     value={risk}
-                    description="The lower, the better."
+                    description="Semakin rendah, semakin baik."
                     colorClass="text-yellow-500"
                 />
                 <FinalScoreCard 
                     icon={Heart}
-                    title="Total Satisfaction"
+                    title="Total Kepuasan"
                     value={satisfaction}
-                    description="Happy customers, happy life."
+                    description="Pelanggan senang, hidup bahagia."
                     colorClass="text-pink-500"
                 />
             </div>
@@ -99,7 +99,7 @@ export const VictoryPhase = ({ gameState }: VictoryPhaseProps) => {
       </Card>
 
       <Button asChild size="lg">
-        <Link to="/">Play Again</Link>
+        <Link to="/">Main Lagi</Link>
       </Button>
 
       <div className="text-center pt-8">
@@ -109,7 +109,7 @@ export const VictoryPhase = ({ gameState }: VictoryPhaseProps) => {
           rel="noopener noreferrer" 
           className="text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
-          visit us: kummara.com
+          kunjungi kami: kummara.com
         </a>
       </div>
     </div>
