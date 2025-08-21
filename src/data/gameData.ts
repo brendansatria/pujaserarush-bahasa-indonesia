@@ -79,10 +79,10 @@ export const allTags: string[] = [
 ];
 
 export const threats: Threat[] = [
-    { name: "Keterlambatan Rantai Pasokan", description: "Keterlambatan pengiriman bahan baku membuat hidangan hemat lebih sulit disiapkan pada ronde ini.", eliminates: ["Cheap"] },
-    { name: "Lonjakan Kampanye Kesehatan", description: "Kampanye kesehatan lokal mengurangi minat makan-makanan yang memanjakan lidah, menurunkan minat pada hidangan tertentu.", eliminates: ["Light"] },
-    { name: "Tren Makanan Festival", description: "Festival di dekat sini menyoroti makanan modern yang Instagrammable, mengalihkan preferensi pelanggan dari pilihan lain.", eliminates: ["Traditional"] },
-    { name: "Masalah Penyimpanan Terkait Cuaca", description: "Cuaca lembab menyebabkan tantangan penyimpanan, sehingga sulit menjaga kualitas bahan-bahan tertentu.", eliminates: ["Fresh"] },
-    { name: "Kecaman di Media Sosial", description: "Postingan viral mengkritik hidangan populer tertentu, mengurangi daya tariknya di kalangan pelanggan pada ronde ini.", eliminates: ["Trendy"] },
-    { name: "Pergeseran Tren Diet", description: "Tren diet baru mendorong pelanggan untuk menghindari hidangan padat nutrisi atau hidangan khusus.", eliminates: ["Healthy"] }
+    { name: "Keterlambatan Stok", description: "Keterlambatan pengiriman bahan baku membuat hidangan dengan harga yang bersaing menjadi sangat sedikit pada ronde ini.", eliminates: ["Cheap"] },
+    { name: "Kampanye Kesehatan", description: "Kampanye kesehatan yang sukses, mengurangi minat makan-makanan yang kurang bergizi.", eliminates: ["Light"] },
+    { name: "Festival Makanan", description: "Festival Makanan menyajikan banyak makanan modern yang Instagrammable, menurunkan minat pada menu-menu yang \"ketinggalan zaman\".", eliminates: ["Traditional"] },
+    { name: "Cuaca Ekstrim", description: "Cuaca ekstrim yang sangat lembab menyebabkan sulit menjaga kualitas bahan-bahan tertentu.", eliminates: ["Fresh"] },
+    { name: "Kritik di Media Sosial", description: "Postingan viral mengkritik hidangan yang sedang \"naik daun\" hanya karena strategi marketing saja, mengurangi daya tariknya di kalangan pelanggan pada ronde ini.", eliminates: ["Trendy"] },
+    { name: "Pergeseran Tren Diet", description: "Tren cara diet baru mendorong pelanggan untuk meninggalkan hidangan padat nutrisi.", eliminates: ["Healthy"] }
 ];
