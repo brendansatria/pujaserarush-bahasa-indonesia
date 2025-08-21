@@ -79,10 +79,10 @@ export const allTags: string[] = [
 ];
 
 export const threats: Threat[] = [
-    { name: "Supply Chain Delay", description: "A delay in ingredient deliveries means budget-friendly dishes are harder to prepare this round.", eliminates: ["Cheap"] },
-    { name: "Health Campaign Surge", description: "A local health campaign discourages indulgent eating, lowering interest in certain dishes.", eliminates: ["Light"] },
-    { name: "Festival Food Trend", description: "A nearby festival highlights modern, Instagrammable foods, shifting customer preferences away from other options.", eliminates: ["Traditional"] },
-    { name: "Weather-Related Storage Issue", description: "Humid weather causes storage challenges, making it difficult to maintain certain ingredients' quality.", eliminates: ["Fresh"] },
-    { name: "Social Media Backlash", description: "A viral post criticizes certain popular dishes, reducing their appeal among customers this round.", eliminates: ["Trendy"] },
-    { name: "Diet Trend Shift", description: "A new diet fad encourages customers to avoid nutrient-dense or specialty dishes.", eliminates: ["Healthy"] }
+    { name: "Keterlambatan Rantai Pasokan", description: "Keterlambatan pengiriman bahan baku membuat hidangan hemat lebih sulit disiapkan pada babak ini.", eliminates: ["Cheap"] },
+    { name: "Lonjakan Kampanye Kesehatan", description: "Kampanye kesehatan lokal mengurangi minat makan-makanan yang memanjakan lidah, menurunkan minat pada hidangan tertentu.", eliminates: ["Light"] },
+    { name: "Tren Makanan Festival", description: "Festival di dekat sini menyoroti makanan modern yang Instagrammable, mengalihkan preferensi pelanggan dari pilihan lain.", eliminates: ["Traditional"] },
+    { name: "Masalah Penyimpanan Terkait Cuaca", description: "Cuaca lembab menyebabkan tantangan penyimpanan, sehingga sulit menjaga kualitas bahan-bahan tertentu.", eliminates: ["Fresh"] },
+    { name: "Kecaman di Media Sosial", description: "Postingan viral mengkritik hidangan populer tertentu, mengurangi daya tariknya di kalangan pelanggan pada babak ini.", eliminates: ["Trendy"] },
+    { name: "Pergeseran Tren Diet", description: "Tren diet baru mendorong pelanggan untuk menghindari hidangan padat nutrisi atau hidangan khusus.", eliminates: ["Healthy"] }
 ];

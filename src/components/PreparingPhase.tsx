@@ -40,8 +40,8 @@ export function PreparingPhase({
   return (
     <div className="space-y-6">
       <div className="text-center">
-        <h2 className="text-2xl font-bold">Round {round}</h2>
-        <p className="text-muted-foreground">Prepare your food court for the day!</p>
+        <h2 className="text-2xl font-bold">Babak {round}</h2>
+        <p className="text-muted-foreground">Siapkan pujasera Anda untuk hari ini!</p>
       </div>
 
       <Collapsible open={isMarketOpen} onOpenChange={setIsMarketOpen}>
@@ -49,8 +49,8 @@ export function PreparingPhase({
           <CollapsibleTrigger className="w-full">
             <CardHeader className="flex flex-row items-center justify-between cursor-pointer">
               <div className="text-left">
-                <CardTitle>🎯 Today's Market Trends</CardTitle>
-                <CardDescription>Use these clues to select the best tenants.</CardDescription>
+                <CardTitle>🎯 Tren Pasar Hari Ini</CardTitle>
+                <CardDescription>Gunakan petunjuk ini untuk memilih tenant terbaik.</CardDescription>
               </div>
               <ChevronsUpDown className="h-4 w-4 flex-shrink-0 text-muted-foreground" />
             </CardHeader>
@@ -58,8 +58,8 @@ export function PreparingPhase({
           <CollapsibleContent>
             <CardContent className="space-y-4">
               <div>
-                <h4 className="font-semibold">Trending Tags:</h4>
-                <p className="text-sm text-muted-foreground mt-1">Customers will frequently ask for items with these tags during the rush.</p>
+                <h4 className="font-semibold">Tag yang Sedang Tren:</h4>
+                <p className="text-sm text-muted-foreground mt-1">Pelanggan akan sering meminta item dengan tag ini selama jam sibuk.</p>
                 <div className="flex flex-wrap gap-2 mt-2 items-center">
                   {trendingTags.map((tag, index) => {
                     const Icon = getTagIcon(tag);
@@ -78,13 +78,13 @@ export function PreparingPhase({
                 </div>
               </div>
               <div>
-                <h4 className="font-semibold">Threat:</h4>
+                <h4 className="font-semibold">Ancaman:</h4>
                 <Badge className="mt-2 mb-1 bg-[#FACC15] text-black hover:bg-[#FACC15]/90">{threat?.name}</Badge>
                 <p className="text-sm text-muted-foreground">{threat?.description}</p>
               </div>
               <div>
-                <h4 className="font-semibold">High Value Menu:</h4>
-                <p className="text-sm text-muted-foreground">These menu items will be in high demand across all rounds.</p>
+                <h4 className="font-semibold">Menu Bernilai Tinggi:</h4>
+                <p className="text-sm text-muted-foreground">Item menu ini akan sangat diminati di semua babak.</p>
                 <div className="flex flex-wrap gap-2 mt-2">
                   {valueItems.map((item) => (
                     <Badge key={item} variant="destructive">{item}</Badge>
@@ -99,9 +99,9 @@ export function PreparingPhase({
       {round > 1 && lineCutters.length > 0 && (
         <Alert variant="destructive" className="bg-destructive text-destructive-foreground border-destructive/50 [&>svg]:text-destructive-foreground">
           <Users className="h-4 w-4" />
-          <AlertTitle>Watch Out for Line-Cutters!</AlertTitle>
+          <AlertTitle>Awas Penyerobot Antrean!</AlertTitle>
           <AlertDescription>
-            The following customers will try to cut in line. Remember their names and choose to 'Kick' them to maintain order!
+            Pelanggan berikut akan mencoba menyerobot antrean. Ingat nama mereka dan pilih 'Usir' untuk menjaga ketertiban!
             <div className="flex flex-wrap gap-2 mt-2">
               {lineCutters.map(name => (
                 <Badge key={name} variant="outline" className="bg-destructive-foreground text-destructive border-transparent hover:bg-destructive-foreground/90">{name}</Badge>
@@ -115,7 +115,7 @@ export function PreparingPhase({
 
       <div>
         <h3 className="text-xl font-semibold text-center mb-4 animate-pulse">
-          ➕ Select 2 New Items for your Menu
+          ➕ Pilih 2 Item Baru untuk Menu Anda
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {availableTenants.map((tenant) => (
@@ -135,7 +135,7 @@ export function PreparingPhase({
           disabled={selectedTenants.length !== 2}
           size="lg"
         >
-          Proceed
+          Lanjutkan
         </Button>
       </div>
     </div>

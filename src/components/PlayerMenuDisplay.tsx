@@ -22,7 +22,7 @@ export const PlayerMenuDisplay = ({ menu }: PlayerMenuDisplayProps) => {
         <Button variant="outline" className="w-full justify-between">
           <div className="flex items-center">
             <BookMarked className="mr-2 h-4 w-4" />
-            View Your Current Menu ({menu.length} items)
+            Lihat Menu Anda ({menu.length} item)
           </div>
           <ChevronsUpDown className="h-4 w-4" />
         </Button>
