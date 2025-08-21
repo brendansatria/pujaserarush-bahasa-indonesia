@@ -16,7 +16,7 @@ const HowToPlay = () => {
           <CardContent className="space-y-6 text-muted-foreground">
             <div className="text-center">
               <p className="text-lg text-foreground">
-                Tujuan Anda adalah mengelola pujasera Indonesia yang sukses selama 4 ronde.
+                Tujuan Anda adalah mengelola pujasera hingga menjadi sukses selama 4 ronde.
               </p>
             </div>
 
@@ -28,7 +28,7 @@ const HowToPlay = () => {
               </div>
               <div className="p-4 bg-primary/20 rounded-lg">
                 <ShieldAlert className="mx-auto h-8 w-8 text-primary mb-2" />
-                <h3 className="font-bold text-foreground">Kelola Risk</h3>
+                <h3 className="font-bold text-foreground">Kelola Risiko</h3>
                 <p className="text-sm">Jaga skor Risk Anda di bawah 50 untuk berhasil. Pilihan strategis dapat menurunkannya!</p>
               </div>
               <div className="p-4 bg-pink-500/10 rounded-lg">
@@ -52,13 +52,13 @@ const HowToPlay = () => {
                   <div className="bg-secondary text-secondary-foreground rounded-full h-8 w-8 flex-shrink-0 flex items-center justify-center font-bold">2</div>
                   <div>
                     <h4 className="font-semibold text-foreground">Fase Eksekusi</h4>
-                    <p className="text-sm">Waktunya sibuk! Layani pelanggan sebanyak mungkin sebelum waktu habis. Cocokkan preferensi mereka dengan tag menu Anda.</p>
+                    <p className="text-sm">It's Rushing Time! Layani pelanggan sebanyak mungkin sebelum waktu habis. Cocokkan preferensi mereka dengan tag menu Anda.</p>
                   </div>
                 </div>
                  <div className="flex items-start gap-4">
                   <div className="bg-secondary text-secondary-foreground rounded-full h-8 w-8 flex-shrink-0 flex items-center justify-center font-bold">3</div>
                   <div>
-                    <h4 className="font-semibold text-foreground">Fase Rangkuman</h4>
+                    <h4 className="font-semibold text-foreground">Fase Evaluasi</h4>
                     <p className="text-sm">Tinjau kinerja Anda dan lihat bagaimana pilihan Anda memengaruhi skor Anda. Bersiaplah untuk ronde berikutnya!</p>
                   </div>
                 </div>
@@ -67,7 +67,7 @@ const HowToPlay = () => {
 
             <div className="text-center">
               <Button asChild size="lg">
-                <Link to="/pujasera-rush">Ayo Mulai!</Link>
+                <Link to="/pujasera-rush">OK</Link>
               </Button>
             </div>
           </CardContent>
