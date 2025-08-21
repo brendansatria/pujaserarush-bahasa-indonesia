@@ -21,6 +21,21 @@ interface PreExecutionFeedbackModalProps {
   strategicRisk: { total: number; breakdown: { item: string; reason: string; value: number }[] } | null;
 }
 
+const getReasonInIndonesian = (reason: string) => {
+    switch (reason) {
+        case "High Value Menu Bonus":
+            return "Bonus Menu Bernilai Tinggi";
+        case "Trending Tag Bonus":
+            return "Bonus Tag Tren";
+        case "Threat Impact":
+            return "Dampak Ancaman";
+        case "Existing High Value Menu":
+            return "Menu Bernilai Tinggi yang Ada";
+        default:
+            return reason;
+    }
+};
+
 export const PreExecutionFeedbackModal = ({
   isOpen,
   onClose,
@@ -49,10 +64,10 @@ export const PreExecutionFeedbackModal = ({
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Lightbulb className="h-6 w-6 text-yellow-400" />
-            Pre-Round Briefing
+            Pengarahan Pra-Babak
           </DialogTitle>
           <DialogDescription>
-            An analysis of your choices for this round.
+            Analisis pilihan Anda untuk babak ini.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4 max-h-[60vh] overflow-y-auto pr-2">
@@ -60,24 +75,24 @@ export const PreExecutionFeedbackModal = ({
             <div className="space-y-2 rounded-lg border p-3">
               <h4 className="font-semibold flex items-center gap-2">
                 <ShieldCheck className="h-5 w-5 text-purple-500" />
-                Strategic Risk Assessment
+                Penilaian Risiko Strategis
               </h4>
               <div className="flex justify-between items-center bg-muted p-2 rounded-md">
-                  <p className="font-bold">Total Risk Change:</p>
+                  <p className="font-bold">Total Perubahan Risiko:</p>
                   <div className={`flex items-center font-bold text-lg ${strategicRisk.total > 0 ? 'text-red-500' : 'text-green-500'}`}>
                     {strategicRisk.total > 0 ? <ArrowUp className="h-4 w-4 mr-1" /> : <ArrowDown className="h-4 w-4 mr-1" />}
                     {strategicRisk.total > 0 ? '+' : ''}{strategicRisk.total}
                   </div>
               </div>
               <p className={`text-xs text-center font-medium ${strategicRisk.total > 0 ? 'text-red-600' : 'text-green-600'}`}>
-                {strategicRisk.total < 0 && "Excellent! Your choices have lowered your business risk."}
-                {strategicRisk.total > 0 && "Heads up! Your choices have increased your business risk."}
-                {strategicRisk.total === 0 && "Your choices have no immediate impact on your risk."}
+                {strategicRisk.total < 0 && "Luar biasa! Pilihan Anda telah menurunkan risiko bisnis Anda."}
+                {strategicRisk.total > 0 && "Hati-hati! Pilihan Anda telah meningkatkan risiko bisnis Anda."}
+                {strategicRisk.total === 0 && "Pilihan Anda tidak berdampak langsung pada risiko Anda."}
               </p>
               <div className="space-y-1">
                 {strategicRisk.breakdown.map((entry, index) => (
                   <div key={index} className="flex justify-between items-center text-sm p-1 bg-muted/50 rounded">
-                    <p>{entry.item} <span className="text-xs text-muted-foreground">({entry.reason})</span></p>
+                    <p>{entry.item} <span className="text-xs text-muted-foreground">({getReasonInIndonesian(entry.reason)})</span></p>
                     <span className={`font-medium ${entry.value > 0 ? 'text-red-500' : 'text-green-500'}`}>
                       {entry.value > 0 ? '+' : ''}{entry.value}
                     </span>
@@ -90,15 +105,15 @@ export const PreExecutionFeedbackModal = ({
             <div className="space-y-2 rounded-lg border p-3">
               <h4 className="font-semibold flex items-center gap-2">
                 <AlertCircle className="h-5 w-5 text-red-500" />
-                Threat Analysis: {threat.name}
+                Analisis Ancaman: {threat.name}
               </h4>
               <p className="text-sm text-muted-foreground">
-                Reduces demand for:{" "}
+                Mengurangi permintaan untuk:{" "}
                 {threat.eliminates.map(tag => <Badge key={tag} className="bg-white text-black hover:bg-gray-200">{tag}</Badge>)}
               </p>
               {impactedItems.length > 0 ? (
                 <div>
-                  <p className="text-sm font-medium">Your impacted items:</p>
+                  <p className="text-sm font-medium">Item Anda yang terdampak:</p>
                   <ul className="list-disc list-inside text-sm text-muted-foreground">
                     {impactedItems.map((item) => (
                       <li key={item.name}>{item.name}</li>
@@ -107,7 +122,7 @@ export const PreExecutionFeedbackModal = ({
                 </div>
               ) : (
                 <p className="text-sm text-green-600">
-                  Good job! None of your items are directly impacted by this threat.
+                  Kerja bagus! Tidak ada item Anda yang terdampak langsung oleh ancaman ini.
                 </p>
               )}
             </div>
@@ -115,10 +130,10 @@ export const PreExecutionFeedbackModal = ({
           <div className="space-y-2 rounded-lg border p-3">
             <h4 className="font-semibold flex items-center gap-2">
               <TrendingUp className="h-5 w-5 text-blue-500" />
-              Market Synergy
+              Sinergi Pasar
             </h4>
             <p className="text-sm text-muted-foreground">
-              Trending tags:{" "}
+              Tag yang sedang tren:{" "}
               {trendingTags.map(tag => {
                 const Icon = getTagIcon(tag);
                 return <Badge key={tag} variant="secondary"><Icon className="h-3 w-3 mr-1"/>{tag}</Badge>
@@ -126,7 +141,7 @@ export const PreExecutionFeedbackModal = ({
             </p>
             {trendingItems.length > 0 ? (
                 <div>
-                  <p className="text-sm font-medium">Your items matching the trend:</p>
+                  <p className="text-sm font-medium">Item Anda yang sesuai tren:</p>
                   <ul className="list-disc list-inside text-sm text-muted-foreground">
                     {trendingItems.map((item) => (
                       <li key={item.name}>{item.name}</li>
@@ -135,13 +150,13 @@ export const PreExecutionFeedbackModal = ({
                 </div>
               ) : (
                 <p className="text-sm text-yellow-600">
-                  Warning: None of your items match current trends.
+                  Peringatan: Tidak ada item Anda yang cocok dengan tren saat ini.
                 </p>
               )}
           </div>
         </div>
         <DialogFooter>
-          <Button onClick={onClose}>Start the Rush!</Button>
+          <Button onClick={onClose}>Mulai Kesibukan!</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
