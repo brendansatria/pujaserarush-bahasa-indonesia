@@ -52,52 +52,52 @@ export const SummaryPhase = ({ gameState, roundStartStats, onNextRound, onFinish
   const isLastRound = round >= totalRounds;
 
   const getSummaryMessage = () => {
-    if (profitChange > 15) return "Excellent work! The cash is flowing!";
-    if (profitChange > 5) return "A solid performance. The customers are happy and so is your wallet.";
-    if (profitChange >= 0) return "You survived the day. Let's aim for more profit next time.";
-    return "A tough day. Let's analyze what went wrong and bounce back!";
+    if (profitChange > 15) return "Kerja bagus! Uang mengalir deras!";
+    if (profitChange > 5) return "Performa yang solid. Pelanggan senang dan dompet Anda juga!";
+    if (profitChange >= 0) return "Anda berhasil melewati hari ini. Mari kita targetkan keuntungan lebih besar lain kali.";
+    return "Hari yang berat. Mari kita analisis apa yang salah dan bangkit kembali!";
   };
 
   return (
     <div className="space-y-6 text-center animate-in fade-in-50">
-      <h2 className="text-3xl font-bold">Round {round} Summary</h2>
+      <h2 className="text-3xl font-bold">Ringkasan Babak {round}</h2>
       <p className="text-muted-foreground">{getSummaryMessage()}</p>
 
       {(missedOpportunities > 0 || wrongDecisions > 0) && (
         <Alert variant="default" className="text-left">
           <Lightbulb className="h-4 w-4" />
-          <AlertTitle>Room for Improvement!</AlertTitle>
+          <AlertTitle>Ada Ruang untuk Peningkatan!</AlertTitle>
           <AlertDescription>
             <ul className="list-disc list-inside space-y-1">
               {missedOpportunities > 0 && (
                 <li>
-                  You had <strong>{missedOpportunities}</strong> missed opportunity(ies) by not choosing the best available action.
+                  Anda memiliki <strong>{missedOpportunities}</strong> kesempatan yang terlewat dengan tidak memilih tindakan terbaik yang tersedia.
                 </li>
               )}
               {wrongDecisions > 0 && (
                 <li>
-                  You made <strong>{wrongDecisions}</strong> incorrect decision(s) by choosing an action that wasn't available.
+                  Anda membuat <strong>{wrongDecisions}</strong> keputusan yang salah dengan memilih tindakan yang tidak tersedia.
                 </li>
               )}
             </ul>
-            <p className="mt-2">Analyze customer needs more carefully to maximize profit and satisfaction!</p>
+            <p className="mt-2">Analisis kebutuhan pelanggan dengan lebih cermat untuk memaksimalkan keuntungan dan kepuasan!</p>
           </AlertDescription>
         </Alert>
       )}
 
       <Card>
         <CardHeader>
-          <CardTitle>Round Performance</CardTitle>
+          <CardTitle>Performa Babak</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
-          <StatDisplay label="Profit Change" change={profitChange} icon={DollarSign} iconColor="text-blue-500" />
-          <StatDisplay label="Risk Change" change={riskChange} icon={ShieldAlert} iconColor="text-primary" invertColorLogic={true} />
-          <StatDisplay label="Satisfaction Change" change={satisfactionChange} icon={Heart} iconColor="text-pink-500" />
+          <StatDisplay label="Perubahan Keuntungan" change={profitChange} icon={DollarSign} iconColor="text-blue-500" />
+          <StatDisplay label="Perubahan Risiko" change={riskChange} icon={ShieldAlert} iconColor="text-primary" invertColorLogic={true} />
+          <StatDisplay label="Perubahan Kepuasan" change={satisfactionChange} icon={Heart} iconColor="text-pink-500" />
         </CardContent>
       </Card>
 
       <Button onClick={isLastRound ? onFinishGame : onNextRound} size="lg">
-        {isLastRound ? "See Final Results" : "Start Next Round"}
+        {isLastRound ? "Lihat Hasil Akhir" : "Mulai Babak Berikutnya"}
       </Button>
     </div>
   );
