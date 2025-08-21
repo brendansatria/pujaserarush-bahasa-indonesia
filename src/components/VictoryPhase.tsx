@@ -55,7 +55,7 @@ export const VictoryPhase = ({ gameState }: VictoryPhaseProps) => {
     default: // case 0
       outcome = {
         trophyColor: "text-muted-foreground",
-        highlight: "Babak yang sulit, Tim...",
+        highlight: "Ronde yang sulit, Tim...",
         narrative: "Pujasera sedang berjuang—gunakan kemunduran ini untuk tumbuh, berkolaborasi, dan kembali lebih kuat!",
       };
       break;
@@ -75,21 +75,21 @@ export const VictoryPhase = ({ gameState }: VictoryPhaseProps) => {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <FinalScoreCard 
                     icon={DollarSign}
-                    title="Total Keuntungan"
+                    title="Total Profit"
                     value={profit}
                     description="Uang adalah raja!"
                     colorClass="text-blue-500"
                 />
                 <FinalScoreCard 
                     icon={ShieldAlert}
-                    title="Total Risiko"
+                    title="Total Risk"
                     value={risk}
                     description="Semakin rendah, semakin baik."
                     colorClass="text-yellow-500"
                 />
                 <FinalScoreCard 
                     icon={Heart}
-                    title="Total Kepuasan"
+                    title="Total Satisfaction"
                     value={satisfaction}
                     description="Pelanggan senang, hidup bahagia."
                     colorClass="text-pink-500"

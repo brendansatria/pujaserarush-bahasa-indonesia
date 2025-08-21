@@ -79,10 +79,10 @@ export const allTags: string[] = [
 ];
 
 export const threats: Threat[] = [
-    { name: "Keterlambatan Rantai Pasokan", description: "Keterlambatan pengiriman bahan baku membuat hidangan hemat lebih sulit disiapkan pada babak ini.", eliminates: ["Cheap"] },
+    { name: "Keterlambatan Rantai Pasokan", description: "Keterlambatan pengiriman bahan baku membuat hidangan hemat lebih sulit disiapkan pada ronde ini.", eliminates: ["Cheap"] },
     { name: "Lonjakan Kampanye Kesehatan", description: "Kampanye kesehatan lokal mengurangi minat makan-makanan yang memanjakan lidah, menurunkan minat pada hidangan tertentu.", eliminates: ["Light"] },
     { name: "Tren Makanan Festival", description: "Festival di dekat sini menyoroti makanan modern yang Instagrammable, mengalihkan preferensi pelanggan dari pilihan lain.", eliminates: ["Traditional"] },
     { name: "Masalah Penyimpanan Terkait Cuaca", description: "Cuaca lembab menyebabkan tantangan penyimpanan, sehingga sulit menjaga kualitas bahan-bahan tertentu.", eliminates: ["Fresh"] },
-    { name: "Kecaman di Media Sosial", description: "Postingan viral mengkritik hidangan populer tertentu, mengurangi daya tariknya di kalangan pelanggan pada babak ini.", eliminates: ["Trendy"] },
+    { name: "Kecaman di Media Sosial", description: "Postingan viral mengkritik hidangan populer tertentu, mengurangi daya tariknya di kalangan pelanggan pada ronde ini.", eliminates: ["Trendy"] },
     { name: "Pergeseran Tren Diet", description: "Tren diet baru mendorong pelanggan untuk menghindari hidangan padat nutrisi atau hidangan khusus.", eliminates: ["Healthy"] }
 ];

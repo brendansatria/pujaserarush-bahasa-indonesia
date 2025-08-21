@@ -60,7 +60,7 @@ export const SummaryPhase = ({ gameState, roundStartStats, onNextRound, onFinish
 
   return (
     <div className="space-y-6 text-center animate-in fade-in-50">
-      <h2 className="text-3xl font-bold">Ringkasan Babak {round}</h2>
+      <h2 className="text-3xl font-bold">Ringkasan Ronde {round}</h2>
       <p className="text-muted-foreground">{getSummaryMessage()}</p>
 
       {(missedOpportunities > 0 || wrongDecisions > 0) && (
@@ -80,24 +80,24 @@ export const SummaryPhase = ({ gameState, roundStartStats, onNextRound, onFinish
                 </li>
               )}
             </ul>
-            <p className="mt-2">Analisis kebutuhan pelanggan dengan lebih cermat untuk memaksimalkan keuntungan dan kepuasan!</p>
+            <p className="mt-2">Analisis kebutuhan pelanggan dengan lebih cermat untuk memaksimalkan Profit dan Satisfaction!</p>
           </AlertDescription>
         </Alert>
       )}
 
       <Card>
         <CardHeader>
-          <CardTitle>Performa Babak</CardTitle>
+          <CardTitle>Performa Ronde</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
-          <StatDisplay label="Perubahan Keuntungan" change={profitChange} icon={DollarSign} iconColor="text-blue-500" />
-          <StatDisplay label="Perubahan Risiko" change={riskChange} icon={ShieldAlert} iconColor="text-primary" invertColorLogic={true} />
-          <StatDisplay label="Perubahan Kepuasan" change={satisfactionChange} icon={Heart} iconColor="text-pink-500" />
+          <StatDisplay label="Perubahan Profit" change={profitChange} icon={DollarSign} iconColor="text-blue-500" />
+          <StatDisplay label="Perubahan Risk" change={riskChange} icon={ShieldAlert} iconColor="text-primary" invertColorLogic={true} />
+          <StatDisplay label="Perubahan Satisfaction" change={satisfactionChange} icon={Heart} iconColor="text-pink-500" />
         </CardContent>
       </Card>
 
       <Button onClick={isLastRound ? onFinishGame : onNextRound} size="lg">
-        {isLastRound ? "Lihat Hasil Akhir" : "Mulai Babak Berikutnya"}
+        {isLastRound ? "Lihat Hasil Akhir" : "Mulai Ronde Berikutnya"}
       </Button>
     </div>
   );

@@ -40,7 +40,7 @@ export function PreparingPhase({
   return (
     <div className="space-y-6">
       <div className="text-center">
-        <h2 className="text-2xl font-bold">Babak {round}</h2>
+        <h2 className="text-2xl font-bold">Ronde {round}</h2>
         <p className="text-muted-foreground">Siapkan pujasera Anda untuk hari ini!</p>
       </div>
 
@@ -84,7 +84,7 @@ export function PreparingPhase({
               </div>
               <div>
                 <h4 className="font-semibold">Menu Bernilai Tinggi:</h4>
-                <p className="text-sm text-muted-foreground">Item menu ini akan sangat diminati di semua babak.</p>
+                <p className="text-sm text-muted-foreground">Item menu ini akan sangat diminati di semua ronde.</p>
                 <div className="flex flex-wrap gap-2 mt-2">
                   {valueItems.map((item) => (
                     <Badge key={item} variant="destructive">{item}</Badge>

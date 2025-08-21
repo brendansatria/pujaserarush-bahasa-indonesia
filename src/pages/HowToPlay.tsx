@@ -16,24 +16,24 @@ const HowToPlay = () => {
           <CardContent className="space-y-6 text-muted-foreground">
             <div className="text-center">
               <p className="text-lg text-foreground">
-                Tujuan Anda adalah mengelola pujasera Indonesia yang sukses selama 4 babak.
+                Tujuan Anda adalah mengelola pujasera Indonesia yang sukses selama 4 ronde.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
               <div className="p-4 bg-blue-500/10 rounded-lg">
                 <DollarSign className="mx-auto h-8 w-8 text-blue-500 mb-2" />
-                <h3 className="font-bold text-foreground">Maksimalkan Keuntungan</h3>
+                <h3 className="font-bold text-foreground">Maksimalkan Profit</h3>
                 <p className="text-sm">Raih skor 100 dengan melayani pelanggan secara efisien.</p>
               </div>
               <div className="p-4 bg-primary/20 rounded-lg">
                 <ShieldAlert className="mx-auto h-8 w-8 text-primary mb-2" />
-                <h3 className="font-bold text-foreground">Kelola Risiko</h3>
-                <p className="text-sm">Jaga skor risiko Anda di bawah 50 untuk berhasil. Pilihan strategis dapat menurunkannya!</p>
+                <h3 className="font-bold text-foreground">Kelola Risk</h3>
+                <p className="text-sm">Jaga skor Risk Anda di bawah 50 untuk berhasil. Pilihan strategis dapat menurunkannya!</p>
               </div>
               <div className="p-4 bg-pink-500/10 rounded-lg">
                 <Heart className="mx-auto h-8 w-8 text-pink-500 mb-2" />
-                <h3 className="font-bold text-foreground">Tingkatkan Kepuasan</h3>
+                <h3 className="font-bold text-foreground">Tingkatkan Satisfaction</h3>
                 <p className="text-sm">Raih skor 100 dengan mencocokkan preferensi pelanggan secara sempurna.</p>
               </div>
             </div>
@@ -59,7 +59,7 @@ const HowToPlay = () => {
                   <div className="bg-secondary text-secondary-foreground rounded-full h-8 w-8 flex-shrink-0 flex items-center justify-center font-bold">3</div>
                   <div>
                     <h4 className="font-semibold text-foreground">Fase Rangkuman</h4>
-                    <p className="text-sm">Tinjau kinerja Anda dan lihat bagaimana pilihan Anda memengaruhi skor Anda. Bersiaplah untuk babak berikutnya!</p>
+                    <p className="text-sm">Tinjau kinerja Anda dan lihat bagaimana pilihan Anda memengaruhi skor Anda. Bersiaplah untuk ronde berikutnya!</p>
                   </div>
                 </div>
               </div>

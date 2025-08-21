@@ -79,7 +79,7 @@ export const ReferencePhase = ({ onStartExecution }: ReferencePhaseProps) => {
           <DetailedScoreInfo icon={<UserX className="h-4 w-4 text-red-500" />} text="Usir Pelanggan" correct="S+5 R+1" incorrect="P-5 S-5 R+5" />
           
           <div className="text-xs text-muted-foreground pt-2 text-center">
-            <p><span className="font-bold">P</span>=Profit, <span className="font-bold">S</span>=Kepuasan, <span className="font-bold">R</span>=Risiko</p>
+            <p><span className="font-bold">P</span>=Profit, <span className="font-bold">S</span>=Satisfaction, <span className="font-bold">R</span>=Risk</p>
             <p>Ingat untuk memeriksa penyerobot antrean!</p>
           </div>
         </CardContent>

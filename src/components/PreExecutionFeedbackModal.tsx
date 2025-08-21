@@ -64,10 +64,10 @@ export const PreExecutionFeedbackModal = ({
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Lightbulb className="h-6 w-6 text-yellow-400" />
-            Pengarahan Pra-Babak
+            Pengarahan Pra-Ronde
           </DialogTitle>
           <DialogDescription>
-            Analisis pilihan Anda untuk babak ini.
+            Analisis pilihan Anda untuk ronde ini.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4 max-h-[60vh] overflow-y-auto pr-2">
@@ -75,19 +75,19 @@ export const PreExecutionFeedbackModal = ({
             <div className="space-y-2 rounded-lg border p-3">
               <h4 className="font-semibold flex items-center gap-2">
                 <ShieldCheck className="h-5 w-5 text-purple-500" />
-                Penilaian Risiko Strategis
+                Penilaian Risk Strategis
               </h4>
               <div className="flex justify-between items-center bg-muted p-2 rounded-md">
-                  <p className="font-bold">Total Perubahan Risiko:</p>
+                  <p className="font-bold">Total Perubahan Risk:</p>
                   <div className={`flex items-center font-bold text-lg ${strategicRisk.total > 0 ? 'text-red-500' : 'text-green-500'}`}>
                     {strategicRisk.total > 0 ? <ArrowUp className="h-4 w-4 mr-1" /> : <ArrowDown className="h-4 w-4 mr-1" />}
                     {strategicRisk.total > 0 ? '+' : ''}{strategicRisk.total}
                   </div>
               </div>
               <p className={`text-xs text-center font-medium ${strategicRisk.total > 0 ? 'text-red-600' : 'text-green-600'}`}>
-                {strategicRisk.total < 0 && "Luar biasa! Pilihan Anda telah menurunkan risiko bisnis Anda."}
-                {strategicRisk.total > 0 && "Hati-hati! Pilihan Anda telah meningkatkan risiko bisnis Anda."}
-                {strategicRisk.total === 0 && "Pilihan Anda tidak berdampak langsung pada risiko Anda."}
+                {strategicRisk.total < 0 && "Luar biasa! Pilihan Anda telah menurunkan Risk bisnis Anda."}
+                {strategicRisk.total > 0 && "Hati-hati! Pilihan Anda telah meningkatkan Risk bisnis Anda."}
+                {strategicRisk.total === 0 && "Pilihan Anda tidak berdampak langsung pada Risk Anda."}
               </p>
               <div className="space-y-1">
                 {strategicRisk.breakdown.map((entry, index) => (
