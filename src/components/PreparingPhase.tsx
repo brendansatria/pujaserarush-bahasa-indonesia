@@ -59,7 +59,7 @@ export function PreparingPhase({
             <CardContent className="space-y-4">
               <div>
                 <h4 className="font-semibold">Tag yang Sedang Tren:</h4>
-                <p className="text-sm text-muted-foreground mt-1">Pelanggan akan sering meminta item dengan tag ini selama jam sibuk.</p>
+                <p className="text-sm text-muted-foreground mt-1">Pelanggan akan sering meminta rekomendasi menu dengan tag berikut.</p>
                 <div className="flex flex-wrap gap-2 mt-2 items-center">
                   {trendingTags.map((tag, index) => {
                     const Icon = getTagIcon(tag);
@@ -83,7 +83,7 @@ export function PreparingPhase({
                 <p className="text-sm text-muted-foreground">{threat?.description}</p>
               </div>
               <div>
-                <h4 className="font-semibold">Menu Bernilai Tinggi:</h4>
+                <h4 className="font-semibold">High Value Menu:</h4>
                 <p className="text-sm text-muted-foreground">Item menu ini akan sangat diminati di semua ronde.</p>
                 <div className="flex flex-wrap gap-2 mt-2">
                   {valueItems.map((item) => (
@@ -135,7 +135,7 @@ export function PreparingPhase({
           disabled={selectedTenants.length !== 2}
           size="lg"
         >
-          Lanjutkan
+          Proses
         </Button>
       </div>
     </div>
