@@ -15,7 +15,7 @@ const Index = () => {
           A game-based learning experience in managing a vibrant Indonesian food court.
         </p>
         <Button asChild size="lg">
-          <Link to="/how-to-play">Start Game</Link>
+          <Link to="/how-to-play">Mulai</Link>
         </Button>
       </div>
 
