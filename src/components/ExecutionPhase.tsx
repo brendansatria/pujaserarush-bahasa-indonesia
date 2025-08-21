@@ -54,8 +54,8 @@ export const ExecutionPhase = ({
   if (!currentCustomer) {
     return (
       <div className="text-center p-8">
-        <h2 className="text-2xl font-bold">All customers served for today!</h2>
-        <p>Calculating results...</p>
+        <h2 className="text-2xl font-bold">Semua pelanggan telah dilayani hari ini!</h2>
+        <p>Menghitung hasil...</p>
       </div>
     );
   }
@@ -78,7 +78,7 @@ export const ExecutionPhase = ({
         <div className="w-full sm:w-2/5">
           <Progress value={(customersServed / customers.length) * 100} />
           <p className="text-xs text-center text-muted-foreground mt-1">
-            {customersServed} / {customers.length} Customers Served
+            {customersServed} / {customers.length} Pelanggan Dilayani
           </p>
         </div>
       </div>
@@ -88,9 +88,9 @@ export const ExecutionPhase = ({
           <img src={customerImage} alt="Customer" className="h-32 w-auto" />
         </div>
         <div className="flex-grow p-4">
-          <p className="text-sm text-accent-foreground/80">Next in-line:</p>
+          <p className="text-sm text-accent-foreground/80">Berikutnya dalam antrean:</p>
           <h3 className="text-xl font-bold text-accent-foreground">{customerName} - {customerType}</h3>
-          <p className="text-accent-foreground/80 pt-2">Suggest menu for me for something with these qualities:</p>
+          <p className="text-accent-foreground/80 pt-2">Sarankan menu untuk saya dengan kualitas seperti ini:</p>
           <div className="flex flex-wrap gap-2 mt-2">
             {currentCustomer.preferences.map((pref) => {
               const Icon = getTagIcon(pref);
@@ -108,8 +108,8 @@ export const ExecutionPhase = ({
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle>Choose Your Action</CardTitle>
-            <CardDescription>Select an action for this customer.</CardDescription>
+            <CardTitle>Pilih Tindakan Anda</CardTitle>
+            <CardDescription>Pilih tindakan untuk pelanggan ini.</CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col space-y-3">
             <Button
@@ -121,12 +121,12 @@ export const ExecutionPhase = ({
                 <div className="flex items-start min-w-0">
                   <Sparkles className="mr-2 h-5 w-5 text-yellow-400 flex-shrink-0 mt-0.5" />
                   <span className="text-sm">
-                    Yes! we have a perfect menu
+                    Ya! kami punya menu yang sempurna
                     <br />
-                    for you!
+                    untuk Anda!
                   </span>
                 </div>
-                <span className="text-xs font-normal text-muted-foreground self-start sm:self-center flex-shrink-0 pl-7 sm:pl-0">(2 match tags)</span>
+                <span className="text-xs font-normal text-muted-foreground self-start sm:self-center flex-shrink-0 pl-7 sm:pl-0">(2 tag cocok)</span>
               </div>
             </Button>
             <Button
@@ -138,12 +138,12 @@ export const ExecutionPhase = ({
                 <div className="flex items-start min-w-0">
                   <Smile className="mr-2 h-5 w-5 text-green-400 flex-shrink-0 mt-0.5" />
                   <span className="text-sm">
-                    Currently we only have menu
+                    Saat ini kami hanya punya menu
                     <br />
-                    that partially match for you.
+                    yang sebagian cocok untuk Anda.
                   </span>
                 </div>
-                <span className="text-xs font-normal text-muted-foreground self-start sm:self-center flex-shrink-0 pl-7 sm:pl-0">(1 match tag)</span>
+                <span className="text-xs font-normal text-muted-foreground self-start sm:self-center flex-shrink-0 pl-7 sm:pl-0">(1 tag cocok)</span>
               </div>
             </Button>
             <Button
@@ -155,12 +155,12 @@ export const ExecutionPhase = ({
                 <div className="flex items-start min-w-0">
                   <Frown className="mr-2 h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" />
                   <span className="text-sm">
-                    We’re sorry… we don’t have menus
+                    Maaf... kami tidak punya menu
                     <br />
-                    that matches your taste right now.
+                    yang sesuai selera Anda saat ini.
                   </span>
                 </div>
-                <span className="text-xs font-normal text-muted-foreground self-start sm:self-center flex-shrink-0 pl-7 sm:pl-0">(0 match tag)</span>
+                <span className="text-xs font-normal text-muted-foreground self-start sm:self-center flex-shrink-0 pl-7 sm:pl-0">(0 tag cocok)</span>
               </div>
             </Button>
             {round > 1 && (
@@ -174,12 +174,12 @@ export const ExecutionPhase = ({
                   <div className="flex items-start min-w-0">
                     <UserX className="mr-2 h-5 w-5 flex-shrink-0 mt-0.5" />
                     <span className="text-sm">
-                      Please get into the line or
+                      Silakan antre atau
                       <br />
-                      get out of here!
+                      keluar dari sini!
                     </span>
                   </div>
-                  <span className="text-xs font-normal text-muted-foreground self-start sm:self-center flex-shrink-0 pl-7 sm:pl-0">(cut in line customer)</span>
+                  <span className="text-xs font-normal text-muted-foreground self-start sm:self-center flex-shrink-0 pl-7 sm:pl-0">(pelanggan menyerobot antrean)</span>
                 </div>
               </Button>
             )}
@@ -188,8 +188,8 @@ export const ExecutionPhase = ({
 
         <Card>
           <CardHeader>
-            <CardTitle>Reference Menu</CardTitle>
-            <CardDescription>Your available items.</CardDescription>
+            <CardTitle>Menu Referensi</CardTitle>
+            <CardDescription>Item yang tersedia.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3 max-h-60 overflow-y-auto pr-3">
             {allMenuItems.map((item) => (
