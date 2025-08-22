@@ -15,8 +15,8 @@ const DetailedScoreInfo = ({ icon, text, correct, incorrect }: { icon: React.Rea
             <p className="font-medium text-sm">{text}</p>
         </div>
         <div className="text-xs font-mono text-muted-foreground mt-1 pl-6 space-y-1 text-left">
-            <p>Dengan Benar: <span className="font-semibold">{correct}</span></p>
-            <p>Dengan Salah: <span className="font-semibold">{incorrect}</span></p>
+            <p>Jika Benar: <span className="font-semibold">{correct}</span></p>
+            <p>Jika Salah: <span className="font-semibold">{incorrect}</span></p>
         </div>
     </div>
 );
@@ -42,7 +42,7 @@ export const ReferencePhase = ({ onStartExecution }: ReferencePhaseProps) => {
   return (
     <div className="space-y-6 animate-in fade-in-50">
       <div className="text-center">
-        <h2 className="text-2xl font-bold">Bersiap untuk Melayani!</h2>
+        <h2 className="text-2xl font-bold">Bersiap untuk Melayani Pelanggan!</h2>
         <p className="text-muted-foreground">Jam sibuk makan siang akan segera dimulai...</p>
       </div>
 
@@ -53,7 +53,7 @@ export const ReferencePhase = ({ onStartExecution }: ReferencePhaseProps) => {
 
       <Alert>
         <Lightbulb className="h-4 w-4" />
-        <AlertTitle>Tips Pro!</AlertTitle>
+        <AlertTitle>Pro Tips!</AlertTitle>
         <AlertDescription>
           Ingat tag untuk setiap item menu. Mencocokkannya dengan preferensi pelanggan dengan cepat adalah kunci untuk skor tinggi!
         </AlertDescription>
@@ -61,12 +61,12 @@ export const ReferencePhase = ({ onStartExecution }: ReferencePhaseProps) => {
 
       <Card>
         <CardHeader>
-          <CardTitle>Contekan Skor</CardTitle>
+          <CardTitle>Penilaian Skor:</CardTitle>
           <CardDescription>Poin dasar untuk setiap tindakan.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-2">
-          <DetailedScoreInfo icon={<Sparkles className="h-4 w-4 text-yellow-500" />} text="Cocok Sempurna" correct="P+10 S+10" incorrect="S-5 R+5" />
-          <DetailedScoreInfo icon={<Smile className="h-4 w-4 text-green-500" />} text="Cocok Sebagian" correct="P+2 S+2" incorrect="S-2 R+1" />
+          <DetailedScoreInfo icon={<Sparkles className="h-4 w-4 text-yellow-500" />} text="Perfect Match" correct="P+10 S+10" incorrect="S-5 R+5" />
+          <DetailedScoreInfo icon={<Smile className="h-4 w-4 text-green-500" />} text="Partialy Match" correct="P+2 S+2" incorrect="S-2 R+1" />
           <div className="p-2 bg-muted/50 rounded-md">
             <div className="flex items-center gap-2">
                 <Frown className="h-4 w-4 text-blue-500" />
