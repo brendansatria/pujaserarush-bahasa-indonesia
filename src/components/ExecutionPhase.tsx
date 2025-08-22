@@ -121,9 +121,9 @@ export const ExecutionPhase = ({
                 <div className="flex items-start min-w-0">
                   <Sparkles className="mr-2 h-5 w-5 text-yellow-400 flex-shrink-0 mt-0.5" />
                   <span className="text-sm">
-                    Ya! kami punya menu yang sempurna
+                    Tentu! Kami punya menu seperti
                     <br />
-                    untuk Anda!
+                    yang anda inginkan!
                   </span>
                 </div>
                 <span className="text-xs font-normal text-muted-foreground self-start sm:self-center flex-shrink-0 pl-7 sm:pl-0">(2 tag cocok)</span>
@@ -138,9 +138,9 @@ export const ExecutionPhase = ({
                 <div className="flex items-start min-w-0">
                   <Smile className="mr-2 h-5 w-5 text-green-400 flex-shrink-0 mt-0.5" />
                   <span className="text-sm">
-                    Saat ini kami hanya punya menu
+                    Mungkin Anda bisa mencoba menu lain
                     <br />
-                    yang sebagian cocok untuk Anda.
+                    yang mirip dengan selera Anda.
                   </span>
                 </div>
                 <span className="text-xs font-normal text-muted-foreground self-start sm:self-center flex-shrink-0 pl-7 sm:pl-0">(1 tag cocok)</span>
@@ -188,8 +188,8 @@ export const ExecutionPhase = ({
 
         <Card>
           <CardHeader>
-            <CardTitle>Menu Referensi</CardTitle>
-            <CardDescription>Item yang tersedia.</CardDescription>
+            <CardTitle>Referensi Menu</CardTitle>
+            <CardDescription>Item Menu yang tersedia.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3 max-h-60 overflow-y-auto pr-3">
             {allMenuItems.map((item) => (
