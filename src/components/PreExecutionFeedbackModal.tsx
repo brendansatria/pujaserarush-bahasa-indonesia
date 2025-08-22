@@ -24,7 +24,7 @@ interface PreExecutionFeedbackModalProps {
 const getReasonInIndonesian = (reason: string) => {
     switch (reason) {
         case "High Value Menu Bonus":
-            return "Bonus Menu Bernilai Tinggi";
+            return "Bonus High Value Menu";
         case "Trending Tag Bonus":
             return "Bonus Tag Tren";
         case "Threat Impact":
@@ -85,7 +85,7 @@ export const PreExecutionFeedbackModal = ({
                   </div>
               </div>
               <p className={`text-xs text-center font-medium ${strategicRisk.total > 0 ? 'text-red-600' : 'text-green-600'}`}>
-                {strategicRisk.total < 0 && "Luar biasa! Pilihan Anda telah menurunkan Risk bisnis Anda."}
+                {strategicRisk.total < 0 && "Luar biasa! Pilihan Anda menurunkan Skor Risk bisnis Anda."}
                 {strategicRisk.total > 0 && "Hati-hati! Pilihan Anda telah meningkatkan Skor Risk bisnis Anda."}
                 {strategicRisk.total === 0 && "Pilihan Anda tidak berdampak langsung pada Risk Anda."}
               </p>
@@ -122,7 +122,7 @@ export const PreExecutionFeedbackModal = ({
                 </div>
               ) : (
                 <p className="text-sm text-green-600">
-                  Kerja bagus! Tidak ada item Anda yang terdampak langsung oleh ancaman ini.
+                  Kerja bagus! Tidak ada Item Menu Anda yang terdampak langsung oleh ancaman ini.
                 </p>
               )}
             </div>
@@ -150,7 +150,7 @@ export const PreExecutionFeedbackModal = ({
                 </div>
               ) : (
                 <p className="text-sm text-yellow-600">
-                  Peringatan: Tidak ada item Anda yang cocok dengan tren saat ini.
+                  Peringatan: Tidak ada Item Menu Anda yang cocok dengan tren saat ini.
                 </p>
               )}
           </div>
