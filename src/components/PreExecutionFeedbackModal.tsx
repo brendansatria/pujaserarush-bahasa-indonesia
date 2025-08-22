@@ -30,7 +30,7 @@ const getReasonInIndonesian = (reason: string) => {
         case "Threat Impact":
             return "Dampak Ancaman";
         case "Existing High Value Menu":
-            return "Menu Bernilai Tinggi yang Ada";
+            return "High Value Menu yang Ada";
         default:
             return reason;
     }
@@ -64,10 +64,10 @@ export const PreExecutionFeedbackModal = ({
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Lightbulb className="h-6 w-6 text-yellow-400" />
-            Pengarahan Pra-Ronde
+            Feedback Fase Persiapan
           </DialogTitle>
           <DialogDescription>
-            Analisis pilihan Anda untuk ronde ini.
+            Berikut hasil analisis berdasarkan pilihan Anda:
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4 max-h-[60vh] overflow-y-auto pr-2">
@@ -75,10 +75,10 @@ export const PreExecutionFeedbackModal = ({
             <div className="space-y-2 rounded-lg border p-3">
               <h4 className="font-semibold flex items-center gap-2">
                 <ShieldCheck className="h-5 w-5 text-purple-500" />
-                Penilaian Risk Strategis
+                Analisis Skor Risk
               </h4>
               <div className="flex justify-between items-center bg-muted p-2 rounded-md">
-                  <p className="font-bold">Total Perubahan Risk:</p>
+                  <p className="font-bold">Total Perubahan Skor Risk:</p>
                   <div className={`flex items-center font-bold text-lg ${strategicRisk.total > 0 ? 'text-red-500' : 'text-green-500'}`}>
                     {strategicRisk.total > 0 ? <ArrowUp className="h-4 w-4 mr-1" /> : <ArrowDown className="h-4 w-4 mr-1" />}
                     {strategicRisk.total > 0 ? '+' : ''}{strategicRisk.total}
@@ -86,7 +86,7 @@ export const PreExecutionFeedbackModal = ({
               </div>
               <p className={`text-xs text-center font-medium ${strategicRisk.total > 0 ? 'text-red-600' : 'text-green-600'}`}>
                 {strategicRisk.total < 0 && "Luar biasa! Pilihan Anda telah menurunkan Risk bisnis Anda."}
-                {strategicRisk.total > 0 && "Hati-hati! Pilihan Anda telah meningkatkan Risk bisnis Anda."}
+                {strategicRisk.total > 0 && "Hati-hati! Pilihan Anda telah meningkatkan Skor Risk bisnis Anda."}
                 {strategicRisk.total === 0 && "Pilihan Anda tidak berdampak langsung pada Risk Anda."}
               </p>
               <div className="space-y-1">
@@ -113,7 +113,7 @@ export const PreExecutionFeedbackModal = ({
               </p>
               {impactedItems.length > 0 ? (
                 <div>
-                  <p className="text-sm font-medium">Item Anda yang terdampak:</p>
+                  <p className="text-sm font-medium">Item Menu Anda yang terdampak:</p>
                   <ul className="list-disc list-inside text-sm text-muted-foreground">
                     {impactedItems.map((item) => (
                       <li key={item.name}>{item.name}</li>
@@ -141,7 +141,7 @@ export const PreExecutionFeedbackModal = ({
             </p>
             {trendingItems.length > 0 ? (
                 <div>
-                  <p className="text-sm font-medium">Item Anda yang sesuai tren:</p>
+                  <p className="text-sm font-medium">Item Menu Anda yang sesuai tren:</p>
                   <ul className="list-disc list-inside text-sm text-muted-foreground">
                     {trendingItems.map((item) => (
                       <li key={item.name}>{item.name}</li>
@@ -156,7 +156,7 @@ export const PreExecutionFeedbackModal = ({
           </div>
         </div>
         <DialogFooter>
-          <Button onClick={onClose}>Mulai Kesibukan!</Button>
+          <Button onClick={onClose}>OK</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
