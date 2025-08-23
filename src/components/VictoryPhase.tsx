@@ -55,7 +55,7 @@ export const VictoryPhase = ({ gameState }: VictoryPhaseProps) => {
     default: // case 0
       outcome = {
         trophyColor: "text-muted-foreground",
-        highlight: "Ronde yang sulit, Tim...",
+        highlight: "Masa yang sulit... Ayo coba lagi!",
         narrative: "Pujasera sedang berjuang—gunakan kemunduran ini untuk tumbuh, berkolaborasi, dan kembali lebih kuat!",
       };
       break;
