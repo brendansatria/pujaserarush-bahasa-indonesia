@@ -47,7 +47,7 @@ export const ReferencePhase = ({ onStartExecution }: ReferencePhaseProps) => {
       </div>
 
       <div className="flex flex-col items-center space-y-4">
-        <img src="/pan.png" alt="Memasak sedang berlangsung" className="h-24 w-auto animate-bounce" />
+        <img src="/pan_high_res.png" alt="Memasak sedang berlangsung" className="h-24 w-auto animate-bounce" />
         <Progress value={progress} className="w-full max-w-md" />
       </div>
 
@@ -83,7 +83,7 @@ export const ReferencePhase = ({ onStartExecution }: ReferencePhaseProps) => {
             <p>Ingat untuk memeriksa penyerobot antrean!</p>
           </div>
         </CardContent>
-      </Card>
+      </C>
     </div>
   );
 };
