@@ -83,7 +83,7 @@ export const ReferencePhase = ({ onStartExecution }: ReferencePhaseProps) => {
             <p>Ingat untuk memeriksa penyerobot antrean!</p>
           </div>
         </CardContent>
-      </C>
+      </Card>
     </div>
   );
 };
