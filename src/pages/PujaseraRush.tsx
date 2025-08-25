@@ -257,14 +257,14 @@ const PujaseraRush = () => {
     setGameState(prev => {
       const customer = prev.customers[prev.currentCustomerIndex];
       if (customer?.isLineCutter) {
-        showError("Served a line-cutter! +2 Profit, -5 Sat, +5 Risk");
+        showError("Melayani Penyerobot! +2 Profit, -5 Sat, +5 Risk");
         return { ...prev, profit: prev.profit + 2, satisfaction: Math.max(0, prev.satisfaction - 5), risk: prev.risk + 5, ...advanceToNextCustomer(prev) };
       }
       if (matchAvailability.best) {
-        showSuccess("Best match served! +10 Profit, +10 Satisfaction");
+        showSuccess("Perfect Match! +10 Profit, +10 Satisfaction");
         return { ...prev, profit: prev.profit + 10, satisfaction: prev.satisfaction + 10, ...advanceToNextCustomer(prev) };
       }
-      showError("Best match not available! -5 Satisfaction, +5 Risk");
+      showError("Tidak ada Perfect Match! -5 Satisfaction, +5 Risk");
       return { ...prev, satisfaction: Math.max(0, prev.satisfaction - 5), risk: prev.risk + 5, wrongDecisions: prev.wrongDecisions + 1, ...advanceToNextCustomer(prev) };
     });
   };
@@ -274,19 +274,19 @@ const PujaseraRush = () => {
       const customer = prev.customers[prev.currentCustomerIndex];
       let missedOpp = prev.missedOpportunities;
       if (customer?.isLineCutter) {
-        showError("Served a line-cutter! +2 Profit, -5 Sat, +5 Risk");
+        showError("Melayani Penyerobot! +2 Profit, -5 Sat, +5 Risk");
         return { ...prev, profit: prev.profit + 2, satisfaction: Math.max(0, prev.satisfaction - 5), risk: prev.risk + 5, ...advanceToNextCustomer(prev) };
       }
       if (matchAvailability.partial) {
         if (matchAvailability.best) {
           missedOpp++;
-          showError("Missed opportunity! A better match was available. (+2 Profit, +2 Sat)");
+          showError("Keliru! Ada Menu yang lebih cocok. +2 Profit, +2 Sat");
         } else {
-          showSuccess("Partial match served! +2 Profit, +2 Satisfaction");
+          showSuccess("Saran diterima! +2 Profit, +2 Satisfaction");
         }
         return { ...prev, profit: prev.profit + 2, satisfaction: prev.satisfaction + 2, missedOpportunities: missedOpp, ...advanceToNextCustomer(prev) };
       }
-      showError("Partial match not available! -2 Satisfaction, +1 Risk");
+      showError("Tidak ada Menu yang Mirip! -2 Satisfaction, +1 Risk");
       return { ...prev, satisfaction: Math.max(0, prev.satisfaction - 2), risk: prev.risk + 1, wrongDecisions: prev.wrongDecisions + 1, ...advanceToNextCustomer(prev) };
     });
   };
@@ -297,15 +297,15 @@ const PujaseraRush = () => {
       let missedOpp = prev.missedOpportunities;
 
       if (customer?.isLineCutter) {
-        showError("Apologized to a line-cutter! +2 Profit, -5 Sat, +5 Risk");
+        showError("Melayani Penyerobot! +2 Profit, -5 Sat, +5 Risk");
         return { ...prev, profit: prev.profit + 2, satisfaction: Math.max(0, prev.satisfaction - 5), risk: prev.risk + 5, ...advanceToNextCustomer(prev) };
       }
 
       if (matchAvailability.best || matchAvailability.partial) {
         missedOpp++;
-        showError("Missed opportunity! A match was available. (+1 Sat, +1 Risk)");
+        showError("Missed! Ada Menu yang lebih cocok. +1 Sat, +1 Risk");
       } else {
-        showSuccess("Apology accepted. (+1 Sat, +1 Risk)");
+        showSuccess("Permohonan maaf diterima! +1 Sat, +1 Risk");
       }
 
       return { ...prev, risk: prev.risk + 1, satisfaction: prev.satisfaction + 1, missedOpportunities: missedOpp, ...advanceToNextCustomer(prev) };
@@ -316,7 +316,7 @@ const PujaseraRush = () => {
     setGameState(prev => {
       const customer = prev.customers[prev.currentCustomerIndex];
       if (customer?.isLineCutter) {
-        showSuccess("Good call! You kicked a line-cutter. (+5 Satisfaction, +1 Risk)");
+        showSuccess("Keputusan Bagus! Penyerobot pergi. +5 Satisfaction, +1 Risk");
         return {
           ...prev,
           satisfaction: prev.satisfaction + 5,
@@ -324,7 +324,7 @@ const PujaseraRush = () => {
           ...advanceToNextCustomer(prev),
         };
       } else {
-        showError("Mistake! You kicked an innocent customer. (-5 Profit, -5 Satisfaction, +5 Risk)");
+        showError("Mengusir Pelanggan Tidak Bersalah! -5 Profit, -5 Sat, +5 Risk");
         return {
           ...prev,
           profit: Math.max(0, prev.profit - 5),
