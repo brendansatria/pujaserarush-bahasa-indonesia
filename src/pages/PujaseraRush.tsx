@@ -49,10 +49,10 @@ const deDupeShuffle = (customers: Customer[]): Customer[] => {
 const TOTAL_ROUNDS = 4;
 
 const roundTagOptions: Record<number, string[][]> = {
-  1: [["Savory", "Cold"], ["Cold", "Trendy"], ["Trendy", "Savory"]],
-  2: [["Sweet", "Cheap"], ["Cheap", "Hot"], ["Hot", "Sweet"]],
-  3: [["Spicy", "Healthy"], ["Healthy", "Warm"], ["Warm", "Spicy"]],
-  4: [["Fresh", "Light"], ["Light", "Traditional"], ["Traditional", "Fresh"]],
+  1: [["Gurih", "Dingin"], ["Dingin", "Kekinian"], ["Kekinian", "Gurih"]],
+  2: [["Manis", "Murah"], ["Murah", "Panas"], ["Panas", "Manis"]],
+  3: [["Pedas", "Sehat"], ["Sehat", "Hangat"], ["Hangat", "Pedas"]],
+  4: [["Segar", "Ringan"], ["Ringan", "Tradisional"], ["Tradisional", "Segar"]],
 };
 
 const valueMenuItems = ["Nasi Goreng", "Es Teh Manis", "Sate Ayam", "Ayam Geprek", "Martabak Manis"];

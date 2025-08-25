@@ -1,31 +1,31 @@
 import { MenuItem, Threat } from "@/types/game";
 
 export const menuItems: MenuItem[] = [
-    { name: "Nasi Goreng", tags: ["Savory", "Warm", "Traditional"] },
-    { name: "Es Cendol", tags: ["Sweet", "Cold", "Traditional"] },
-    { name: "Soto Ayam", tags: ["Savory", "Hot", "Light"] },
-    { name: "Ayam Geprek", tags: ["Spicy", "Warm", "Trendy"] },
-    { name: "Es Kelapa Muda", tags: ["Sweet", "Cold", "Fresh"] },
-    { name: "Gado-Gado", tags: ["Savory", "Cold", "Healthy"] },
-    { name: "Sate Ayam", tags: ["Savory", "Hot", "Traditional"] },
-    { name: "Cappucino Cincau", tags: ["Sweet", "Cold", "Trendy"] },
-    { name: "Rendang Daging", tags: ["Spicy", "Warm", "Traditional"] },
-    { name: "Es Teh Manis", tags: ["Sweet", "Cold", "Cheap"] },
-    { name: "Bakso Sapi", tags: ["Savory", "Hot", "Cheap"] },
-    { name: "Sambal Goreng Tempe", tags: ["Spicy", "Warm", "Healthy"] },
-    { name: "Pisang Goreng", tags: ["Sweet", "Warm", "Cheap"] },
-    { name: "Mie Goreng", tags: ["Savory", "Warm", "Trendy"] },
-    { name: "Es Campur", tags: ["Sweet", "Cold", "Light"] },
-    { name: "Sayur Lodeh", tags: ["Spicy", "Hot", "Healthy"] },
-    { name: "Ayam Bakar", tags: ["Spicy", "Hot", "Traditional"] },
-    { name: "Kopi Tubruk", tags: ["Sweet", "Hot", "Cheap"] },
-    { name: "Urap Sayur", tags: ["Savory", "Cold", "Healthy"] },
-    { name: "Martabak Manis", tags: ["Sweet", "Warm", "Trendy"] },
-    { name: "Ikan Bakar", tags: ["Spicy", "Hot", "Fresh"] },
-    { name: "Bubur Ayam", tags: ["Savory", "Hot", "Light"] },
-    { name: "Es Jeruk", tags: ["Sweet", "Cold", "Fresh"] },
-    { name: "Pepes Ikan", tags: ["Spicy", "Warm", "Healthy"] },
-    { name: "Rujak Buah", tags: ["Spicy", "Cold", "Fresh"] }
+    { name: "Nasi Goreng", tags: ["Gurih", "Hangat", "Tradisional"] },
+    { name: "Es Cendol", tags: ["Manis", "Dingin", "Tradisional"] },
+    { name: "Soto Ayam", tags: ["Gurih", "Panas", "Ringan"] },
+    { name: "Ayam Geprek", tags: ["Pedas", "Hangat", "Kekinian"] },
+    { name: "Es Kelapa Muda", tags: ["Manis", "Dingin", "Segar"] },
+    { name: "Gado-Gado", tags: ["Gurih", "Dingin", "Sehat"] },
+    { name: "Sate Ayam", tags: ["Gurih", "Panas", "Tradisional"] },
+    { name: "Cappucino Cincau", tags: ["Manis", "Dingin", "Kekinian"] },
+    { name: "Rendang Daging", tags: ["Pedas", "Hangat", "Tradisional"] },
+    { name: "Es Teh Manis", tags: ["Manis", "Dingin", "Murah"] },
+    { name: "Bakso Sapi", tags: ["Gurih", "Panas", "Murah"] },
+    { name: "Sambal Goreng Tempe", tags: ["Pedas", "Hangat", "Sehat"] },
+    { name: "Pisang Goreng", tags: ["Manis", "Hangat", "Murah"] },
+    { name: "Mie Goreng", tags: ["Gurih", "Hangat", "Kekinian"] },
+    { name: "Es Campur", tags: ["Manis", "Dingin", "Ringan"] },
+    { name: "Sayur Lodeh", tags: ["Pedas", "Panas", "Sehat"] },
+    { name: "Ayam Bakar", tags: ["Pedas", "Panas", "Tradisional"] },
+    { name: "Kopi Tubruk", tags: ["Manis", "Panas", "Murah"] },
+    { name: "Urap Sayur", tags: ["Gurih", "Dingin", "Sehat"] },
+    { name: "Martabak Manis", tags: ["Manis", "Hangat", "Kekinian"] },
+    { name: "Ikan Bakar", tags: ["Pedas", "Panas", "Segar"] },
+    { name: "Bubur Ayam", tags: ["Gurih", "Panas", "Ringan"] },
+    { name: "Es Jeruk", tags: ["Manis", "Dingin", "Segar"] },
+    { name: "Pepes Ikan", tags: ["Pedas", "Hangat", "Sehat"] },
+    { name: "Rujak Buah", tags: ["Pedas", "Dingin", "Segar"] }
 ];
 
 export const indonesianNames: { name: string; gender: 'male' | 'female' }[] = [
@@ -52,37 +52,37 @@ export const indonesianNames: { name: string; gender: 'male' | 'female' }[] = [
 ];
 
 export const customerTypes: { name: string; preferences: string[] }[] = [
-    { name: "Office Worker", preferences: ["Savory", "Cheap"] },
-    { name: "Teen Student", preferences: ["Sweet", "Trendy"] },
-    { name: "Spicy Fan", preferences: ["Spicy", "Fresh"] },
-    { name: "Commuter", preferences: ["Hot", "Light"] },
-    { name: "Health Fan", preferences: ["Cold", "Healthy"] },
-    { name: "Tourist", preferences: ["Savory", "Traditional"] },
-    { name: "Influencer", preferences: ["Sweet", "Trendy"] },
-    { name: "Shopper", preferences: ["Warm", "Cheap"] },
-    { name: "Elder", preferences: ["Hot", "Traditional"] },
-    { name: "Gym Goer", preferences: ["Spicy", "Healthy"] },
-    { name: "Parent", preferences: ["Sweet", "Light"] },
-    { name: "Regular", preferences: ["Savory", "Cheap"] },
-    { name: "Explorer", preferences: ["Cold", "Traditional"] },
-    { name: "Foodie", preferences: ["Warm", "Trendy"] },
-    { name: "Early Worker", preferences: ["Hot", "Cheap"] },
-    { name: "Vegetarian", preferences: ["Savory", "Healthy"] },
-    { name: "Dessert Lover", preferences: ["Sweet", "Fresh"] },
-    { name: "Festival Goer", preferences: ["Spicy", "Trendy"] },
-    { name: "Rainy Patron", preferences: ["Warm", "Light"] },
-    { name: "Market Goer", preferences: ["Cold", "Fresh"] }
+    { name: "Office Worker", preferences: ["Gurih", "Murah"] },
+    { name: "Teen Student", preferences: ["Manis", "Kekinian"] },
+    { name: "Spicy Fan", preferences: ["Pedas", "Segar"] },
+    { name: "Commuter", preferences: ["Panas", "Ringan"] },
+    { name: "Health Fan", preferences: ["Dingin", "Sehat"] },
+    { name: "Tourist", preferences: ["Gurih", "Tradisional"] },
+    { name: "Influencer", preferences: ["Manis", "Kekinian"] },
+    { name: "Shopper", preferences: ["Hangat", "Murah"] },
+    { name: "Elder", preferences: ["Panas", "Tradisional"] },
+    { name: "Gym Goer", preferences: ["Pedas", "Sehat"] },
+    { name: "Parent", preferences: ["Manis", "Ringan"] },
+    { name: "Regular", preferences: ["Gurih", "Murah"] },
+    { name: "Explorer", preferences: ["Dingin", "Tradisional"] },
+    { name: "Foodie", preferences: ["Hangat", "Kekinian"] },
+    { name: "Early Worker", preferences: ["Panas", "Murah"] },
+    { name: "Vegetarian", preferences: ["Gurih", "Sehat"] },
+    { name: "Dessert Lover", preferences: ["Manis", "Segar"] },
+    { name: "Festival Goer", preferences: ["Pedas", "Kekinian"] },
+    { name: "Rainy Patron", preferences: ["Hangat", "Ringan"] },
+    { name: "Market Goer", preferences: ["Dingin", "Segar"] }
 ];
 
 export const allTags: string[] = [
-    "Savory", "Warm", "Traditional", "Sweet", "Cold", "Hot", "Light", "Spicy", "Trendy", "Fresh", "Healthy", "Cheap"
+    "Gurih", "Hangat", "Tradisional", "Manis", "Dingin", "Panas", "Ringan", "Pedas", "Kekinian", "Segar", "Sehat", "Murah"
 ];
 
 export const threats: Threat[] = [
-    { name: "Keterlambatan Stok", description: "Keterlambatan pengiriman bahan baku membuat hidangan dengan harga yang bersaing menjadi sangat sedikit pada ronde ini.", eliminates: ["Cheap"] },
-    { name: "Kampanye Kesehatan", description: "Kampanye kesehatan yang sukses, mengurangi minat makan-makanan yang kurang bergizi.", eliminates: ["Light"] },
-    { name: "Festival Makanan", description: "Festival Makanan menyajikan banyak makanan modern yang Instagrammable, menurunkan minat pada menu-menu yang \"ketinggalan zaman\".", eliminates: ["Traditional"] },
-    { name: "Cuaca Ekstrim", description: "Cuaca ekstrim yang sangat lembab menyebabkan sulit menjaga kualitas bahan-bahan tertentu.", eliminates: ["Fresh"] },
-    { name: "Kritik di Media Sosial", description: "Postingan viral mengkritik hidangan yang sedang \"naik daun\" hanya karena strategi marketing saja, mengurangi daya tariknya di kalangan pelanggan pada ronde ini.", eliminates: ["Trendy"] },
-    { name: "Pergeseran Tren Diet", description: "Tren cara diet baru mendorong pelanggan untuk meninggalkan hidangan padat nutrisi.", eliminates: ["Healthy"] }
+    { name: "Keterlambatan Stok", description: "Keterlambatan pengiriman bahan baku membuat hidangan dengan harga yang bersaing menjadi sangat sedikit pada ronde ini.", eliminates: ["Murah"] },
+    { name: "Kampanye Kesehatan", description: "Kampanye kesehatan yang sukses, mengurangi minat makan-makanan yang kurang bergizi.", eliminates: ["Ringan"] },
+    { name: "Festival Makanan", description: "Festival Makanan menyajikan banyak makanan modern yang Instagrammable, menurunkan minat pada menu-menu yang \"ketinggalan zaman\".", eliminates: ["Tradisional"] },
+    { name: "Cuaca Ekstrim", description: "Cuaca ekstrim yang sangat lembab menyebabkan sulit menjaga kualitas bahan-bahan tertentu.", eliminates: ["Segar"] },
+    { name: "Kritik di Media Sosial", description: "Postingan viral mengkritik hidangan yang sedang \"naik daun\" hanya karena strategi marketing saja, mengurangi daya tariknya di kalangan pelanggan pada ronde ini.", eliminates: ["Kekinian"] },
+    { name: "Pergeseran Tren Diet", description: "Tren cara diet baru mendorong pelanggan untuk meninggalkan hidangan padat nutrisi.", eliminates: ["Sehat"] }
 ];
