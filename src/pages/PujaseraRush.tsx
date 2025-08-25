@@ -7,7 +7,7 @@ import { ReferencePhase } from "@/components/ReferencePhase";
 import { ExecutionPhase } from "@/components/ExecutionPhase";
 import { SummaryPhase } from "@/components/SummaryPhase";
 import { VictoryPhase } from "@/components/VictoryPhase";
-import { showError, showSuccess } from "@/utils/toast";
+import { showError, showSuccess, showWarning } from "@/utils/toast";
 import { PreExecutionFeedbackModal } from "@/components/PreExecutionFeedbackModal";
 
 // Helper function to shuffle an array
@@ -280,7 +280,7 @@ const PujaseraRush = () => {
       if (matchAvailability.partial) {
         if (matchAvailability.best) {
           missedOpp++;
-          showError("Keliru! Ada Menu yang lebih cocok. +2 Profit, +2 Sat");
+          showWarning("Keliru! Ada Menu yang lebih cocok. +2 Profit, +2 Sat");
         } else {
           showSuccess("Saran diterima! +2 Profit, +2 Satisfaction");
         }
@@ -303,7 +303,7 @@ const PujaseraRush = () => {
 
       if (matchAvailability.best || matchAvailability.partial) {
         missedOpp++;
-        showError("Missed! Ada Menu yang lebih cocok. +1 Sat, +1 Risk");
+        showWarning("Missed! Ada Menu yang lebih cocok. +1 Sat, +1 Risk");
       } else {
         showSuccess("Permohonan maaf diterima! +1 Sat, +1 Risk");
       }
