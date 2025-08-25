@@ -52,26 +52,26 @@ export const indonesianNames: { name: string; gender: 'male' | 'female' }[] = [
 ];
 
 export const customerTypes: { name: string; preferences: string[] }[] = [
-    { name: "Office Worker", preferences: ["Gurih", "Murah"] },
-    { name: "Teen Student", preferences: ["Manis", "Kekinian"] },
-    { name: "Spicy Fan", preferences: ["Pedas", "Segar"] },
-    { name: "Commuter", preferences: ["Panas", "Ringan"] },
-    { name: "Health Fan", preferences: ["Dingin", "Sehat"] },
-    { name: "Tourist", preferences: ["Gurih", "Tradisional"] },
+    { name: "Pekerja", preferences: ["Gurih", "Murah"] },
+    { name: "Mahasiswa", preferences: ["Manis", "Kekinian"] },
+    { name: "Pencinta Pedas", preferences: ["Pedas", "Segar"] },
+    { name: "Anak Nongkrong", preferences: ["Panas", "Ringan"] },
+    { name: "Si Paling Sehat", preferences: ["Dingin", "Sehat"] },
+    { name: "Turis", preferences: ["Gurih", "Tradisional"] },
     { name: "Influencer", preferences: ["Manis", "Kekinian"] },
-    { name: "Shopper", preferences: ["Hangat", "Murah"] },
-    { name: "Elder", preferences: ["Panas", "Tradisional"] },
-    { name: "Gym Goer", preferences: ["Pedas", "Sehat"] },
-    { name: "Parent", preferences: ["Manis", "Ringan"] },
-    { name: "Regular", preferences: ["Gurih", "Murah"] },
-    { name: "Explorer", preferences: ["Dingin", "Tradisional"] },
-    { name: "Foodie", preferences: ["Hangat", "Kekinian"] },
-    { name: "Early Worker", preferences: ["Panas", "Murah"] },
-    { name: "Vegetarian", preferences: ["Gurih", "Sehat"] },
-    { name: "Dessert Lover", preferences: ["Manis", "Segar"] },
-    { name: "Festival Goer", preferences: ["Pedas", "Kekinian"] },
-    { name: "Rainy Patron", preferences: ["Hangat", "Ringan"] },
-    { name: "Market Goer", preferences: ["Dingin", "Segar"] }
+    { name: "Penggila Shopping", preferences: ["Hangat", "Murah"] },
+    { name: "Manula", preferences: ["Panas", "Tradisional"] },
+    { name: "Anak Gym", preferences: ["Pedas", "Sehat"] },
+    { name: "Orang Tua", preferences: ["Manis", "Ringan"] },
+    { name: "Pelanggan tetap", preferences: ["Gurih", "Murah"] },
+    { name: "Pengembara", preferences: ["Dingin", "Tradisional"] },
+    { name: "Tukang Makan", preferences: ["Hangat", "Kekinian"] },
+    { name: "Masih Trainee", preferences: ["Panas", "Murah"] },
+    { name: "Atlet", preferences: ["Gurih", "Sehat"] },
+    { name: "Pencinta Dessert", preferences: ["Manis", "Segar"] },
+    { name: "Anak Skena", preferences: ["Pedas", "Kekinian"] },
+    { name: "Pejabat", preferences: ["Hangat", "Ringan"] },
+    { name: "Petugas Keamanan", preferences: ["Dingin", "Segar"] }
 ];
 
 export const allTags: string[] = [
