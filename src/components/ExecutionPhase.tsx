@@ -138,9 +138,9 @@ export const ExecutionPhase = ({
                 <div className="flex items-start min-w-0">
                   <Smile className="mr-2 h-5 w-5 text-green-400 flex-shrink-0 mt-0.5" />
                   <span className="text-sm">
-                    Mungkin Anda bisa mencoba menu lain
+                    Mungkin Anda bisa coba menu
                     <br />
-                    yang mirip dengan selera Anda.
+                    lain yang mirip selera Anda.
                   </span>
                 </div>
                 <span className="text-xs font-normal text-muted-foreground self-start sm:self-center flex-shrink-0 pl-7 sm:pl-0">(1 tag cocok)</span>
