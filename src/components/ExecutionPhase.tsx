@@ -7,7 +7,6 @@ import { Progress } from "@/components/ui/progress";
 import { getTagIcon } from "@/utils/tagIcons";
 import { TimerIcon, Sparkles, Smile, Frown, UserX } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { playClickSound } from "@/utils/sound";
 
 interface ExecutionPhaseProps {
   gameState: GameState;
@@ -42,7 +41,6 @@ export const ExecutionPhase = ({
 
   const handleAction = (action: () => void) => {
     if (hasActed) return;
-    playClickSound();
     setHasActed(true);
     // Add a small delay so the user can see the button state change before the next customer appears
     setTimeout(() => {
