@@ -1,21 +1,26 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import clickSound from "@/assets/attribute_click.mp3";
 
 const Index = () => {
   const navigate = useNavigate();
 
   const handleMulaiClick = () => {
-    console.log("Attempting to play sound...");
-    const audio = new Audio(clickSound);
-    audio.play()
-      .then(() => {
-        console.log("Sound played successfully.");
-      })
-      .catch(error => {
-        console.error("Audio playback failed:", error);
-        // For this test, we won't navigate on failure either.
-      });
+    // The path is now a direct URL to the file in the public folder
+    const audio = new Audio("/attribute_click.mp3");
+
+    const navigateToNextPage = () => {
+      navigate("/how-to-play");
+    };
+
+    // Navigate after the sound has finished playing
+    audio.addEventListener('ended', navigateToNextPage);
+
+    audio.play().catch(error => {
+      console.error("Audio playback failed:", error);
+      // If sound fails, navigate immediately so the user isn't stuck.
+      audio.removeEventListener('ended', navigateToNextPage);
+      navigateToNextPage();
+    });
   };
 
   return (
