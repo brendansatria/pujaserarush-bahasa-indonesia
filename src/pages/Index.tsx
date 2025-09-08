@@ -6,22 +6,16 @@ const Index = () => {
   const navigate = useNavigate();
 
   const handleMulaiClick = () => {
+    console.log("Attempting to play sound...");
     const audio = new Audio(clickSound);
-
-    // This function will be called once the sound finishes playing
-    const handleSoundEnd = () => {
-      navigate("/how-to-play");
-    };
-
-    audio.addEventListener('ended', handleSoundEnd);
-
-    audio.play().catch(error => {
-      console.error("Audio playback failed:", error);
-      // If the sound fails to play for any reason (e.g., browser policy),
-      // remove the event listener and navigate immediately so the user isn't stuck.
-      audio.removeEventListener('ended', handleSoundEnd);
-      navigate("/how-to-play");
-    });
+    audio.play()
+      .then(() => {
+        console.log("Sound played successfully.");
+      })
+      .catch(error => {
+        console.error("Audio playback failed:", error);
+        // For this test, we won't navigate on failure either.
+      });
   };
 
   return (
