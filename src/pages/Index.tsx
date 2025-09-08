@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Index = () => {
   const playClickSound = () => {
-    const audio = new Audio('/sfx/attribute_click.mp3');
+    const audio = new Audio('/attribute_click.mp3');
     audio.play();
   };
 
