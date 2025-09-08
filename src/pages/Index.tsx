@@ -7,14 +7,21 @@ const Index = () => {
 
   const handleMulaiClick = () => {
     const audio = new Audio(clickSound);
-    audio.play().catch(error => {
-      console.error("Failed to play sound:", error);
-    });
 
-    // Delay navigation to allow the sound to play
-    setTimeout(() => {
+    // This function will be called once the sound finishes playing
+    const handleSoundEnd = () => {
       navigate("/how-to-play");
-    }, 300); // 300ms delay
+    };
+
+    audio.addEventListener('ended', handleSoundEnd);
+
+    audio.play().catch(error => {
+      console.error("Audio playback failed:", error);
+      // If the sound fails to play for any reason (e.g., browser policy),
+      // remove the event listener and navigate immediately so the user isn't stuck.
+      audio.removeEventListener('ended', handleSoundEnd);
+      navigate("/how-to-play");
+    });
   };
 
   return (
