@@ -1,10 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import clickSound from "@/assets/attribute_click.mp3";
 
 const Index = () => {
   const playClickSound = () => {
-    const audio = new Audio('/attribute_click.mp3');
-    audio.play();
+    const audio = new Audio(clickSound);
+    audio.play().catch(error => {
+      console.error("Failed to play sound:", error);
+    });
   };
 
   return (
