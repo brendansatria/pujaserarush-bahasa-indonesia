@@ -1,30 +1,30 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 
 const Index = () => {
   const navigate = useNavigate();
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const handleMulaiClick = () => {
-    // The path is now a direct URL to the file in the public folder
-    const audio = new Audio("/attribute_click.mp3");
-
-    const navigateToNextPage = () => {
+    if (audioRef.current) {
+      audioRef.current.play().catch(error => {
+        // We expect this might fail silently in some environments.
+        console.error("Audio playback failed:", error);
+      });
+    }
+    
+    // Give the sound a moment to play before navigating.
+    setTimeout(() => {
       navigate("/how-to-play");
-    };
-
-    // Navigate after the sound has finished playing
-    audio.addEventListener('ended', navigateToNextPage);
-
-    audio.play().catch(error => {
-      console.error("Audio playback failed:", error);
-      // If sound fails, navigate immediately so the user isn't stuck.
-      audio.removeEventListener('ended', navigateToNextPage);
-      navigateToNextPage();
-    });
+    }, 200);
   };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-between p-4 sm:p-8">
+      {/* Invisible audio element for preloading and reliable playback */}
+      <audio ref={audioRef} src="/attribute_click.mp3" preload="auto"></audio>
+
       <div className="text-center">
         <p className="text-xs text-muted-foreground">design by:</p>
         <img src="/logo-white.png" alt="Kummara Logo" className="w-32 mx-auto mt-2" />
