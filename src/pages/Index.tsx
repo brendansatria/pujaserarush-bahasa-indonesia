@@ -2,6 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 const Index = () => {
+  const playClickSound = () => {
+    const audio = new Audio('/sfx/attribute_click.mp3');
+    audio.play();
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-between p-4 sm:p-8">
       <div className="text-center">
@@ -14,7 +19,7 @@ const Index = () => {
         <p className="text-sm sm:text-base text-muted-foreground mb-8">
           A game-based learning experience in managing a vibrant Indonesian food court.
         </p>
-        <Button asChild size="lg">
+        <Button asChild size="lg" onClick={playClickSound}>
           <Link to="/how-to-play">Mulai</Link>
         </Button>
       </div>
