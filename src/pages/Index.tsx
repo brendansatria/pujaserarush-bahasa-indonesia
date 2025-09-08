@@ -1,13 +1,20 @@
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import clickSound from "@/assets/attribute_click.mp3";
 
 const Index = () => {
-  const playClickSound = () => {
+  const navigate = useNavigate();
+
+  const handleMulaiClick = () => {
     const audio = new Audio(clickSound);
     audio.play().catch(error => {
       console.error("Failed to play sound:", error);
     });
+
+    // Delay navigation to allow the sound to play
+    setTimeout(() => {
+      navigate("/how-to-play");
+    }, 300); // 300ms delay
   };
 
   return (
@@ -22,8 +29,8 @@ const Index = () => {
         <p className="text-sm sm:text-base text-muted-foreground mb-8">
           A game-based learning experience in managing a vibrant Indonesian food court.
         </p>
-        <Button asChild size="lg" onClick={playClickSound}>
-          <Link to="/how-to-play">Mulai</Link>
+        <Button size="lg" onClick={handleMulaiClick}>
+          Mulai
         </Button>
       </div>
 
