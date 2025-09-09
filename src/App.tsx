@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import PujaseraRush from "./pages/PujaseraRush";
 import HowToPlay from "./pages/HowToPlay";
+import BGMPlayer from "./components/BGMPlayer";
 
 const queryClient = new QueryClient();
 
@@ -16,6 +17,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <BGMPlayer />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/how-to-play" element={<HowToPlay />} />
