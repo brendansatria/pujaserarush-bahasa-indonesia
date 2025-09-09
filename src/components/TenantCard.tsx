@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { getTagIcon } from "@/utils/tagIcons";
+import { useClickSound } from "@/hooks/useClickSound";
 
 interface TenantCardProps {
   tenant: Tenant;
@@ -11,9 +12,16 @@ interface TenantCardProps {
 }
 
 export const TenantCard = ({ tenant, isSelected, onSelect }: TenantCardProps) => {
+  const playClickSound = useClickSound();
+
+  const handleClick = () => {
+    playClickSound();
+    onSelect();
+  };
+
   return (
     <Card
-      onClick={onSelect}
+      onClick={handleClick}
       className={cn(
         "cursor-pointer transition-all hover:shadow-md",
         isSelected ? "border-primary ring-2 ring-primary" : "border-border"

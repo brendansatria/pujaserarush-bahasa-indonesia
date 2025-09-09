@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { AlertCircle, TrendingUp, Lightbulb, ShieldCheck, ArrowUp, ArrowDown } from "lucide-react";
 import { getTagIcon } from "@/utils/tagIcons";
+import { useClickSound } from "@/hooks/useClickSound";
 
 interface PreExecutionFeedbackModalProps {
   isOpen: boolean;
@@ -44,6 +45,8 @@ export const PreExecutionFeedbackModal = ({
   selectedTenants,
   strategicRisk,
 }: PreExecutionFeedbackModalProps) => {
+  const playClickSound = useClickSound();
+
   if (!isOpen) return null;
 
   const allSelectedItems = selectedTenants.flatMap((t) => t.items);
@@ -57,6 +60,11 @@ export const PreExecutionFeedbackModal = ({
   const trendingItems = allSelectedItems.filter((item) =>
     item.tags.some((tag) => trendingTags.includes(tag))
   );
+
+  const handleClose = () => {
+    playClickSound();
+    onClose();
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -156,7 +164,7 @@ export const PreExecutionFeedbackModal = ({
           </div>
         </div>
         <DialogFooter>
-          <Button onClick={onClose}>OK</Button>
+          <Button onClick={handleClose}>OK</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

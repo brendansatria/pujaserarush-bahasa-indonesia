@@ -1,32 +1,22 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
+import { useClickSound } from "@/hooks/useClickSound";
 
 const Index = () => {
   const navigate = useNavigate();
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const playClickSound = useClickSound();
 
   const handleMulaiClick = () => {
-    if (audioRef.current) {
-      // Memutar suara dari awal setiap kali diklik
-      audioRef.current.currentTime = 0;
-      audioRef.current.play().catch(error => {
-        console.error("Pemutaran audio gagal:", error);
-        // Jika gagal, kita tetap melanjutkan navigasi.
-      });
-    }
+    playClickSound();
     
     // Menavigasi setelah jeda singkat untuk memberi waktu suara mulai diputar.
     setTimeout(() => {
       navigate("/how-to-play");
-    }, 200); // jeda 200ms
+    }, 200);
   };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-between p-4 sm:p-8">
-      {/* Elemen audio yang tidak terlihat untuk pemutaran yang andal */}
-      <audio ref={audioRef} src="/attribute_click.mp3" preload="auto"></audio>
-
       <div className="text-center">
         <p className="text-xs text-muted-foreground">design by:</p>
         <img src="/logo-white.png" alt="Kummara Logo" className="w-32 mx-auto mt-2" />

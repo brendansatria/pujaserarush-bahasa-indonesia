@@ -2,7 +2,8 @@ import { GameState } from "@/types/game";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Trophy, ShieldAlert, Heart, DollarSign } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useClickSound } from "@/hooks/useClickSound";
 
 const FinalScoreCard = ({ icon: Icon, title, value, description, colorClass }: any) => (
     <div className="flex items-center space-x-4 rounded-lg border p-4">
@@ -21,6 +22,8 @@ interface VictoryPhaseProps {
 
 export const VictoryPhase = ({ gameState }: VictoryPhaseProps) => {
   const { profit, risk, satisfaction } = gameState;
+  const navigate = useNavigate();
+  const playClickSound = useClickSound();
 
   const profitSuccess = profit >= 100;
   const riskSuccess = risk <= 50;
@@ -61,6 +64,14 @@ export const VictoryPhase = ({ gameState }: VictoryPhaseProps) => {
       break;
   }
 
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    playClickSound();
+    setTimeout(() => {
+      navigate("/");
+    }, 200);
+  };
+
   return (
     <div className="space-y-6 text-center animate-in fade-in-50">
       <Trophy className={`mx-auto h-16 w-16 ${outcome.trophyColor}`} />
@@ -99,7 +110,7 @@ export const VictoryPhase = ({ gameState }: VictoryPhaseProps) => {
       </Card>
 
       <Button asChild size="lg">
-        <Link to="/">Main Lagi</Link>
+        <Link to="/" onClick={handleClick}>Main Lagi</Link>
       </Button>
 
       <div className="text-center pt-8">

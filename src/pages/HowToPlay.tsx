@@ -1,9 +1,21 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DollarSign, Heart, ShieldAlert } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useClickSound } from "@/hooks/useClickSound";
 
 const HowToPlay = () => {
+  const navigate = useNavigate();
+  const playClickSound = useClickSound();
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    playClickSound();
+    setTimeout(() => {
+      navigate("/pujasera-rush");
+    }, 200);
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4">
       <div className="max-w-4xl w-full">
@@ -67,7 +79,7 @@ const HowToPlay = () => {
 
             <div className="text-center">
               <Button asChild size="lg">
-                <Link to="/pujasera-rush">OK</Link>
+                <Link to="/pujasera-rush" onClick={handleClick}>OK</Link>
               </Button>
             </div>
           </CardContent>

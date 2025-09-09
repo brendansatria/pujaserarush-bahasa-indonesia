@@ -4,10 +4,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Info } from "lucide-react";
+import { useClickSound } from "@/hooks/useClickSound";
 
 interface ScoreInfoDialogProps {
   title: string;
@@ -16,10 +16,11 @@ interface ScoreInfoDialogProps {
 }
 
 export const ScoreInfoDialog = ({ title, description, icon }: ScoreInfoDialogProps) => {
+  const playClickSound = useClickSound();
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="ghost" size="icon" className="h-6 w-6 cursor-pointer">
+        <Button variant="ghost" size="icon" className="h-6 w-6 cursor-pointer" onClick={playClickSound}>
           <Info className="h-4 w-4 text-muted-foreground hover:text-foreground" />
         </Button>
       </DialogTrigger>

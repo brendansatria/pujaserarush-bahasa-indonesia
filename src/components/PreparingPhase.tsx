@@ -9,6 +9,7 @@ import { Users, ChevronsUpDown } from "lucide-react";
 import { getTagIcon } from "@/utils/tagIcons";
 import { PlayerMenuDisplay } from "./PlayerMenuDisplay";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { useClickSound } from "@/hooks/useClickSound";
 
 interface PreparingPhaseProps {
   round: number;
@@ -36,6 +37,12 @@ export function PreparingPhase({
   lineCutters,
 }: PreparingPhaseProps) {
   const [isMarketOpen, setIsMarketOpen] = useState(true);
+  const playClickSound = useClickSound();
+
+  const handleStartExecutionClick = () => {
+    playClickSound();
+    onStartExecution();
+  };
 
   return (
     <div className="space-y-6">
@@ -46,7 +53,7 @@ export function PreparingPhase({
 
       <Collapsible open={isMarketOpen} onOpenChange={setIsMarketOpen}>
         <Card style={{ backgroundColor: '#274754' }}>
-          <CollapsibleTrigger className="w-full">
+          <CollapsibleTrigger className="w-full" onClick={playClickSound}>
             <CardHeader className="flex flex-row items-center justify-between cursor-pointer">
               <div className="text-left">
                 <CardTitle>🎯 Tren Pasar Hari Ini</CardTitle>
@@ -131,7 +138,7 @@ export function PreparingPhase({
 
       <div className="text-center">
         <Button
-          onClick={onStartExecution}
+          onClick={handleStartExecutionClick}
           disabled={selectedTenants.length !== 2}
           size="lg"
         >

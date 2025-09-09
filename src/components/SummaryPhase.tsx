@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowUp, ArrowDown, Minus, Lightbulb, DollarSign, ShieldAlert, Heart } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { useClickSound } from "@/hooks/useClickSound";
 
 interface SummaryPhaseProps {
   gameState: GameState;
@@ -44,6 +45,7 @@ const StatDisplay = ({ label, change, icon: StatIcon, iconColor, invertColorLogi
 
 export const SummaryPhase = ({ gameState, roundStartStats, onNextRound, onFinishGame, totalRounds }: SummaryPhaseProps) => {
   const { round, profit, risk, satisfaction, missedOpportunities, wrongDecisions } = gameState;
+  const playClickSound = useClickSound();
 
   const profitChange = profit - roundStartStats.profit;
   const riskChange = risk - roundStartStats.risk;
@@ -56,6 +58,15 @@ export const SummaryPhase = ({ gameState, roundStartStats, onNextRound, onFinish
     if (profitChange > 5) return "Performa yang solid. Pelanggan senang dan dompet Anda juga!";
     if (profitChange >= 0) return "Anda berhasil melewati hari ini. Mari kita targetkan keuntungan lebih besar lain kali.";
     return "Hari yang berat. Mari kita analisis apa yang salah dan bangkit kembali!";
+  };
+
+  const handleClick = () => {
+    playClickSound();
+    if (isLastRound) {
+      onFinishGame();
+    } else {
+      onNextRound();
+    }
   };
 
   return (
@@ -96,7 +107,7 @@ export const SummaryPhase = ({ gameState, roundStartStats, onNextRound, onFinish
         </CardContent>
       </Card>
 
-      <Button onClick={isLastRound ? onFinishGame : onNextRound} size="lg">
+      <Button onClick={handleClick} size="lg">
         {isLastRound ? "Lihat Hasil Akhir" : "Mulai Ronde Berikutnya"}
       </Button>
     </div>

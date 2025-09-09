@@ -8,18 +8,20 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { getTagIcon } from "@/utils/tagIcons";
 import { ChevronsUpDown, BookMarked } from "lucide-react";
+import { useClickSound } from "@/hooks/useClickSound";
 
 interface PlayerMenuDisplayProps {
   menu: MenuItem[];
 }
 
 export const PlayerMenuDisplay = ({ menu }: PlayerMenuDisplayProps) => {
+  const playClickSound = useClickSound();
   if (menu.length === 0) return null;
 
   return (
     <Collapsible className="w-full space-y-2">
       <CollapsibleTrigger asChild>
-        <Button variant="outline" className="w-full justify-between">
+        <Button variant="outline" className="w-full justify-between" onClick={playClickSound}>
           <div className="flex items-center">
             <BookMarked className="mr-2 h-4 w-4" />
             Lihat Menu Anda ({menu.length} item)
